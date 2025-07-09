@@ -1,0 +1,31 @@
+# Conway Bikes Order Monitoring Automation
+# Python dependencies for Holded API automation system
+
+# Core dependencies
+requests>=2.31.0          # HTTP client for Holded API calls
+python-dotenv>=1.0.0      # Environment variable management
+pytz>=2023.3             # Timezone handling for Madrid time
+
+# Scheduling (for cron-like functionality)
+schedule>=1.2.0          # Simple job scheduling library
+APScheduler>=3.10.0      # Advanced scheduling capabilities (alternative)
+
+# Email dependencies (built-in modules)
+# smtplib, email.mime - included in Python standard library
+
+# Development and testing dependencies
+pytest>=7.4.0            # Testing framework
+pytest-cov>=4.1.0       # Coverage testing
+black>=23.7.0            # Code formatting
+flake8>=6.0.0            # Code linting
+
+# Optional: Enhanced CSV handling
+pandas>=2.0.0            # Advanced CSV processing (if needed for complex CSV operations)
+chardet>=5.2.0           # Character encoding detection for CSV files
+
+# Optional: Enhanced logging and monitoring
+colorlog>=6.7.0          # Colored logging output
+structlog>=23.1.0        # Structured logging (for better log analysis)
+
+# Security dependencies
+cryptography>=41.0.0     # Secure password handling and encryption 

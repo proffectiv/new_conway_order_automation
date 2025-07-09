@@ -1,0 +1,175 @@
+2025-07-08 18:46:10,664 [INFO] src.main_workflow: Initializing Conway Bikes workflow orchestrator
+2025-07-08 18:46:10,664 [INFO] utils.csv_processor: Loading bike references from: Bike_References_Conway_2025.csv
+2025-07-08 18:46:10,665 [INFO] utils.csv_processor: Loaded 711 bike references from CSV
+2025-07-08 18:46:10,665 [INFO] holded.api_client: Holded API client initialized
+2025-07-08 18:46:10,665 [INFO] notifications.email_sender: Email sender initialized
+2025-07-08 18:46:10,665 [INFO] utils.processed_orders: Processed orders tracker initialized with 0 existing records
+2025-07-08 18:46:10,665 [INFO] src.main_workflow: All workflow components initialized successfully
+2025-07-08 18:46:10,675 [INFO] src.main_workflow: Starting daily Conway bike order check at 2025-07-08 18:46:10 CEST
+2025-07-08 18:46:10,675 [INFO] src.main_workflow: Step 1: Loading bike references from CSV
+2025-07-08 18:46:10,675 [INFO] src.main_workflow: Loaded 711 bike references
+2025-07-08 18:46:10,675 [INFO] src.main_workflow: Step 2: Retrieving sales orders from Holded API
+2025-07-08 18:46:10,675 [INFO] holded.api_client: Fetching sales orders from 2025-07-07 09:00:00+02:00 to 2025-07-08 18:46:10.674975+02:00
+2025-07-08 18:46:10,841 [INFO] holded.api_client: Retrieved 2 salesorder documents from Holded API
+2025-07-08 18:46:10,842 [INFO] src.main_workflow: Retrieved 2 sales orders from Holded API
+2025-07-08 18:46:10,842 [INFO] src.main_workflow: Step 2.5: Filtering out already processed orders
+2025-07-08 18:46:10,842 [INFO] src.main_workflow: Filtered out 0 already processed orders, 2 new orders to check
+2025-07-08 18:46:10,842 [INFO] src.main_workflow: Step 3: Filtering orders for bike references
+2025-07-08 18:46:10,842 [INFO] utils.csv_processor: Filtered 1 orders containing bike references from 2 total orders
+2025-07-08 18:46:10,842 [INFO] src.main_workflow: Found 1 orders containing bike references
+2025-07-08 18:46:10,842 [INFO] src.main_workflow: Step 4: Sending email notification
+2025-07-08 18:46:10,843 [INFO] notifications.email_sender: Sending email notification to cabagu35@gmail.com
+2025-07-08 18:46:12,367 [INFO] notifications.email_sender: Email notification sent successfully to cabagu35@gmail.com
+2025-07-08 18:46:12,368 [INFO] src.main_workflow: Email notification sent successfully
+2025-07-08 18:46:12,368 [INFO] utils.processed_orders: Marked 2 orders as processed
+2025-07-08 18:46:12,369 [INFO] src.main_workflow: Marked 2 orders as processed to prevent duplicates
+2025-07-08 18:46:12,369 [INFO] src.main_workflow: Daily check completed successfully
+2025-07-08 18:46:25,935 [INFO] src.main_workflow: Initializing Conway Bikes workflow orchestrator
+2025-07-08 18:46:25,935 [INFO] utils.csv_processor: Loading bike references from: Bike_References_Conway_2025.csv
+2025-07-08 18:46:25,936 [INFO] utils.csv_processor: Loaded 711 bike references from CSV
+2025-07-08 18:46:25,936 [INFO] holded.api_client: Holded API client initialized
+2025-07-08 18:46:25,937 [INFO] notifications.email_sender: Email sender initialized
+2025-07-08 18:46:25,937 [INFO] utils.processed_orders: Processed orders tracker initialized with 2 existing records
+2025-07-08 18:46:25,937 [INFO] src.main_workflow: All workflow components initialized successfully
+2025-07-08 18:46:25,943 [INFO] src.main_workflow: Starting daily Conway bike order check at 2025-07-08 18:46:25 CEST
+2025-07-08 18:46:25,944 [INFO] src.main_workflow: Step 1: Loading bike references from CSV
+2025-07-08 18:46:25,944 [INFO] src.main_workflow: Loaded 711 bike references
+2025-07-08 18:46:25,944 [INFO] src.main_workflow: Step 2: Retrieving sales orders from Holded API
+2025-07-08 18:46:25,944 [INFO] holded.api_client: Fetching sales orders from 2025-07-07 09:00:00+02:00 to 2025-07-08 18:46:25.943726+02:00
+2025-07-08 18:46:26,057 [INFO] holded.api_client: Retrieved 2 salesorder documents from Holded API
+2025-07-08 18:46:26,057 [INFO] src.main_workflow: Retrieved 2 sales orders from Holded API
+2025-07-08 18:46:26,057 [INFO] src.main_workflow: Step 2.5: Filtering out already processed orders
+2025-07-08 18:46:26,057 [INFO] utils.processed_orders: Filtered out 2 already processed orders, 0 new orders remain
+2025-07-08 18:46:26,057 [INFO] src.main_workflow: Filtered out 2 already processed orders, 0 new orders to check
+2025-07-08 18:46:26,057 [INFO] src.main_workflow: All orders have already been processed. Skipping further processing.
+2025-07-08 18:47:08,647 [INFO] src.main_workflow: Initializing Conway Bikes workflow orchestrator
+2025-07-08 18:47:08,647 [INFO] utils.csv_processor: Loading bike references from: Bike_References_Conway_2025.csv
+2025-07-08 18:47:08,649 [INFO] utils.csv_processor: Loaded 711 bike references from CSV
+2025-07-08 18:47:08,649 [INFO] holded.api_client: Holded API client initialized
+2025-07-08 18:47:08,649 [INFO] notifications.email_sender: Email sender initialized
+2025-07-08 18:47:08,649 [INFO] utils.processed_orders: Processed orders tracker initialized with 2 existing records
+2025-07-08 18:47:08,649 [INFO] src.main_workflow: All workflow components initialized successfully
+2025-07-08 18:47:08,658 [INFO] src.main_workflow: Starting daily Conway bike order check at 2025-07-08 18:47:08 CEST
+2025-07-08 18:47:08,658 [INFO] src.main_workflow: Step 1: Loading bike references from CSV
+2025-07-08 18:47:08,658 [INFO] src.main_workflow: Loaded 711 bike references
+2025-07-08 18:47:08,658 [INFO] src.main_workflow: Step 2: Retrieving sales orders from Holded API
+2025-07-08 18:47:08,658 [INFO] holded.api_client: Fetching sales orders from 2025-07-07 09:00:00+02:00 to 2025-07-08 18:47:08.658144+02:00
+2025-07-08 18:47:08,793 [INFO] holded.api_client: Retrieved 2 salesorder documents from Holded API
+2025-07-08 18:47:08,793 [INFO] src.main_workflow: Retrieved 2 sales orders from Holded API
+2025-07-08 18:47:08,793 [INFO] src.main_workflow: Step 2.5: Filtering out already processed orders
+2025-07-08 18:47:08,793 [INFO] utils.processed_orders: Filtered out 2 already processed orders, 0 new orders remain
+2025-07-08 18:47:08,793 [INFO] src.main_workflow: Filtered out 2 already processed orders, 0 new orders to check
+2025-07-08 18:47:08,793 [INFO] src.main_workflow: All orders have already been processed. Skipping further processing.
+2025-07-08 18:47:15,729 [INFO] src.main_workflow: Initializing Conway Bikes workflow orchestrator
+2025-07-08 18:47:15,730 [INFO] utils.csv_processor: Loading bike references from: Bike_References_Conway_2025.csv
+2025-07-08 18:47:15,731 [INFO] utils.csv_processor: Loaded 711 bike references from CSV
+2025-07-08 18:47:15,731 [INFO] holded.api_client: Holded API client initialized
+2025-07-08 18:47:15,731 [INFO] notifications.email_sender: Email sender initialized
+2025-07-08 18:47:15,731 [INFO] utils.processed_orders: Processed orders tracker initialized with 2 existing records
+2025-07-08 18:47:15,731 [INFO] src.main_workflow: All workflow components initialized successfully
+2025-07-08 18:47:15,738 [INFO] src.main_workflow: Starting frequent Conway bike order check at 2025-07-08 18:47:15 CEST (looking back 5 minutes)
+2025-07-08 18:47:15,738 [INFO] src.main_workflow: Step 1: Loading bike references from CSV
+2025-07-08 18:47:15,738 [INFO] src.main_workflow: Loaded 711 bike references
+2025-07-08 18:47:15,738 [INFO] src.main_workflow: Step 2: Retrieving recent sales orders from Holded API (last 5 minutes)
+2025-07-08 18:47:15,738 [INFO] holded.api_client: Fetching recent sales orders from 2025-07-08 18:42:15.738637+02:00 to 2025-07-08 18:47:15.738637+02:00 (5 minutes window)
+2025-07-08 18:47:15,845 [INFO] holded.api_client: Retrieved 0 salesorder documents from Holded API
+2025-07-08 18:47:15,845 [INFO] holded.api_client: Retrieved 0 recent sales orders from Holded API
+2025-07-08 18:47:15,845 [INFO] src.main_workflow: Retrieved 0 recent sales orders from Holded API
+2025-07-08 18:47:15,845 [INFO] src.main_workflow: No recent orders found. Skipping further processing.
+2025-07-08 18:47:40,600 [INFO] src.main_workflow: Initializing Conway Bikes workflow orchestrator
+2025-07-08 18:47:40,600 [INFO] utils.csv_processor: Loading bike references from: Bike_References_Conway_2025.csv
+2025-07-08 18:47:40,602 [INFO] utils.csv_processor: Loaded 711 bike references from CSV
+2025-07-08 18:47:40,602 [INFO] holded.api_client: Holded API client initialized
+2025-07-08 18:47:40,602 [INFO] notifications.email_sender: Email sender initialized
+2025-07-08 18:47:40,603 [INFO] utils.processed_orders: Processed orders tracker initialized with 2 existing records
+2025-07-08 18:47:40,603 [INFO] src.main_workflow: All workflow components initialized successfully
+2025-07-08 18:47:40,614 [INFO] src.main_workflow: Starting frequent Conway bike order check at 2025-07-08 18:47:40 CEST (looking back 5 minutes)
+2025-07-08 18:47:40,614 [INFO] src.main_workflow: Step 1: Loading bike references from CSV
+2025-07-08 18:47:40,615 [INFO] src.main_workflow: Loaded 711 bike references
+2025-07-08 18:47:40,615 [INFO] src.main_workflow: Step 2: Retrieving recent sales orders from Holded API (last 5 minutes)
+2025-07-08 18:47:40,615 [INFO] holded.api_client: Fetching recent sales orders from 2025-07-08 18:42:40.614722+02:00 to 2025-07-08 18:47:40.614722+02:00 (5 minutes window)
+2025-07-08 18:47:40,718 [INFO] holded.api_client: Retrieved 0 salesorder documents from Holded API
+2025-07-08 18:47:40,718 [INFO] holded.api_client: Retrieved 0 recent sales orders from Holded API
+2025-07-08 18:47:40,718 [INFO] src.main_workflow: Retrieved 0 recent sales orders from Holded API
+2025-07-08 18:47:40,718 [INFO] src.main_workflow: No recent orders found. Skipping further processing.
+2025-07-08 18:47:42,955 [INFO] src.main_workflow: Initializing Conway Bikes workflow orchestrator
+2025-07-08 18:47:42,955 [INFO] utils.csv_processor: Loading bike references from: Bike_References_Conway_2025.csv
+2025-07-08 18:47:42,956 [INFO] utils.csv_processor: Loaded 711 bike references from CSV
+2025-07-08 18:47:42,956 [INFO] holded.api_client: Holded API client initialized
+2025-07-08 18:47:42,956 [INFO] notifications.email_sender: Email sender initialized
+2025-07-08 18:47:42,956 [INFO] utils.processed_orders: Processed orders tracker initialized with 2 existing records
+2025-07-08 18:47:42,956 [INFO] src.main_workflow: All workflow components initialized successfully
+2025-07-08 18:47:42,965 [INFO] src.main_workflow: Starting daily Conway bike order check at 2025-07-08 18:47:42 CEST
+2025-07-08 18:47:42,965 [INFO] src.main_workflow: Step 1: Loading bike references from CSV
+2025-07-08 18:47:42,966 [INFO] src.main_workflow: Loaded 711 bike references
+2025-07-08 18:47:42,966 [INFO] src.main_workflow: Step 2: Retrieving sales orders from Holded API
+2025-07-08 18:47:42,966 [INFO] holded.api_client: Fetching sales orders from 2025-07-07 09:00:00+02:00 to 2025-07-08 18:47:42.965713+02:00
+2025-07-08 18:47:43,097 [INFO] holded.api_client: Retrieved 2 salesorder documents from Holded API
+2025-07-08 18:47:43,097 [INFO] src.main_workflow: Retrieved 2 sales orders from Holded API
+2025-07-08 18:47:43,097 [INFO] src.main_workflow: Step 2.5: Filtering out already processed orders
+2025-07-08 18:47:43,097 [INFO] utils.processed_orders: Filtered out 2 already processed orders, 0 new orders remain
+2025-07-08 18:47:43,097 [INFO] src.main_workflow: Filtered out 2 already processed orders, 0 new orders to check
+2025-07-08 18:47:43,097 [INFO] src.main_workflow: All orders have already been processed. Skipping further processing.
+2025-07-09 10:03:29,494 [INFO] src.main_workflow: Initializing Conway Bikes workflow orchestrator
+2025-07-09 10:03:29,496 [INFO] utils.csv_processor: Loading bike references from: Bike_References_Conway_2025.csv
+2025-07-09 10:03:29,499 [INFO] utils.csv_processor: Loaded 711 bike references from CSV
+2025-07-09 10:03:29,499 [INFO] holded.api_client: Holded API client initialized
+2025-07-09 10:03:29,499 [INFO] notifications.email_sender: Email sender initialized
+2025-07-09 10:03:29,499 [INFO] utils.processed_orders: Processed orders tracker initialized with 2 existing records
+2025-07-09 10:03:29,499 [INFO] src.main_workflow: All workflow components initialized successfully
+2025-07-09 10:03:29,516 [INFO] src.main_workflow: Starting frequent Conway bike order check at 2025-07-09 10:03:29 CEST (looking back 5 minutes)
+2025-07-09 10:03:29,516 [INFO] src.main_workflow: Step 1: Loading bike references from CSV
+2025-07-09 10:03:29,516 [INFO] src.main_workflow: Loaded 711 bike references
+2025-07-09 10:03:29,516 [INFO] src.main_workflow: Step 2: Retrieving recent sales orders from Holded API (last 5 minutes)
+2025-07-09 10:03:29,516 [INFO] holded.api_client: Fetching recent sales orders from 2025-07-09 09:58:29.516268+02:00 to 2025-07-09 10:03:29.516268+02:00 (5 minutes window)
+2025-07-09 10:03:29,712 [INFO] holded.api_client: Retrieved 0 salesorder documents from Holded API
+2025-07-09 10:03:29,712 [INFO] holded.api_client: Retrieved 0 recent sales orders from Holded API
+2025-07-09 10:03:29,712 [INFO] src.main_workflow: Retrieved 0 recent sales orders from Holded API
+2025-07-09 10:03:29,712 [INFO] src.main_workflow: No recent orders found. Skipping further processing.
+2025-07-09 10:03:42,249 [INFO] src.main_workflow: Initializing Conway Bikes workflow orchestrator
+2025-07-09 10:03:42,249 [INFO] utils.csv_processor: Loading bike references from: Bike_References_Conway_2025.csv
+2025-07-09 10:03:42,250 [INFO] utils.csv_processor: Loaded 711 bike references from CSV
+2025-07-09 10:03:42,251 [INFO] holded.api_client: Holded API client initialized
+2025-07-09 10:03:42,251 [INFO] notifications.email_sender: Email sender initialized
+2025-07-09 10:03:42,251 [INFO] utils.processed_orders: Processed orders tracker initialized with 0 existing records
+2025-07-09 10:03:42,251 [INFO] src.main_workflow: All workflow components initialized successfully
+2025-07-09 10:03:42,258 [INFO] src.main_workflow: Starting frequent Conway bike order check at 2025-07-09 10:03:42 CEST (looking back 5 minutes)
+2025-07-09 10:03:42,258 [INFO] src.main_workflow: Step 1: Loading bike references from CSV
+2025-07-09 10:03:42,258 [INFO] src.main_workflow: Loaded 711 bike references
+2025-07-09 10:03:42,258 [INFO] src.main_workflow: Step 2: Retrieving recent sales orders from Holded API (last 5 minutes)
+2025-07-09 10:03:42,258 [INFO] holded.api_client: Fetching recent sales orders from 2025-07-09 09:58:42.258156+02:00 to 2025-07-09 10:03:42.258156+02:00 (5 minutes window)
+2025-07-09 10:03:42,357 [INFO] holded.api_client: Retrieved 0 salesorder documents from Holded API
+2025-07-09 10:03:42,357 [INFO] holded.api_client: Retrieved 0 recent sales orders from Holded API
+2025-07-09 10:03:42,357 [INFO] src.main_workflow: Retrieved 0 recent sales orders from Holded API
+2025-07-09 10:03:42,357 [INFO] src.main_workflow: No recent orders found. Skipping further processing.
+2025-07-09 10:03:52,157 [INFO] src.main_workflow: Initializing Conway Bikes workflow orchestrator
+2025-07-09 10:03:52,157 [INFO] utils.csv_processor: Loading bike references from: Bike_References_Conway_2025.csv
+2025-07-09 10:03:52,159 [INFO] utils.csv_processor: Loaded 711 bike references from CSV
+2025-07-09 10:03:52,159 [INFO] holded.api_client: Holded API client initialized
+2025-07-09 10:03:52,159 [INFO] notifications.email_sender: Email sender initialized
+2025-07-09 10:03:52,159 [INFO] utils.processed_orders: Processed orders tracker initialized with 0 existing records
+2025-07-09 10:03:52,159 [INFO] src.main_workflow: All workflow components initialized successfully
+2025-07-09 10:03:52,169 [INFO] src.main_workflow: Starting frequent Conway bike order check at 2025-07-09 10:03:52 CEST (looking back 5 minutes)
+2025-07-09 10:03:52,169 [INFO] src.main_workflow: Step 1: Loading bike references from CSV
+2025-07-09 10:03:52,169 [INFO] src.main_workflow: Loaded 711 bike references
+2025-07-09 10:03:52,169 [INFO] src.main_workflow: Step 2: Retrieving recent sales orders from Holded API (last 5 minutes)
+2025-07-09 10:03:52,169 [INFO] holded.api_client: Fetching recent sales orders from 2025-07-09 09:58:52.168937+02:00 to 2025-07-09 10:03:52.168937+02:00 (5 minutes window)
+2025-07-09 10:03:52,277 [INFO] holded.api_client: Retrieved 0 salesorder documents from Holded API
+2025-07-09 10:03:52,277 [INFO] holded.api_client: Retrieved 0 recent sales orders from Holded API
+2025-07-09 10:03:52,277 [INFO] src.main_workflow: Retrieved 0 recent sales orders from Holded API
+2025-07-09 10:03:52,277 [INFO] src.main_workflow: No recent orders found. Skipping further processing.
+2025-07-09 10:03:58,845 [INFO] src.main_workflow: Initializing Conway Bikes workflow orchestrator
+2025-07-09 10:03:58,845 [INFO] utils.csv_processor: Loading bike references from: Bike_References_Conway_2025.csv
+2025-07-09 10:03:58,847 [INFO] utils.csv_processor: Loaded 711 bike references from CSV
+2025-07-09 10:03:58,847 [INFO] holded.api_client: Holded API client initialized
+2025-07-09 10:03:58,847 [INFO] notifications.email_sender: Email sender initialized
+2025-07-09 10:03:58,847 [INFO] utils.processed_orders: Processed orders tracker initialized with 0 existing records
+2025-07-09 10:03:58,847 [INFO] src.main_workflow: All workflow components initialized successfully
+2025-07-09 10:03:58,854 [INFO] src.main_workflow: Starting daily Conway bike order check at 2025-07-09 10:03:58 CEST
+2025-07-09 10:03:58,854 [INFO] src.main_workflow: Step 1: Loading bike references from CSV
+2025-07-09 10:03:58,854 [INFO] src.main_workflow: Loaded 711 bike references
+2025-07-09 10:03:58,854 [INFO] src.main_workflow: Step 2: Retrieving sales orders from Holded API
+2025-07-09 10:03:58,854 [INFO] holded.api_client: Fetching sales orders from 2025-07-08 09:00:00+02:00 to 2025-07-09 10:03:58.854243+02:00
+2025-07-09 10:03:58,964 [INFO] holded.api_client: Retrieved 0 salesorder documents from Holded API
+2025-07-09 10:03:58,964 [INFO] src.main_workflow: Retrieved 0 sales orders from Holded API
+2025-07-09 10:03:58,964 [INFO] src.main_workflow: No orders found. Skipping further processing.
