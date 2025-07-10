@@ -1,9 +1,9 @@
 name: Conway Bikes Frequent Order Check
 
 on:
-  # Run every 5 minutes
+  # Run every 10 minutes
   schedule:
-    - cron: "*/5 * * * *"
+    - cron: "*/10 * * * *"
 
   # Allow manual trigger for testing
   workflow_dispatch:
