@@ -116,7 +116,6 @@ EMAIL_FROM=notifications@yourcompany.com
 TARGET_EMAIL=orders@yourcompany.com
 EMAIL_SUBJECT_PREFIX=[Conway Bikes - Urgent]
 TIMEZONE=Europe/Madrid
-CHECK_DELAY_MINUTES=5
 OPERATION_START_HOUR=7
 OPERATION_END_HOUR=23
 ```

@@ -50,7 +50,6 @@ class Settings:
         self.SCHEDULE_MINUTE = int(os.getenv("SCHEDULE_MINUTE", "0"))
         
         # Frequent Check Configuration
-        self.CHECK_DELAY_MINUTES = int(os.getenv("CHECK_DELAY_MINUTES", "5"))
         self.OPERATION_START_HOUR = int(os.getenv("OPERATION_START_HOUR", "7"))
         self.OPERATION_END_HOUR = int(os.getenv("OPERATION_END_HOUR", "23"))
         
@@ -88,9 +87,6 @@ class Settings:
             raise ValueError("SCHEDULE_MINUTE must be between 0 and 59")
         
         # Validate frequent check configuration
-        if not (1 <= self.CHECK_DELAY_MINUTES <= 60):
-            raise ValueError("CHECK_DELAY_MINUTES must be between 1 and 60")
-        
         if not (0 <= self.OPERATION_START_HOUR <= 23):
             raise ValueError("OPERATION_START_HOUR must be between 0 and 23")
         
