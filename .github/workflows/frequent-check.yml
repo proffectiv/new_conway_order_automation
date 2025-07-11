@@ -47,7 +47,6 @@ jobs:
 
           # Notification Configuration
           TARGET_EMAIL=${{ secrets.TARGET_EMAIL }}
-          EMAIL_SUBJECT_PREFIX=${{ secrets.EMAIL_SUBJECT_PREFIX }}
 
           # Timezone Configuration
           TIMEZONE=${{ secrets.TIMEZONE }}

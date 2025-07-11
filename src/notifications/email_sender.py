@@ -38,7 +38,6 @@ class EmailSender:
         self.password = settings.EMAIL_PASSWORD
         self.from_email = settings.EMAIL_FROM
         self.target_email = settings.TARGET_EMAIL
-        self.subject_prefix = settings.EMAIL_SUBJECT_PREFIX
         
         # Store bike references for item filtering
         self.bike_references = bike_references or set()
@@ -144,32 +143,6 @@ class EmailSender:
         logger.debug(f"Filtered {len(conway_items)} Conway items from {len(items)} total items in order")
         
         return conway_items
-    
-    def _get_logo_base64(self) -> str:
-        """
-        Get the Proffectiv logo as base64 encoded string for email embedding.
-        
-        Returns:
-            Base64 encoded image string with data URI prefix, or empty string if file not found
-        """
-        try:
-            # Get the logo file path (relative to project root)
-            logo_path = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'proffectiv-logo.png')
-            
-            if os.path.exists(logo_path):
-                with open(logo_path, 'rb') as img_file:
-                    # Read and encode the image
-                    img_data = img_file.read()
-                    img_base64 = base64.b64encode(img_data).decode('utf-8')
-                    # Return as data URI for HTML embedding
-                    return f"data:image/png;base64,{img_base64}"
-            else:
-                logger.warning(f"Logo file not found at: {logo_path}")
-                return ""
-                
-        except Exception as e:
-            logger.error(f"Failed to load logo image: {e}")
-            return ""
     
     def _format_date(self, date_input: Union[str, int, float, None]) -> str:
         """
@@ -581,7 +554,7 @@ Conway Items:
             
             # Email subject
             order_count = len(orders)
-            subject = f"{self.subject_prefix} {order_count} New Conway Bike Order{'s' if order_count != 1 else ''} Detected"
+            subject = f"[Proffectiv - New Orders] {order_count} New Conway Bike Order{'s' if order_count != 1 else ''} Detected"
             msg['Subject'] = subject
             msg['From'] = self.from_email
             msg['To'] = self.target_email
@@ -710,7 +683,7 @@ Conway Items:
             msg = MIMEMultipart('alternative')
             
             # Email subject with TEST prefix
-            subject = f"{self.subject_prefix} [TEST] 2 New Conway Bike Orders Detected - Template Preview"
+            subject = f"[Proffectiv - New Orders] [TEST] 2 New Conway Bike Orders Detected - Template Preview"
             msg['Subject'] = subject
             msg['From'] = self.from_email
             msg['To'] = self.target_email
