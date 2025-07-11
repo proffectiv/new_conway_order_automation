@@ -6,14 +6,14 @@ on:
 
   # Allow webhook triggering from cron-jobs service
   repository_dispatch:
-    types: [order-check]
+    types: [cron-trigger]
 
 # Set timezone to Madrid for consistent execution
 env:
   TZ: Europe/Madrid
 
 jobs:
-  order-check:
+  cron-trigger:
     runs-on: ubuntu-latest
 
     steps:

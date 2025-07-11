@@ -1356,3 +1356,63 @@
 2025-07-11 10:30:06,739 [INFO] holded.api_client: Retrieved 0 salesorder documents from Holded API
 2025-07-11 10:30:06,739 [INFO] src.main_workflow: Retrieved 0 sales orders from Holded API
 2025-07-11 10:30:06,739 [INFO] src.main_workflow: No orders found. Skipping further processing.
+2025-07-11 11:58:59,907 [INFO] src.main_workflow: Initializing Conway Bikes workflow orchestrator
+2025-07-11 11:58:59,908 [INFO] utils.csv_processor: Loading bike references from: Información_EAN_Conway_2025.xlsx - Stammdaten Conway.csv
+2025-07-11 11:58:59,956 [INFO] utils.csv_processor: Loaded 8954 bike references from CSV
+2025-07-11 11:58:59,956 [INFO] holded.api_client: Holded API client initialized
+2025-07-11 11:58:59,956 [INFO] utils.processed_orders: Processed orders tracker initialized with 1 existing records
+2025-07-11 11:58:59,957 [INFO] notifications.email_sender: Email sender initialized
+2025-07-11 11:58:59,957 [INFO] src.main_workflow: All workflow components initialized successfully
+2025-07-11 11:58:59,957 [INFO] src.main_workflow: Testing all workflow components
+2025-07-11 11:58:59,957 [INFO] src.main_workflow: CSV processor test passed: 8954 references loaded
+2025-07-11 11:59:00,092 [INFO] holded.api_client: Holded API connection test successful
+2025-07-11 11:59:00,092 [INFO] src.main_workflow: Holded API test passed: Connection successful
+2025-07-11 11:59:00,210 [WARNING] holded.api_client: Non-JSON response received from https://api.holded.com/api/invoicing/v1/info
+2025-07-11 11:59:00,239 [INFO] notifications.email_sender: Sending template test email to cabagu35@gmail.com
+2025-07-11 11:59:01,757 [INFO] notifications.email_sender: Template test email sent successfully to cabagu35@gmail.com
+2025-07-11 11:59:01,757 [INFO] src.main_workflow: Email sender test passed: Test email sent successfully
+2025-07-11 11:59:01,757 [INFO] src.main_workflow: All component tests passed successfully
+2025-07-11 11:59:06,729 [INFO] src.main_workflow: Initializing Conway Bikes workflow orchestrator
+2025-07-11 11:59:06,730 [INFO] utils.csv_processor: Loading bike references from: Información_EAN_Conway_2025.xlsx - Stammdaten Conway.csv
+2025-07-11 11:59:06,775 [INFO] utils.csv_processor: Loaded 8954 bike references from CSV
+2025-07-11 11:59:06,775 [INFO] holded.api_client: Holded API client initialized
+2025-07-11 11:59:06,775 [INFO] utils.processed_orders: Processed orders tracker initialized with 1 existing records
+2025-07-11 11:59:06,775 [INFO] notifications.email_sender: Email sender initialized
+2025-07-11 11:59:06,775 [INFO] src.main_workflow: All workflow components initialized successfully
+2025-07-11 11:59:06,785 [INFO] src.main_workflow: Starting Conway bike order check at 2025-07-11 11:59:06 CEST
+2025-07-11 11:59:06,785 [INFO] src.main_workflow: Step 1: Loading bike references from CSV
+2025-07-11 11:59:06,785 [INFO] src.main_workflow: Loaded 8954 bike references
+2025-07-11 11:59:06,785 [INFO] src.main_workflow: Step 2: Retrieving sales orders from Holded API (last 24 hours)
+2025-07-11 11:59:06,785 [INFO] holded.api_client: Fetching sales orders from 2025-07-10 09:00:00+02:00 to 2025-07-11 11:59:06.785434+02:00
+2025-07-11 11:59:06,904 [INFO] holded.api_client: Retrieved 1 salesorder documents from Holded API
+2025-07-11 11:59:06,904 [INFO] src.main_workflow: Retrieved 1 sales orders from Holded API
+2025-07-11 11:59:06,904 [INFO] src.main_workflow: Step 2.5: Filtering out already processed orders
+2025-07-11 11:59:06,904 [INFO] src.main_workflow: Filtered out 0 already processed orders, 1 new orders to check
+2025-07-11 11:59:06,904 [INFO] src.main_workflow: Step 3: Filtering orders for bike references
+2025-07-11 11:59:06,916 [INFO] utils.csv_processor: Filtered 1 orders containing bike references from 1 total orders
+2025-07-11 11:59:06,916 [INFO] src.main_workflow: Found 1 orders containing bike references
+2025-07-11 11:59:06,916 [INFO] src.main_workflow: Step 4: Sending email notification
+2025-07-11 11:59:06,955 [INFO] notifications.email_sender: Sending email notification to cabagu35@gmail.com
+2025-07-11 11:59:08,377 [INFO] notifications.email_sender: Email notification sent successfully to cabagu35@gmail.com
+2025-07-11 11:59:08,378 [INFO] src.main_workflow: Email notification sent successfully
+2025-07-11 11:59:08,378 [INFO] utils.processed_orders: Marked 1 orders as processed
+2025-07-11 11:59:08,380 [INFO] src.main_workflow: Marked 1 orders as processed to prevent duplicates
+2025-07-11 11:59:08,380 [INFO] src.main_workflow: Check completed successfully
+2025-07-11 11:59:12,601 [INFO] src.main_workflow: Initializing Conway Bikes workflow orchestrator
+2025-07-11 11:59:12,601 [INFO] utils.csv_processor: Loading bike references from: Información_EAN_Conway_2025.xlsx - Stammdaten Conway.csv
+2025-07-11 11:59:12,647 [INFO] utils.csv_processor: Loaded 8954 bike references from CSV
+2025-07-11 11:59:12,647 [INFO] holded.api_client: Holded API client initialized
+2025-07-11 11:59:12,647 [INFO] utils.processed_orders: Processed orders tracker initialized with 2 existing records
+2025-07-11 11:59:12,647 [INFO] notifications.email_sender: Email sender initialized
+2025-07-11 11:59:12,647 [INFO] src.main_workflow: All workflow components initialized successfully
+2025-07-11 11:59:12,654 [INFO] src.main_workflow: Starting Conway bike order check at 2025-07-11 11:59:12 CEST
+2025-07-11 11:59:12,654 [INFO] src.main_workflow: Step 1: Loading bike references from CSV
+2025-07-11 11:59:12,655 [INFO] src.main_workflow: Loaded 8954 bike references
+2025-07-11 11:59:12,655 [INFO] src.main_workflow: Step 2: Retrieving sales orders from Holded API (last 24 hours)
+2025-07-11 11:59:12,655 [INFO] holded.api_client: Fetching sales orders from 2025-07-10 09:00:00+02:00 to 2025-07-11 11:59:12.654685+02:00
+2025-07-11 11:59:12,774 [INFO] holded.api_client: Retrieved 1 salesorder documents from Holded API
+2025-07-11 11:59:12,775 [INFO] src.main_workflow: Retrieved 1 sales orders from Holded API
+2025-07-11 11:59:12,775 [INFO] src.main_workflow: Step 2.5: Filtering out already processed orders
+2025-07-11 11:59:12,775 [INFO] utils.processed_orders: Filtered out 1 already processed orders, 0 new orders remain
+2025-07-11 11:59:12,775 [INFO] src.main_workflow: Filtered out 1 already processed orders, 0 new orders to check
+2025-07-11 11:59:12,775 [INFO] src.main_workflow: All orders have already been processed. Skipping further processing.

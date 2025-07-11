@@ -246,8 +246,6 @@ class EmailSender:
             if 'matching_references' in order:
                 unique_references.update(order['matching_references'])
         
-        # Get the logo as base64 for embedding
-        logo_src = self._get_logo_base64()
         
         # Create HTML content
         html_content = f"""
