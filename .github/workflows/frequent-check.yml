@@ -80,6 +80,23 @@ jobs:
         env:
           TZ: Europe/Madrid
 
+      - name: Commit processed orders file
+        run: |
+          # Configure git for commits
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+
+          # Check if there are changes to the processed orders file
+          if [[ -n $(git status --porcelain logs/processed_orders.json) ]]; then
+            echo "📝 Changes detected in processed_orders.json, committing..."
+            git add logs/processed_orders.json
+            git commit -m "Update processed orders tracking [automated]"
+            git push
+            echo "✅ Processed orders file updated and committed"
+          else
+            echo "📋 No changes to processed orders file"
+          fi
+
       - name: Upload logs as artifact (on failure)
         if: failure()
         uses: actions/upload-artifact@v4
