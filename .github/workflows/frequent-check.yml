@@ -1,9 +1,9 @@
-name: Conway Bikes Frequent Order Check
+name: Conway Bikes Order Check
 
 on:
-  # Run every 10 minutes
+  # Run every 5 minutes
   schedule:
-    - cron: "*/10 * * * *"
+    - cron: "*/5 * * * *"
 
   # Allow manual trigger for testing
   workflow_dispatch:
@@ -13,7 +13,7 @@ env:
   TZ: Europe/Madrid
 
 jobs:
-  frequent-check:
+  order-check:
     runs-on: ubuntu-latest
 
     steps:
@@ -53,12 +53,11 @@ jobs:
           TIMEZONE=${{ secrets.TIMEZONE }}
 
           # Application Configuration
-          CSV_FILE_PATH=Bike_References_Conway_2025.csv
+          CSV_FILE_PATH=Información_EAN_Conway_2025.xlsx - Stammdaten Conway.csv
           LOG_LEVEL=INFO
           LOG_FILE=logs/holded_automation.log
 
-          # Frequent Check Configuration
-          CHECK_DELAY_MINUTES=${{ secrets.CHECK_DELAY_MINUTES }}
+          # Operation Hours Configuration
           OPERATION_START_HOUR=${{ secrets.OPERATION_START_HOUR }}
           OPERATION_END_HOUR=${{ secrets.OPERATION_END_HOUR }}
 
@@ -70,14 +69,15 @@ jobs:
       - name: Create logs directory
         run: mkdir -p logs
 
-      - name: Run frequent check
+      - name: Run order check
         run: |
-          echo "🚴 Starting Conway Bikes frequent order check..."
+          echo "🚴 Starting Conway Bikes order check..."
           echo "Current time (Madrid): $(TZ=Europe/Madrid date)"
+          echo "Note: Checking last 24 hours with duplicate prevention"
           echo "=================================="
-          python main.py frequent
+          python main.py check
           echo "=================================="
-          echo "✅ Frequent check completed"
+          echo "✅ Order check completed"
         env:
           TZ: Europe/Madrid
 

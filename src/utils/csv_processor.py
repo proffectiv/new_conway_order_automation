@@ -34,7 +34,7 @@ class CSVProcessor:
     def _load_bike_references(self) -> None:
         """
         Load bike references from CSV file.
-        Extracts references from the 'Referencia' column.
+        Extracts references from the 'Artikelnummer' column.
         """
         try:
             csv_path = Path(self.csv_file_path)
@@ -58,13 +58,16 @@ class CSVProcessor:
                 
                 for row_num, row in enumerate(reader, start=2):  # Start at 2 since row 1 is header
                     try:
-                        # Extract bike reference (handle different possible column names)
-                        reference = row.get('Referencia') or row.get('Reference') or row.get('referencia')
+                        # Extract bike reference from Artikelnummer column
+                        reference = row.get('Artikelnummer') or row.get('artikelnummer')
                         
                         if reference and reference.strip():
                             # Clean and normalize the reference
-                            clean_reference = reference.strip().upper()
-                            self.bike_references.add(clean_reference)
+                            clean_reference = reference.strip()
+                            
+                            # Add both with and without leading zero for comparison flexibility
+                            self.bike_references.add(clean_reference)  # Original format (with leading zero)
+                            self.bike_references.add(clean_reference.lstrip('0'))  # Without leading zeros
                             
                             # Store full row data for potential future use
                             self.csv_data.append(row)
@@ -106,8 +109,8 @@ class CSVProcessor:
         if not text:
             return False
         
-        # Normalize text for comparison
-        normalized_text = text.upper()
+        # Normalize text for comparison (remove extra spaces, but keep original case for numbers)
+        normalized_text = ' '.join(text.split())
         
         # Check if any bike reference is present in the text
         for reference in self.bike_references:
@@ -129,16 +132,16 @@ class CSVProcessor:
         if not text:
             return []
         
-        # Normalize text for comparison
-        normalized_text = text.upper()
+        # Normalize text for comparison (remove extra spaces, but keep original case for numbers)
+        normalized_text = ' '.join(text.split())
         
-        # Find all matching references
-        matches = []
+        # Find all matching references (avoid duplicates by using set)
+        matches = set()
         for reference in self.bike_references:
             if reference in normalized_text:
-                matches.append(reference)
+                matches.add(reference)
         
-        return matches
+        return list(matches)
     
     def filter_orders_by_references(self, orders: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         """

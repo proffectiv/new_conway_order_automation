@@ -4,13 +4,13 @@ Conway Bikes Order Monitoring Automation
 Main entry point for the Holded API monitoring system.
 
 This script provides command-line interface for:
-- Running daily checks manually
+- Running checks manually (last 24 hours with duplicate prevention)
 - Testing all system components
-- Running the scheduler for automated daily execution
+- Running the scheduler for automated execution
 - Getting system status
 
 Usage:
-    python main.py check        # Run daily check manually
+    python main.py check        # Run check manually (last 24 hours)
     python main.py test         # Test all components
     python main.py schedule     # Run continuous scheduler
     python main.py status       # Get system status
@@ -56,65 +56,34 @@ def print_result_summary(result: dict):
     print("\n📊 Execution Summary:")
     print("-" * 40)
     print(f"✅ Success: {'Yes' if result['success'] else 'No'}")
-    print(f"📦 Total Orders Retrieved: {result['total_orders_retrieved']}")
+    print(f"⏰ Within Operation Hours: {'Yes' if result.get('within_operation_hours', True) else 'No'}")
     
-    # Show duplicate prevention info
-    duplicates_filtered = result.get('duplicate_orders_filtered', 0)
-    if duplicates_filtered > 0:
-        print(f"🔄 Duplicates Filtered: {duplicates_filtered}")
-    
-    print(f"🚴 Orders with Bikes: {result['filtered_orders_count']}")
-    print(f"📧 Email Sent: {'Yes' if result['email_sent'] else 'No'}")
-    print(f"🏷️  Bike References Loaded: {result['bike_references_loaded']}")
-    
-    if result['errors']:
-        print(f"\n❌ Errors ({len(result['errors'])}):")
-        for error in result['errors']:
-            print(f"   • {error}")
-    
-    if result['orders_with_bikes']:
-        print(f"\n🎯 Found Conway Bike Orders:")
-        for i, order in enumerate(result['orders_with_bikes'], 1):
-            order_id = order.get('id', 'Unknown')
-            customer = order.get('contactName', 'Unknown Customer')
-            matching_refs = order.get('matching_references', [])
-            print(f"   {i}. Order {order_id} - {customer}")
-            if matching_refs:
-                print(f"      References: {', '.join(matching_refs)}")
-
-def print_frequent_result_summary(result: dict):
-    """Print a formatted summary of frequent workflow results."""
-    print("\n📊 Frequent Check Summary:")
-    print("-" * 40)
-    print(f"✅ Success: {'Yes' if result['success'] else 'No'}")
-    print(f"⏰ Within Operation Hours: {'Yes' if result['within_operation_hours'] else 'No'}")
-    
+    # Handle skipped results
     if result.get('skipped'):
         skip_reason_map = {
             'outside_operation_hours': '🕐 Outside operation hours',
-            'no_recent_orders': '📦 No recent orders found',
+            'no_orders_found': '📦 No orders found',
             'no_bike_orders': '🚴 No bike orders found',
             'all_orders_already_processed': '🔄 All orders already processed (no duplicates)'
         }
         skip_reason = skip_reason_map.get(result.get('skip_reason'), 'Unknown reason')
         print(f"⏭️ Skipped: {skip_reason}")
     else:
-        print(f"📈 Orders Retrieved: {result.get('total_orders_retrieved', 0)}")
+        print(f"📦 Total Orders Retrieved: {result['total_orders_retrieved']}")
         
         # Show duplicate prevention info
         duplicates_filtered = result.get('duplicate_orders_filtered', 0)
         if duplicates_filtered > 0:
             print(f"🔄 Duplicates Filtered: {duplicates_filtered}")
         
-        print(f"🚴 Bike Orders Found: {result.get('filtered_orders_count', 0)}")
-        print(f"📧 Email Sent: {'Yes' if result.get('email_sent') else 'No'}")
-        print(f"📚 Bike References Loaded: {result.get('bike_references_loaded', 0)}")
+        print(f"🚴 Orders with Bikes: {result['filtered_orders_count']}")
+        print(f"📧 Email Sent: {'Yes' if result['email_sent'] else 'No'}")
     
-    # Show any errors
-    errors = result.get('errors', [])
-    if errors:
-        print(f"\n❌ Errors ({len(errors)}):")
-        for error in errors:
+    print(f"🏷️  Bike References Loaded: {result['bike_references_loaded']}")
+    
+    if result['errors']:
+        print(f"\n❌ Errors ({len(result['errors'])}):")
+        for error in result['errors']:
             print(f"   • {error}")
     
     # Show order details if available
@@ -143,36 +112,15 @@ def print_frequent_result_summary(result: dict):
             if matching_refs:
                 print(f"      References: {', '.join(matching_refs)}")
 
-def run_frequent_check(args):
-    """Run the frequent check workflow."""
-    print("\n⚡ Starting frequent Conway bike order check...")
+def run_check(args):
+    """Run the check workflow (last 24 hours with duplicate prevention)."""
+    print("\n🔍 Starting Conway bike order check...")
     
     try:
         # Initialize workflow orchestrator
         workflow = WorkflowOrchestrator()
         
-        # Run the frequent check
-        result = workflow.run_frequent_check()
-        
-        # Print results
-        print_frequent_result_summary(result)
-        
-        # Return appropriate exit code
-        return 0 if result['success'] else 1
-        
-    except Exception as e:
-        print(f"\n❌ Critical error during frequent check: {e}")
-        return 1
-
-def run_daily_check(args):
-    """Run the daily check workflow."""
-    print("\n🔍 Starting daily Conway bike order check...")
-    
-    try:
-        # Initialize workflow orchestrator
-        workflow = WorkflowOrchestrator()
-        
-        # Run the daily check
+        # Run the check
         result = workflow.run_daily_check()
         
         # Print results
@@ -182,7 +130,7 @@ def run_daily_check(args):
         return 0 if result['success'] else 1
         
     except Exception as e:
-        print(f"\n❌ Critical error during daily check: {e}")
+        print(f"\n❌ Critical error during check: {e}")
         return 1
 
 def test_components(args):
@@ -274,7 +222,6 @@ def show_status(args):
         print(f"📝 Log Level: {settings.LOG_LEVEL}")
         print(f"⏰ Daily Schedule: {settings.SCHEDULE_HOUR:02d}:{settings.SCHEDULE_MINUTE:02d} Madrid time")
         print(f"🕐 Operation Hours: {settings.OPERATION_START_HOUR:02d}:00 - {settings.OPERATION_END_HOUR:02d}:00")
-        print(f"⏱️ Check Delay: {settings.CHECK_DELAY_MINUTES} minutes")
         print(f"🧪 Test Mode: {'Enabled' if settings.TEST_MODE else 'Disabled'}")
         print(f"📨 Test Email Only: {'Enabled' if settings.TEST_EMAIL_ONLY else 'Disabled'}")
         
@@ -323,9 +270,9 @@ def show_status(args):
         return 1
 
 def run_scheduler(args):
-    """Run the continuous scheduler for daily automation."""
+    """Run the continuous scheduler for automation."""
     print("\n⏰ Starting continuous scheduler...")
-    print(f"📅 Scheduled to run daily at {settings.SCHEDULE_HOUR:02d}:{settings.SCHEDULE_MINUTE:02d} Madrid time")
+    print(f"📅 Scheduled to run at {settings.SCHEDULE_HOUR:02d}:{settings.SCHEDULE_MINUTE:02d} Madrid time")
     print("🛑 Press Ctrl+C to stop the scheduler")
     
     # Setup signal handlers for graceful shutdown
@@ -338,7 +285,7 @@ def run_scheduler(args):
         workflow = WorkflowOrchestrator()
         
         def scheduled_job():
-            """Job function to run the daily check."""
+            """Job function to run the check."""
             print(f"\n⏰ Scheduled check triggered at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
             result = workflow.run_daily_check()
             print_result_summary(result)
@@ -349,7 +296,7 @@ def run_scheduler(args):
             else:
                 print("❌ Scheduled check completed with errors")
         
-        # Schedule the daily job
+        # Schedule the job
         schedule.every().day.at(f"{settings.SCHEDULE_HOUR:02d}:{settings.SCHEDULE_MINUTE:02d}").do(scheduled_job)
         
         print(f"✅ Scheduler configured. Next run: {schedule.next_run()}")
@@ -379,8 +326,7 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-  python main.py check         # Run daily check manually
-  python main.py frequent      # Run frequent check (5-minute window)
+  python main.py check         # Run check manually (last 24 hours)
   python main.py test          # Test all components
   python main.py schedule      # Run continuous scheduler
   python main.py status        # Get system status
@@ -390,8 +336,8 @@ Examples:
     subparsers = parser.add_subparsers(dest='command', help='Available commands')
     
     # Check command
-    check_parser = subparsers.add_parser('check', help='Run daily check manually')
-    check_parser.set_defaults(func=run_daily_check)
+    check_parser = subparsers.add_parser('check', help='Run check manually (last 24 hours with duplicate prevention)')
+    check_parser.set_defaults(func=run_check)
     
     # Test command
     test_parser = subparsers.add_parser('test', help='Test all system components')
@@ -402,12 +348,8 @@ Examples:
     status_parser.set_defaults(func=show_status)
     
     # Schedule command
-    schedule_parser = subparsers.add_parser('schedule', help='Run continuous scheduler for daily automation')
+    schedule_parser = subparsers.add_parser('schedule', help='Run continuous scheduler for automation')
     schedule_parser.set_defaults(func=run_scheduler)
-
-    # Frequent Check command
-    frequent_check_parser = subparsers.add_parser('frequent', help='Run a frequent check (e.g., hourly, daily)')
-    frequent_check_parser.set_defaults(func=run_frequent_check)
     
     # Parse arguments
     args = parser.parse_args()

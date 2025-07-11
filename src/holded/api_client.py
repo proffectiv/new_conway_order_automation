@@ -9,6 +9,7 @@ from typing import List, Dict, Any, Optional
 from datetime import datetime, timedelta
 import pytz
 from config.settings import settings
+import json
 
 logger = logging.getLogger(__name__)
 
@@ -82,8 +83,7 @@ class HoldedAPIClient:
     def get_documents(self, 
                      doc_type: str = 'salesorder',
                      start_date: datetime = None, 
-                     end_date: datetime = None,
-                     limit: int = 100) -> List[Dict[str, Any]]:
+                     end_date: datetime = None) -> List[Dict[str, Any]]:
         """
         Get documents (sales orders) from Holded API.
         
@@ -99,18 +99,21 @@ class HoldedAPIClient:
         try:
             # Build query parameters
             params = {
-                'limit': limit,
             }
             
             # Add date filtering if provided
             if start_date:
                 # Convert to Unix timestamp - Holded API uses starttmp for start time filtering
                 params['starttmp'] = int(start_date.timestamp())
+                print(f"start_date: {start_date}")
+                print(f"start_date: {params['starttmp']}")
                 logger.debug(f"Start time filter: {start_date} → starttmp={params['starttmp']}")
             
             if end_date:
                 # Convert to Unix timestamp - Holded API uses endtmp for end time filtering
                 params['endtmp'] = int(end_date.timestamp())
+                print(f"end_date: {end_date}")
+                print(f"end_date: {params['endtmp']}")
                 logger.debug(f"End time filter: {end_date} → endtmp={params['endtmp']}")
             
             logger.debug(f"API request parameters: {params}")
@@ -176,68 +179,12 @@ class HoldedAPIClient:
                 doc_type='salesorder',
                 start_date=start_time,
                 end_date=end_time,
-                limit=500  # Increase limit for comprehensive results
             )
             
             return orders
             
         except Exception as e:
             logger.error(f"Failed to retrieve sales orders since yesterday: {e}")
-            raise
-    
-    def get_recent_sales_orders(self, delay_minutes: int = None, reference_time: datetime = None) -> List[Dict[str, Any]]:
-        """
-        Get sales orders created in the last N minutes.
-        
-        This method is designed for frequent checks (every 5 minutes) to detect
-        new orders immediately and avoid duplicate notifications.
-        
-        Args:
-            delay_minutes: Number of minutes to look back. Uses settings default if not provided.
-            reference_time: Reference time for calculating the time window. 
-                          Uses current Madrid time if not provided.
-            
-        Returns:
-            List of sales order dictionaries
-        """
-        try:
-            # Setup Madrid timezone
-            madrid_tz = pytz.timezone(settings.TIMEZONE)
-            
-            # Use provided delay or setting default
-            if delay_minutes is None:
-                delay_minutes = settings.CHECK_DELAY_MINUTES
-            
-            # Use provided reference time or current Madrid time
-            if reference_time is None:
-                reference_time = datetime.now(madrid_tz)
-            elif reference_time.tzinfo is None:
-                reference_time = madrid_tz.localize(reference_time)
-            else:
-                reference_time = reference_time.astimezone(madrid_tz)
-            
-            # Calculate start time (N minutes ago)
-            start_time = reference_time - timedelta(minutes=delay_minutes)
-            
-            # End time is current reference time
-            end_time = reference_time
-            
-            logger.info(f"Fetching recent sales orders from {start_time} to {end_time} ({delay_minutes} minutes window)")
-            
-            # Get sales orders from the API
-            orders = self.get_documents(
-                doc_type='salesorder',
-                start_date=start_time,
-                end_date=end_time,
-                limit=200  # Reasonable limit for frequent checks
-            )
-            
-            logger.info(f"Retrieved {len(orders)} recent sales orders from Holded API")
-            
-            return orders
-            
-        except Exception as e:
-            logger.error(f"Failed to retrieve recent sales orders: {e}")
             raise
     
     def test_connection(self) -> bool:

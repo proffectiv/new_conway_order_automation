@@ -5,7 +5,7 @@ A Python automation system that monitors Holded API for sales orders containing 
 ## 📋 Features
 
 - **Daily Automated Monitoring**: Checks Holded API every day at 9 AM Madrid time
-- **Frequent Automated Monitoring**: Runs every 5 minutes via GitHub Actions (NEW!)
+- **Automated Monitoring**: Runs every 5 minutes via GitHub Actions with duplicate prevention
 - **Conway Bike Detection**: Filters orders containing references from your CSV file
 - **Email Notifications**: Sends professional HTML/plain text emails with order details
 - **Time-Based Operation**: Only runs during configured hours (7:00-23:00)
@@ -80,7 +80,7 @@ EMAIL_SUBJECT_PREFIX=[Conway Bikes Alert]
 TIMEZONE=Europe/Madrid
 
 # Application Configuration
-CSV_FILE_PATH=Bike_References_Conway_2025.csv
+CSV_FILE_PATH=Información_EAN_Conway_2025.xlsx - Stammdaten Conway.csv
 LOG_LEVEL=INFO
 LOG_FILE=logs/holded_automation.log
 
@@ -127,15 +127,15 @@ For the most responsive order monitoring, use GitHub Actions to run checks every
 
 - **🚀 Immediate Notifications**: Orders detected within 5 minutes of creation
 - **⏰ Smart Scheduling**: Only runs during business hours (7:00-23:00)
-- **🔄 No Duplicates**: Uses time windows to prevent duplicate notifications
+- **🔄 No Duplicates**: Checks last 24 hours but prevents duplicate notifications using processed orders tracking
 - **🛡️ Robust**: Continues running even if individual checks fail
 - **📊 Monitoring**: Detailed logs and failure artifacts in GitHub Actions
 
 ### Quick Test
 
 ```bash
-# Test the frequent check locally
-python main.py frequent
+# Test the system locally
+python main.py check
 
 # Test all components
 python main.py test
@@ -153,11 +153,8 @@ The system provides a comprehensive CLI for all operations:
 # Show help
 python main.py --help
 
-# Run daily check manually
+# Run check manually (last 24 hours with duplicate prevention)
 python main.py check
-
-# Run frequent check (5-minute window)
-python main.py frequent
 
 # Test all system components
 python main.py test
@@ -201,27 +198,27 @@ python main.py check   # Runs full check process
 | `TIMEZONE`             | Madrid timezone                 | `Europe/Madrid`              |
 | `SCHEDULE_HOUR`        | Daily run hour (24h format)     | `9`                          |
 | `SCHEDULE_MINUTE`      | Daily run minute                | `0`                          |
-| `CHECK_DELAY_MINUTES`  | Frequent check window (minutes) | `5`                          |
-| `OPERATION_START_HOUR` | Automation start hour           | `7`                          |
-| `OPERATION_END_HOUR`   | Automation end hour             | `23`                         |
+| `OPERATION_START_HOUR` | Start hour for automation       | `7`                          |
+| `OPERATION_END_HOUR`   | End hour for automation         | `23`                         |
 | `TEST_MODE`            | Enable test mode                | `false`                      |
 | `TEST_EMAIL_ONLY`      | Test emails without sending     | `false`                      |
 
 ### CSV File Format
 
-Your `Bike_References_Conway_2025.csv` file should have:
+Your `Información_EAN_Conway_2025.xlsx - Stammdaten Conway.csv` file should have:
 
-- A `Referencia` column containing bike reference codes
+- An `Artikelnummer` column containing bike SKU/reference codes
 - Headers in the first row
 - UTF-8 encoding
 - Comma or semicolon delimited
+- SKUs with leading zeros (e.g., "02879351") are supported
 
 Example:
 
 ```csv
-Referencia,Modelo,Cuadro,Rueda,Talla,Color,Año
-CBK001,Conway Model A,Aluminum,27.5,M,Black,2025
-CBK002,Conway Model B,Carbon,29,L,Blue,2025
+Artikelnummer,Artikeltext,Marke,Modelljahr,Modell
+02879351,Conway Bike Model A,Conway,2025,Cairon 529 SE
+02879369,Conway Bike Model B,Conway,2025,Cairon 529 SE
 ```
 
 ### Email Configuration

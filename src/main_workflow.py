@@ -3,6 +3,7 @@ Main workflow orchestrator for Conway bike order monitoring.
 Coordinates all components to check for new orders and send notifications.
 """
 
+import json
 import logging
 import logging.config
 from typing import List, Dict, Any
@@ -68,201 +69,6 @@ class WorkflowOrchestrator:
         # Check if current hour is within operation window
         return settings.OPERATION_START_HOUR <= current_hour < settings.OPERATION_END_HOUR
     
-    def run_frequent_check(self, delay_minutes: int = None, reference_time: datetime = None) -> Dict[str, Any]:
-        """
-        Run frequent check for Conway bike orders (designed for 5-minute intervals).
-        
-        This method includes time restrictions and early exit logic to:
-        - Only run during operation hours (7:00-23:00 by default)
-        - Fetch only recent orders (last N minutes)
-        - Skip if no orders or no bike references found
-        - Avoid duplicate notifications
-        
-        Args:
-            delay_minutes: Number of minutes to look back. Uses settings default if not provided.
-            reference_time: Reference time for the check. Uses current Madrid time if not provided.
-            
-        Returns:
-            Dictionary with workflow execution results
-        """
-        # Setup Madrid timezone
-        madrid_tz = pytz.timezone(settings.TIMEZONE)
-        
-        if reference_time is None:
-            reference_time = datetime.now(madrid_tz)
-        elif reference_time.tzinfo is None:
-            reference_time = madrid_tz.localize(reference_time)
-        else:
-            reference_time = reference_time.astimezone(madrid_tz)
-        
-        if delay_minutes is None:
-            delay_minutes = settings.CHECK_DELAY_MINUTES
-        
-        logger.info(f"Starting frequent Conway bike order check at {reference_time.strftime('%Y-%m-%d %H:%M:%S %Z')} (looking back {delay_minutes} minutes)")
-        
-        # Initialize result tracking
-        result = {
-            'timestamp': reference_time.isoformat(),
-            'success': False,
-            'skipped': False,
-            'skip_reason': None,
-            'total_orders_retrieved': 0,
-            'filtered_orders_count': 0,
-            'email_sent': False,
-            'bike_references_loaded': 0,
-            'errors': [],
-            'orders_with_bikes': [],
-            'within_operation_hours': self._is_within_operation_hours(reference_time)
-        }
-        
-        try:
-            # Step 1: Check if within operation hours
-            if not result['within_operation_hours']:
-                skip_msg = f"Outside operation hours ({settings.OPERATION_START_HOUR}:00-{settings.OPERATION_END_HOUR}:00). Skipping check."
-                logger.info(skip_msg)
-                result['skipped'] = True
-                result['skip_reason'] = "outside_operation_hours"
-                result['success'] = True  # Consider this successful (intentional skip)
-                return result
-            
-            # Step 1.5: Cleanup old processed order records (maintenance)
-            self.processed_orders_tracker.cleanup_old_records(retention_hours=48)
-            
-            # Step 2: Load bike references from CSV
-            logger.info("Step 1: Loading bike references from CSV")
-            bike_references = self.csv_processor.get_bike_references()
-            result['bike_references_loaded'] = len(bike_references)
-            
-            if not bike_references:
-                error_msg = "No bike references loaded from CSV file"
-                logger.error(error_msg)
-                result['errors'].append(error_msg)
-                return result
-            
-            logger.info(f"Loaded {len(bike_references)} bike references")
-            
-            # Step 3: Retrieve recent sales orders from Holded API
-            logger.info(f"Step 2: Retrieving recent sales orders from Holded API (last {delay_minutes} minutes)")
-            
-            try:
-                sales_orders = self.holded_client.get_recent_sales_orders(delay_minutes, reference_time)
-                result['total_orders_retrieved'] = len(sales_orders)
-                
-                logger.info(f"Retrieved {len(sales_orders)} recent sales orders from Holded API")
-                
-                # Early exit if no orders retrieved
-                if not sales_orders:
-                    skip_msg = "No recent orders found. Skipping further processing."
-                    logger.info(skip_msg)
-                    result['skipped'] = True
-                    result['skip_reason'] = "no_recent_orders"
-                    result['success'] = True  # Consider this successful (intentional skip)
-                    return result
-                
-            except Exception as e:
-                error_msg = f"Failed to retrieve recent sales orders from Holded API: {e}"
-                logger.error(error_msg)
-                result['errors'].append(error_msg)
-                return result
-            
-            # Step 3.5: Filter out already processed orders (DUPLICATE PREVENTION)
-            logger.info("Step 2.5: Filtering out already processed orders")
-            
-            try:
-                unprocessed_orders = self.processed_orders_tracker.filter_unprocessed_orders(sales_orders)
-                result['duplicate_orders_filtered'] = len(sales_orders) - len(unprocessed_orders)
-                
-                logger.info(f"Filtered out {result['duplicate_orders_filtered']} already processed orders, {len(unprocessed_orders)} new orders to check")
-                
-                # Early exit if no unprocessed orders
-                if not unprocessed_orders:
-                    skip_msg = "All recent orders have already been processed. Skipping further processing."
-                    logger.info(skip_msg)
-                    result['skipped'] = True
-                    result['skip_reason'] = "all_orders_already_processed"
-                    result['success'] = True  # Consider this successful (intentional skip)
-                    return result
-                
-                # Use unprocessed orders for further processing
-                sales_orders = unprocessed_orders
-                
-            except Exception as e:
-                error_msg = f"Failed to filter processed orders: {e}"
-                logger.error(error_msg)
-                result['errors'].append(error_msg)
-                # Continue with all orders if filtering fails (better to have duplicates than miss orders)
-            
-            # Step 4: Filter orders containing bike references
-            logger.info("Step 3: Filtering orders for bike references")
-            
-            try:
-                filtered_orders = self.csv_processor.filter_orders_by_references(sales_orders)
-                result['filtered_orders_count'] = len(filtered_orders)
-                result['orders_with_bikes'] = filtered_orders
-                
-                logger.info(f"Found {len(filtered_orders)} orders containing bike references")
-                
-                # Early exit if no bike orders found
-                if not filtered_orders:
-                    skip_msg = "No orders with bike references found. Skipping email notification."
-                    logger.info(skip_msg)
-                    result['skipped'] = True
-                    result['skip_reason'] = "no_bike_orders"
-                    result['success'] = True  # Consider this successful (intentional skip)
-                    
-                    # Mark all retrieved orders as processed (even though no bikes found)
-                    all_order_ids = [order.get('id') for order in sales_orders if order.get('id')]
-                    if all_order_ids:
-                        self.processed_orders_tracker.mark_orders_processed(all_order_ids)
-                        logger.info(f"Marked {len(all_order_ids)} non-bike orders as processed")
-                    
-                    return result
-                
-            except Exception as e:
-                error_msg = f"Failed to filter orders: {e}"
-                logger.error(error_msg)
-                result['errors'].append(error_msg)
-                return result
-            
-            # Step 5: Send email notification for bike orders
-            logger.info("Step 4: Sending email notification for bike orders")
-            
-            try:
-                email_success = self.email_sender.send_order_notification(filtered_orders)
-                result['email_sent'] = email_success
-                
-                if email_success:
-                    logger.info(f"Email notification sent successfully for {len(filtered_orders)} bike orders")
-                    
-                    # Mark all retrieved orders as processed (DUPLICATE PREVENTION)
-                    all_order_ids = [order.get('id') for order in sales_orders if order.get('id')]
-                    if all_order_ids:
-                        self.processed_orders_tracker.mark_orders_processed(all_order_ids)
-                        logger.info(f"Marked {len(all_order_ids)} orders as processed to prevent duplicates")
-                    
-                else:
-                    error_msg = "Email notification failed to send"
-                    logger.error(error_msg)
-                    result['errors'].append(error_msg)
-                    return result
-                    
-            except Exception as e:
-                error_msg = f"Failed to send email notification: {e}"
-                logger.error(error_msg)
-                result['errors'].append(error_msg)
-                return result
-            
-            # Mark workflow as successful
-            result['success'] = True
-            logger.info("Frequent check completed successfully")
-            
-        except Exception as e:
-            error_msg = f"Unexpected error during frequent check execution: {e}"
-            logger.error(error_msg)
-            result['errors'].append(error_msg)
-        
-        return result
-    
     def run_daily_check(self, reference_time: datetime = None) -> Dict[str, Any]:
         """
         Run the daily check for Conway bike orders.
@@ -283,7 +89,7 @@ class WorkflowOrchestrator:
         else:
             reference_time = reference_time.astimezone(madrid_tz)
         
-        logger.info(f"Starting daily Conway bike order check at {reference_time.strftime('%Y-%m-%d %H:%M:%S %Z')}")
+        logger.info(f"Starting Conway bike order check at {reference_time.strftime('%Y-%m-%d %H:%M:%S %Z')}")
         
         # Initialize result tracking
         result = {
@@ -295,10 +101,20 @@ class WorkflowOrchestrator:
             'email_sent': False,
             'bike_references_loaded': 0,
             'errors': [],
-            'orders_with_bikes': []
+            'orders_with_bikes': [],
+            'within_operation_hours': self._is_within_operation_hours(reference_time)
         }
         
         try:
+            # Step 0: Check if within operation hours (for automated runs)
+            if not result['within_operation_hours']:
+                skip_msg = f"Outside operation hours ({settings.OPERATION_START_HOUR}:00-{settings.OPERATION_END_HOUR}:00). Skipping check."
+                logger.info(skip_msg)
+                result['skipped'] = True
+                result['skip_reason'] = "outside_operation_hours"
+                result['success'] = True  # Consider this successful (intentional skip)
+                return result
+            
             # Step 0.5: Cleanup old processed order records (maintenance)
             self.processed_orders_tracker.cleanup_old_records(retention_hours=48)
             
@@ -315,8 +131,8 @@ class WorkflowOrchestrator:
             
             logger.info(f"Loaded {len(bike_references)} bike references")
             
-            # Step 2: Retrieve sales orders from Holded API
-            logger.info("Step 2: Retrieving sales orders from Holded API")
+            # Step 2: Retrieve sales orders from Holded API (last 24 hours)
+            logger.info("Step 2: Retrieving sales orders from Holded API (last 24 hours)")
             
             try:
                 sales_orders = self.holded_client.get_sales_orders_since_yesterday(reference_time)
@@ -328,6 +144,8 @@ class WorkflowOrchestrator:
                 if not sales_orders:
                     skip_msg = "No orders found. Skipping further processing."
                     logger.info(skip_msg)
+                    result['skipped'] = True
+                    result['skip_reason'] = "no_orders_found"
                     result['success'] = True  # Consider this successful (no orders to process)
                     return result
                 
@@ -350,6 +168,8 @@ class WorkflowOrchestrator:
                 if not unprocessed_orders:
                     skip_msg = "All orders have already been processed. Skipping further processing."
                     logger.info(skip_msg)
+                    result['skipped'] = True
+                    result['skip_reason'] = "all_orders_already_processed"
                     result['success'] = True  # Consider this successful (intentional skip)
                     return result
                 
@@ -409,6 +229,8 @@ class WorkflowOrchestrator:
             else:
                 logger.info("Step 4: No bike orders found - no email notification needed")
                 result['email_sent'] = True  # Consider this successful (no email needed)
+                result['skipped'] = True
+                result['skip_reason'] = "no_bike_orders"
                 
                 # Mark all retrieved orders as processed (even though no bikes found)
                 all_order_ids = [order.get('id') for order in sales_orders if order.get('id')]
@@ -418,7 +240,7 @@ class WorkflowOrchestrator:
             
             # Mark workflow as successful
             result['success'] = True
-            logger.info("Daily check completed successfully")
+            logger.info("Check completed successfully")
             
         except Exception as e:
             error_msg = f"Unexpected error during workflow execution: {e}"

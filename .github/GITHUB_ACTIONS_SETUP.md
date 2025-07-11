@@ -37,9 +37,8 @@ You need to configure the following secrets in your GitHub repository settings:
 
 - **`TIMEZONE`**: Timezone for operations (default: `Europe/Madrid`)
 
-#### Frequent Check Configuration
+#### Operation Hours Configuration
 
-- **`CHECK_DELAY_MINUTES`**: Minutes to look back for orders (default: `5`)
 - **`OPERATION_START_HOUR`**: Start hour for automation (default: `7`)
 - **`OPERATION_END_HOUR`**: End hour for automation (default: `23`)
 
@@ -49,10 +48,11 @@ The GitHub Actions workflow (`frequent-check.yml`) will:
 
 1. **Run every 5 minutes** using cron schedule `*/5 * * * *`
 2. **Check operation hours** - only runs between configured hours (7:00-23:00 by default)
-3. **Fetch recent orders** from Holded API (last 5 minutes)
-4. **Filter for bike references** using the CSV file
-5. **Send email notifications** if Conway bike orders are found
-6. **Skip gracefully** if no orders or outside operation hours
+3. **Fetch orders** from Holded API (last 24 hours)
+4. **Filter for unprocessed orders** using duplicate prevention tracking
+5. **Filter for bike references** using the CSV file
+6. **Send email notifications** if Conway bike orders are found
+7. **Skip gracefully** if no orders, no new orders, or outside operation hours
 
 ## ⚙️ Workflow Features
 
@@ -150,8 +150,8 @@ Run these locally to test your configuration:
 # Test the system
 python main.py test
 
-# Run a manual frequent check
-python main.py frequent
+# Run a manual check
+python main.py check
 
 # Check system status
 python main.py status
@@ -162,8 +162,8 @@ python main.py status
 ### During Operation Hours (7:00-23:00)
 
 - Runs every 5 minutes
-- Checks last 5 minutes of orders
-- Sends emails only for Conway bike orders
+- Checks last 24 hours of orders with duplicate prevention
+- Sends emails only for Conway bike orders that haven't been processed
 - Logs all activity
 
 ### Outside Operation Hours (23:00-7:00)
@@ -175,19 +175,19 @@ python main.py status
 ### When No Orders Found
 
 - Skips email sending gracefully
-- Logs "No recent orders" or "No bike orders"
+- Logs "No orders found", "No new orders", or "No bike orders"
 - Considered successful execution
 
-## 🔄 Migration from Daily Schedule
+## 🔄 System Benefits
 
-If you're migrating from the daily schedule:
+This simplified system provides several advantages:
 
-1. **Keep both workflows** initially for safety
-2. **Monitor frequent checks** for a few days
-3. **Disable daily workflow** once confident
-4. **Update monitoring** to account for frequent execution
+1. **Comprehensive Coverage**: Always checks the full 24-hour window, ensuring no orders are missed
+2. **Duplicate Prevention**: Uses processed orders tracking to prevent duplicate notifications
+3. **Simplified Maintenance**: Single check method reduces complexity
+4. **Robust Error Recovery**: If a check fails, the next run still covers the full time window
 
-The frequent check workflow is designed to be more responsive and efficient than daily checks while being robust enough for production use.
+The workflow is designed to be responsive and efficient while being robust enough for production use.
 
 ---
 
