@@ -578,13 +578,20 @@ Conway Items:
                 return True
             
             # Connect to SMTP server and send email
-            with smtplib.SMTP(self.smtp_server, self.smtp_port) as server:
-                server.starttls()  # Enable TLS encryption
-                server.login(self.username, self.password)
-                
-                # Send email
-                text = msg.as_string()
-                server.sendmail(self.from_email, self.target_email, text)
+            # Use SMTP_SSL for port 465, regular SMTP with STARTTLS for port 587
+            if self.smtp_port == 465:
+                # Direct SSL connection for port 465
+                with smtplib.SMTP_SSL(self.smtp_server, self.smtp_port) as server:
+                    server.login(self.username, self.password)
+                    text = msg.as_string()
+                    server.sendmail(self.from_email, self.target_email, text)
+            else:
+                # STARTTLS connection for port 587
+                with smtplib.SMTP(self.smtp_server, self.smtp_port) as server:
+                    server.starttls()  # Enable TLS encryption
+                    server.login(self.username, self.password)
+                    text = msg.as_string()
+                    server.sendmail(self.from_email, self.target_email, text)
             
             logger.info(f"Email notification sent successfully to {self.target_email}")
             return True
@@ -603,9 +610,16 @@ Conway Items:
         try:
             logger.info("Testing email server connection...")
             
-            with smtplib.SMTP(self.smtp_server, self.smtp_port) as server:
-                server.starttls()
-                server.login(self.username, self.password)
+            # Use SMTP_SSL for port 465, regular SMTP with STARTTLS for port 587
+            if self.smtp_port == 465:
+                # Direct SSL connection for port 465
+                with smtplib.SMTP_SSL(self.smtp_server, self.smtp_port) as server:
+                    server.login(self.username, self.password)
+            else:
+                # STARTTLS connection for port 587
+                with smtplib.SMTP(self.smtp_server, self.smtp_port) as server:
+                    server.starttls()
+                    server.login(self.username, self.password)
             
             logger.info("Email server connection test successful")
             return True
@@ -728,11 +742,20 @@ The orders shown above are sample data for testing purposes only.
                 return True
             
             # Connect to SMTP server and send email
-            with smtplib.SMTP(self.smtp_server, self.smtp_port) as server:
-                server.starttls()
-                server.login(self.username, self.password)
-                text = msg.as_string()
-                server.sendmail(self.from_email, self.target_email, text)
+            # Use SMTP_SSL for port 465, regular SMTP with STARTTLS for port 587
+            if self.smtp_port == 465:
+                # Direct SSL connection for port 465
+                with smtplib.SMTP_SSL(self.smtp_server, self.smtp_port) as server:
+                    server.login(self.username, self.password)
+                    text = msg.as_string()
+                    server.sendmail(self.from_email, self.target_email, text)
+            else:
+                # STARTTLS connection for port 587
+                with smtplib.SMTP(self.smtp_server, self.smtp_port) as server:
+                    server.starttls()
+                    server.login(self.username, self.password)
+                    text = msg.as_string()
+                    server.sendmail(self.from_email, self.target_email, text)
             
             logger.info(f"Template test email sent successfully to {self.target_email}")
             

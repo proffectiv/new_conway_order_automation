@@ -26,16 +26,16 @@ class Settings:
         self.HOLDED_API_KEY = self._get_required_env("HOLDED_API_KEY")
         self.HOLDED_BASE_URL = os.getenv("HOLDED_BASE_URL", "https://api.holded.com/api")
         
-        # Email Configuration  
-        self.SMTP_SERVER = os.getenv("SMTP_SERVER", "smtp.gmail.com")
-        self.SMTP_PORT = int(os.getenv("SMTP_PORT", "587"))
+        # Email Configuration - Updated to use Strato SMTP
+        self.SMTP_SERVER = os.getenv("SMTP_SERVER", "smtp.strato.com")
+        self.SMTP_PORT = int(os.getenv("SMTP_PORT", "465"))
         self.EMAIL_USERNAME = self._get_required_env("EMAIL_USERNAME")
         self.EMAIL_PASSWORD = self._get_required_env("EMAIL_PASSWORD")
         self.EMAIL_FROM = os.getenv("EMAIL_FROM", self.EMAIL_USERNAME)
         
         # Notification Configuration
         self.TARGET_EMAIL = self._get_required_env("TARGET_EMAIL")
-        self.EMAIL_SUBJECT_PREFIX = os.getenv("EMAIL_SUBJECT_PREFIX", "[Conway Bikes Alert]")
+        self.EMAIL_SUBJECT_PREFIX = os.getenv("EMAIL_SUBJECT_PREFIX", "[Proffectiv - New Orders]")
         
         # Timezone Configuration
         self.TIMEZONE = os.getenv("TIMEZONE", "Europe/Madrid")
