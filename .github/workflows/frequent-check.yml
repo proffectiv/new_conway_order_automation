@@ -8,6 +8,10 @@ on:
   # Allow manual trigger for testing
   workflow_dispatch:
 
+  # Allow webhook triggering
+  repository_dispatch:
+    types: [cron-trigger]
+
 # Set timezone to Madrid for consistent execution
 env:
   TZ: Europe/Madrid
