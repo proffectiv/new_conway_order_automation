@@ -337,11 +337,6 @@ class EmailSender:
                     <li><strong>Conway Items:</strong> {total_conway_items}</li>
                     <li><strong>Unique Bike References Found:</strong> {len(unique_references)}</li>
                 </ul>
-                
-                <h3>Bike References Found:</h3>
-                <div>
-                    {' '.join(f'<div class="bike-reference">{ref}</div>' for ref in sorted(unique_references))}
-                </div>
             </div>
         """
         
@@ -383,7 +378,7 @@ class EmailSender:
                     html_content += f"""
                     <div class="item">
                         <strong>{item_name}</strong>{refs_display}
-                        {f'<br>Code: {item_code}' if item_code else ''}
+                        {f'<br>SKU: {item_code}' if item_code else ''}
                         <br>Quantity: {item_qty} | Price: {item_price} €
                     </div>
                     """
@@ -396,15 +391,7 @@ class EmailSender:
                 </div>
                 """
             
-            # Show matching bike references for this order
-            matching_refs = order.get('matching_references', [])
-            if matching_refs:
-                html_content += f"""
-                <p><strong>Matching Bike References:</strong></p>
-                <div>
-                    {' '.join(f'<div class="bike-reference">{ref}</div>' for ref in matching_refs)}
-                </div>
-                """
+            
             
             html_content += """
                 </div>
@@ -461,10 +448,6 @@ SUMMARY:
 • Conway Items: {total_conway_items}  
 • Unique Bike References Found: {len(unique_references)}
 
-BIKE REFERENCES FOUND:
----------------------
-{', '.join(sorted(unique_references))}
-
 DETAILED ORDERS:
 ===============
 """
@@ -509,11 +492,6 @@ Conway Items:
                 # If no Conway items found, show message
                 text_content += "  No Conway items found in this order.\n"
                 text_content += "  (Conway references detected in order description or other fields)\n"
-            
-            # Show matching bike references for this order
-            matching_refs = order.get('matching_references', [])
-            if matching_refs:
-                text_content += f"\nMatching Bike References: {', '.join(matching_refs)}\n"
             
             text_content += "\n"
         
