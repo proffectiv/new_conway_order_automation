@@ -89,11 +89,11 @@ jobs:
           retention-days: 7
 
       - name: Upload logs as artifact (weekly)
-        if: github.event.schedule == '*/5 * * * *' && github.event_name == 'schedule'
+        if: github.event_name == 'repository_dispatch'
         uses: actions/upload-artifact@v4
         with:
           name: weekly-logs-${{ github.run_id }}
           path: logs/
           retention-days: 30
-        # Only upload weekly logs (every Monday at 9:00 AM)
+        # Upload logs when triggered via webhook
         # This is a simplified approach; adjust as needed
