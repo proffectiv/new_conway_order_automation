@@ -6,7 +6,7 @@ on:
 
   # Allow webhook triggering from cron-jobs service
   repository_dispatch:
-    types: [cron-trigger]
+    types: [order-check]
 
 # Set timezone to Madrid for consistent execution
 env:
