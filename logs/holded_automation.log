@@ -835,3 +835,524 @@
 2025-07-11 09:13:04,472 [INFO] utils.processed_orders: Filtered out 1 already processed orders, 0 new orders remain
 2025-07-11 09:13:04,472 [INFO] src.main_workflow: Filtered out 1 already processed orders, 0 new orders to check
 2025-07-11 09:13:04,472 [INFO] src.main_workflow: All orders have already been processed. Skipping further processing.
+2025-07-11 09:38:53,192 [INFO] src.main_workflow: Initializing Conway Bikes workflow orchestrator
+2025-07-11 09:38:53,192 [INFO] utils.csv_processor: Loading bike references from: Información_EAN_Conway_2025.xlsx - Stammdaten Conway.csv
+2025-07-11 09:38:53,239 [INFO] utils.csv_processor: Loaded 8954 bike references from CSV
+2025-07-11 09:38:53,239 [INFO] holded.api_client: Holded API client initialized
+2025-07-11 09:38:53,239 [INFO] notifications.email_sender: Email sender initialized
+2025-07-11 09:38:53,240 [INFO] utils.processed_orders: Processed orders tracker initialized with 0 existing records
+2025-07-11 09:38:53,240 [INFO] src.main_workflow: All workflow components initialized successfully
+2025-07-11 09:38:53,240 [INFO] src.main_workflow: Testing all workflow components
+2025-07-11 09:38:53,240 [INFO] src.main_workflow: CSV processor test passed: 8954 references loaded
+2025-07-11 09:38:53,425 [INFO] holded.api_client: Holded API connection test successful
+2025-07-11 09:38:53,425 [INFO] src.main_workflow: Holded API test passed: Connection successful
+2025-07-11 09:38:53,506 [WARNING] holded.api_client: Non-JSON response received from https://api.holded.com/api/invoicing/v1/info
+2025-07-11 09:38:53,534 [INFO] notifications.email_sender: Sending test email with actual template to cabagu35@gmail.com
+2025-07-11 09:38:55,073 [INFO] notifications.email_sender: Test email with template sent successfully to cabagu35@gmail.com
+2025-07-11 09:38:55,073 [INFO] src.main_workflow: Email sender test passed: Test email sent successfully
+2025-07-11 09:38:55,073 [INFO] src.main_workflow: All component tests passed successfully
+2025-07-11 09:43:56,163 [INFO] src.main_workflow: Initializing Conway Bikes workflow orchestrator
+2025-07-11 09:43:56,164 [INFO] utils.csv_processor: Loading bike references from: Información_EAN_Conway_2025.xlsx - Stammdaten Conway.csv
+2025-07-11 09:43:56,211 [INFO] utils.csv_processor: Loaded 8954 bike references from CSV
+2025-07-11 09:43:56,212 [INFO] holded.api_client: Holded API client initialized
+2025-07-11 09:43:56,212 [INFO] notifications.email_sender: Email sender initialized
+2025-07-11 09:43:56,212 [INFO] utils.processed_orders: Processed orders tracker initialized with 0 existing records
+2025-07-11 09:43:56,212 [INFO] src.main_workflow: All workflow components initialized successfully
+2025-07-11 09:43:56,212 [INFO] src.main_workflow: Testing all workflow components
+2025-07-11 09:43:56,212 [INFO] src.main_workflow: CSV processor test passed: 8954 references loaded
+2025-07-11 09:43:56,339 [INFO] holded.api_client: Holded API connection test successful
+2025-07-11 09:43:56,339 [INFO] src.main_workflow: Holded API test passed: Connection successful
+2025-07-11 09:43:56,481 [WARNING] holded.api_client: Non-JSON response received from https://api.holded.com/api/invoicing/v1/info
+2025-07-11 09:43:56,485 [ERROR] notifications.email_sender: Failed to send test email with template: time data '2024-01-15 10:30:00' does not match format '%Y-%m-%dT%H:%M:%S.%f%z'
+2025-07-11 09:43:56,485 [WARNING] src.main_workflow: Email sender test failed: Test email not sent
+2025-07-11 09:43:56,486 [WARNING] src.main_workflow: Some component tests failed
+2025-07-11 09:44:11,545 [INFO] src.main_workflow: Initializing Conway Bikes workflow orchestrator
+2025-07-11 09:44:11,545 [INFO] utils.csv_processor: Loading bike references from: Información_EAN_Conway_2025.xlsx - Stammdaten Conway.csv
+2025-07-11 09:44:11,594 [INFO] utils.csv_processor: Loaded 8954 bike references from CSV
+2025-07-11 09:44:11,594 [INFO] holded.api_client: Holded API client initialized
+2025-07-11 09:44:11,594 [INFO] notifications.email_sender: Email sender initialized
+2025-07-11 09:44:11,595 [INFO] utils.processed_orders: Processed orders tracker initialized with 0 existing records
+2025-07-11 09:44:11,595 [INFO] src.main_workflow: All workflow components initialized successfully
+2025-07-11 09:44:11,595 [INFO] src.main_workflow: Testing all workflow components
+2025-07-11 09:44:11,595 [INFO] src.main_workflow: CSV processor test passed: 8954 references loaded
+2025-07-11 09:44:11,732 [INFO] holded.api_client: Holded API connection test successful
+2025-07-11 09:44:11,732 [INFO] src.main_workflow: Holded API test passed: Connection successful
+2025-07-11 09:44:11,829 [WARNING] holded.api_client: Non-JSON response received from https://api.holded.com/api/invoicing/v1/info
+2025-07-11 09:44:11,829 [ERROR] notifications.email_sender: Failed to send test email with template: type str doesn't define __round__ method
+2025-07-11 09:44:11,829 [WARNING] src.main_workflow: Email sender test failed: Test email not sent
+2025-07-11 09:44:11,829 [WARNING] src.main_workflow: Some component tests failed
+2025-07-11 09:44:43,134 [INFO] src.main_workflow: Initializing Conway Bikes workflow orchestrator
+2025-07-11 09:44:43,134 [INFO] utils.csv_processor: Loading bike references from: Información_EAN_Conway_2025.xlsx - Stammdaten Conway.csv
+2025-07-11 09:44:43,180 [INFO] utils.csv_processor: Loaded 8954 bike references from CSV
+2025-07-11 09:44:43,180 [INFO] holded.api_client: Holded API client initialized
+2025-07-11 09:44:43,180 [INFO] notifications.email_sender: Email sender initialized
+2025-07-11 09:44:43,180 [INFO] utils.processed_orders: Processed orders tracker initialized with 0 existing records
+2025-07-11 09:44:43,180 [INFO] src.main_workflow: All workflow components initialized successfully
+2025-07-11 09:44:43,180 [INFO] src.main_workflow: Testing all workflow components
+2025-07-11 09:44:43,180 [INFO] src.main_workflow: CSV processor test passed: 8954 references loaded
+2025-07-11 09:44:43,329 [INFO] holded.api_client: Holded API connection test successful
+2025-07-11 09:44:43,329 [INFO] src.main_workflow: Holded API test passed: Connection successful
+2025-07-11 09:44:43,460 [WARNING] holded.api_client: Non-JSON response received from https://api.holded.com/api/invoicing/v1/info
+2025-07-11 09:44:44,970 [INFO] notifications.email_sender: Test email sent successfully to cabagu35@gmail.com
+2025-07-11 09:44:44,971 [INFO] src.main_workflow: Email sender test passed: Test email sent successfully
+2025-07-11 09:44:44,971 [INFO] src.main_workflow: All component tests passed successfully
+2025-07-11 09:45:16,893 [INFO] src.main_workflow: Initializing Conway Bikes workflow orchestrator
+2025-07-11 09:45:16,893 [INFO] utils.csv_processor: Loading bike references from: Información_EAN_Conway_2025.xlsx - Stammdaten Conway.csv
+2025-07-11 09:45:16,943 [INFO] utils.csv_processor: Loaded 8954 bike references from CSV
+2025-07-11 09:45:16,943 [INFO] holded.api_client: Holded API client initialized
+2025-07-11 09:45:16,943 [INFO] notifications.email_sender: Email sender initialized
+2025-07-11 09:45:16,944 [INFO] utils.processed_orders: Processed orders tracker initialized with 0 existing records
+2025-07-11 09:45:16,944 [INFO] src.main_workflow: All workflow components initialized successfully
+2025-07-11 09:45:16,944 [INFO] src.main_workflow: Testing all workflow components
+2025-07-11 09:45:16,944 [INFO] src.main_workflow: CSV processor test passed: 8954 references loaded
+2025-07-11 09:45:17,089 [INFO] holded.api_client: Holded API connection test successful
+2025-07-11 09:45:17,090 [INFO] src.main_workflow: Holded API test passed: Connection successful
+2025-07-11 09:45:17,180 [WARNING] holded.api_client: Non-JSON response received from https://api.holded.com/api/invoicing/v1/info
+2025-07-11 09:45:18,609 [INFO] notifications.email_sender: Test email sent successfully to cabagu35@gmail.com
+2025-07-11 09:45:18,610 [INFO] src.main_workflow: Email sender test passed: Test email sent successfully
+2025-07-11 09:45:18,610 [INFO] src.main_workflow: All component tests passed successfully
+2025-07-11 09:47:37,616 [INFO] src.main_workflow: Initializing Conway Bikes workflow orchestrator
+2025-07-11 09:47:37,616 [INFO] utils.csv_processor: Loading bike references from: Información_EAN_Conway_2025.xlsx - Stammdaten Conway.csv
+2025-07-11 09:47:37,663 [INFO] utils.csv_processor: Loaded 8954 bike references from CSV
+2025-07-11 09:47:37,663 [INFO] holded.api_client: Holded API client initialized
+2025-07-11 09:47:37,663 [INFO] notifications.email_sender: Email sender initialized
+2025-07-11 09:47:37,663 [INFO] utils.processed_orders: Processed orders tracker initialized with 0 existing records
+2025-07-11 09:47:37,663 [INFO] src.main_workflow: All workflow components initialized successfully
+2025-07-11 09:47:37,664 [INFO] src.main_workflow: Testing all workflow components
+2025-07-11 09:47:37,664 [INFO] src.main_workflow: CSV processor test passed: 8954 references loaded
+2025-07-11 09:47:37,785 [INFO] holded.api_client: Holded API connection test successful
+2025-07-11 09:47:37,785 [INFO] src.main_workflow: Holded API test passed: Connection successful
+2025-07-11 09:47:37,852 [WARNING] holded.api_client: Non-JSON response received from https://api.holded.com/api/invoicing/v1/info
+2025-07-11 09:47:37,866 [INFO] notifications.email_sender: Sending template test email to cabagu35@gmail.com
+2025-07-11 09:47:39,330 [INFO] notifications.email_sender: Template test email sent successfully to cabagu35@gmail.com
+2025-07-11 09:47:39,330 [INFO] src.main_workflow: Email sender test passed: Test email sent successfully
+2025-07-11 09:47:39,330 [INFO] src.main_workflow: All component tests passed successfully
+2025-07-11 09:54:22,378 [INFO] src.main_workflow: Initializing Conway Bikes workflow orchestrator
+2025-07-11 09:54:22,378 [INFO] utils.csv_processor: Loading bike references from: Información_EAN_Conway_2025.xlsx - Stammdaten Conway.csv
+2025-07-11 09:54:22,428 [INFO] utils.csv_processor: Loaded 8954 bike references from CSV
+2025-07-11 09:54:22,428 [INFO] holded.api_client: Holded API client initialized
+2025-07-11 09:54:22,428 [INFO] notifications.email_sender: Email sender initialized
+2025-07-11 09:54:22,428 [INFO] utils.processed_orders: Processed orders tracker initialized with 0 existing records
+2025-07-11 09:54:22,428 [INFO] src.main_workflow: All workflow components initialized successfully
+2025-07-11 09:54:22,428 [INFO] src.main_workflow: Testing all workflow components
+2025-07-11 09:54:22,429 [INFO] src.main_workflow: CSV processor test passed: 8954 references loaded
+2025-07-11 09:54:22,578 [INFO] holded.api_client: Holded API connection test successful
+2025-07-11 09:54:22,578 [INFO] src.main_workflow: Holded API test passed: Connection successful
+2025-07-11 09:54:22,681 [WARNING] holded.api_client: Non-JSON response received from https://api.holded.com/api/invoicing/v1/info
+2025-07-11 09:54:22,682 [ERROR] notifications.email_sender: Failed to send template test email: type str doesn't define __round__ method
+2025-07-11 09:54:22,682 [WARNING] src.main_workflow: Email sender test failed: Test email not sent
+2025-07-11 09:54:22,682 [WARNING] src.main_workflow: Some component tests failed
+2025-07-11 09:54:56,167 [INFO] src.main_workflow: Initializing Conway Bikes workflow orchestrator
+2025-07-11 09:54:56,167 [INFO] utils.csv_processor: Loading bike references from: Información_EAN_Conway_2025.xlsx - Stammdaten Conway.csv
+2025-07-11 09:54:56,213 [INFO] utils.csv_processor: Loaded 8954 bike references from CSV
+2025-07-11 09:54:56,213 [INFO] holded.api_client: Holded API client initialized
+2025-07-11 09:54:56,213 [INFO] notifications.email_sender: Email sender initialized
+2025-07-11 09:54:56,213 [INFO] utils.processed_orders: Processed orders tracker initialized with 0 existing records
+2025-07-11 09:54:56,213 [INFO] src.main_workflow: All workflow components initialized successfully
+2025-07-11 09:54:56,213 [INFO] src.main_workflow: Testing all workflow components
+2025-07-11 09:54:56,213 [INFO] src.main_workflow: CSV processor test passed: 8954 references loaded
+2025-07-11 09:54:56,369 [INFO] holded.api_client: Holded API connection test successful
+2025-07-11 09:54:56,369 [INFO] src.main_workflow: Holded API test passed: Connection successful
+2025-07-11 09:54:56,457 [WARNING] holded.api_client: Non-JSON response received from https://api.holded.com/api/invoicing/v1/info
+2025-07-11 09:54:56,457 [ERROR] notifications.email_sender: Failed to send template test email: type str doesn't define __round__ method
+2025-07-11 09:54:56,457 [WARNING] src.main_workflow: Email sender test failed: Test email not sent
+2025-07-11 09:54:56,457 [WARNING] src.main_workflow: Some component tests failed
+2025-07-11 09:55:11,425 [INFO] src.main_workflow: Initializing Conway Bikes workflow orchestrator
+2025-07-11 09:55:11,425 [INFO] utils.csv_processor: Loading bike references from: Información_EAN_Conway_2025.xlsx - Stammdaten Conway.csv
+2025-07-11 09:55:11,472 [INFO] utils.csv_processor: Loaded 8954 bike references from CSV
+2025-07-11 09:55:11,472 [INFO] holded.api_client: Holded API client initialized
+2025-07-11 09:55:11,472 [INFO] notifications.email_sender: Email sender initialized
+2025-07-11 09:55:11,472 [INFO] utils.processed_orders: Processed orders tracker initialized with 0 existing records
+2025-07-11 09:55:11,472 [INFO] src.main_workflow: All workflow components initialized successfully
+2025-07-11 09:55:11,472 [INFO] src.main_workflow: Testing all workflow components
+2025-07-11 09:55:11,472 [INFO] src.main_workflow: CSV processor test passed: 8954 references loaded
+2025-07-11 09:55:11,629 [INFO] holded.api_client: Holded API connection test successful
+2025-07-11 09:55:11,629 [INFO] src.main_workflow: Holded API test passed: Connection successful
+2025-07-11 09:55:11,776 [WARNING] holded.api_client: Non-JSON response received from https://api.holded.com/api/invoicing/v1/info
+2025-07-11 09:55:11,777 [ERROR] notifications.email_sender: Failed to send template test email: could not convert string to float: '€1,299.99'
+2025-07-11 09:55:11,777 [WARNING] src.main_workflow: Email sender test failed: Test email not sent
+2025-07-11 09:55:11,777 [WARNING] src.main_workflow: Some component tests failed
+2025-07-11 09:55:55,544 [INFO] src.main_workflow: Initializing Conway Bikes workflow orchestrator
+2025-07-11 09:55:55,545 [INFO] utils.csv_processor: Loading bike references from: Información_EAN_Conway_2025.xlsx - Stammdaten Conway.csv
+2025-07-11 09:55:55,591 [INFO] utils.csv_processor: Loaded 8954 bike references from CSV
+2025-07-11 09:55:55,591 [INFO] holded.api_client: Holded API client initialized
+2025-07-11 09:55:55,592 [INFO] notifications.email_sender: Email sender initialized
+2025-07-11 09:55:55,592 [INFO] utils.processed_orders: Processed orders tracker initialized with 0 existing records
+2025-07-11 09:55:55,592 [INFO] src.main_workflow: All workflow components initialized successfully
+2025-07-11 09:55:55,592 [INFO] src.main_workflow: Testing all workflow components
+2025-07-11 09:55:55,592 [INFO] src.main_workflow: CSV processor test passed: 8954 references loaded
+2025-07-11 09:55:55,747 [INFO] holded.api_client: Holded API connection test successful
+2025-07-11 09:55:55,748 [INFO] src.main_workflow: Holded API test passed: Connection successful
+2025-07-11 09:55:55,844 [WARNING] holded.api_client: Non-JSON response received from https://api.holded.com/api/invoicing/v1/info
+2025-07-11 09:55:55,844 [ERROR] notifications.email_sender: Failed to send template test email: could not convert string to float: '1,299.99'
+2025-07-11 09:55:55,845 [WARNING] src.main_workflow: Email sender test failed: Test email not sent
+2025-07-11 09:55:55,845 [WARNING] src.main_workflow: Some component tests failed
+2025-07-11 09:56:15,077 [INFO] src.main_workflow: Initializing Conway Bikes workflow orchestrator
+2025-07-11 09:56:15,077 [INFO] utils.csv_processor: Loading bike references from: Información_EAN_Conway_2025.xlsx - Stammdaten Conway.csv
+2025-07-11 09:56:15,123 [INFO] utils.csv_processor: Loaded 8954 bike references from CSV
+2025-07-11 09:56:15,123 [INFO] holded.api_client: Holded API client initialized
+2025-07-11 09:56:15,123 [INFO] notifications.email_sender: Email sender initialized
+2025-07-11 09:56:15,123 [INFO] utils.processed_orders: Processed orders tracker initialized with 0 existing records
+2025-07-11 09:56:15,123 [INFO] src.main_workflow: All workflow components initialized successfully
+2025-07-11 09:56:15,123 [INFO] src.main_workflow: Testing all workflow components
+2025-07-11 09:56:15,123 [INFO] src.main_workflow: CSV processor test passed: 8954 references loaded
+2025-07-11 09:56:15,261 [INFO] holded.api_client: Holded API connection test successful
+2025-07-11 09:56:15,262 [INFO] src.main_workflow: Holded API test passed: Connection successful
+2025-07-11 09:56:15,352 [WARNING] holded.api_client: Non-JSON response received from https://api.holded.com/api/invoicing/v1/info
+2025-07-11 09:56:15,381 [INFO] notifications.email_sender: Sending template test email to cabagu35@gmail.com
+2025-07-11 09:56:16,893 [INFO] notifications.email_sender: Template test email sent successfully to cabagu35@gmail.com
+2025-07-11 09:56:16,893 [INFO] src.main_workflow: Email sender test passed: Test email sent successfully
+2025-07-11 09:56:16,893 [INFO] src.main_workflow: All component tests passed successfully
+2025-07-11 09:56:57,422 [INFO] src.main_workflow: Initializing Conway Bikes workflow orchestrator
+2025-07-11 09:56:57,423 [INFO] utils.csv_processor: Loading bike references from: Información_EAN_Conway_2025.xlsx - Stammdaten Conway.csv
+2025-07-11 09:56:57,468 [INFO] utils.csv_processor: Loaded 8954 bike references from CSV
+2025-07-11 09:56:57,469 [INFO] holded.api_client: Holded API client initialized
+2025-07-11 09:56:57,469 [INFO] notifications.email_sender: Email sender initialized
+2025-07-11 09:56:57,469 [INFO] utils.processed_orders: Processed orders tracker initialized with 0 existing records
+2025-07-11 09:56:57,469 [INFO] src.main_workflow: All workflow components initialized successfully
+2025-07-11 09:56:57,469 [INFO] src.main_workflow: Testing all workflow components
+2025-07-11 09:56:57,469 [INFO] src.main_workflow: CSV processor test passed: 8954 references loaded
+2025-07-11 09:56:57,603 [INFO] holded.api_client: Holded API connection test successful
+2025-07-11 09:56:57,603 [INFO] src.main_workflow: Holded API test passed: Connection successful
+2025-07-11 09:56:57,691 [WARNING] holded.api_client: Non-JSON response received from https://api.holded.com/api/invoicing/v1/info
+2025-07-11 09:56:57,716 [INFO] notifications.email_sender: Sending template test email to cabagu35@gmail.com
+2025-07-11 09:56:59,200 [INFO] notifications.email_sender: Template test email sent successfully to cabagu35@gmail.com
+2025-07-11 09:56:59,200 [INFO] src.main_workflow: Email sender test passed: Test email sent successfully
+2025-07-11 09:56:59,200 [INFO] src.main_workflow: All component tests passed successfully
+2025-07-11 10:02:26,050 [INFO] src.main_workflow: Initializing Conway Bikes workflow orchestrator
+2025-07-11 10:02:26,050 [INFO] utils.csv_processor: Loading bike references from: Información_EAN_Conway_2025.xlsx - Stammdaten Conway.csv
+2025-07-11 10:02:26,097 [INFO] utils.csv_processor: Loaded 8954 bike references from CSV
+2025-07-11 10:02:26,097 [INFO] holded.api_client: Holded API client initialized
+2025-07-11 10:02:26,097 [INFO] notifications.email_sender: Email sender initialized
+2025-07-11 10:02:26,097 [INFO] utils.processed_orders: Processed orders tracker initialized with 0 existing records
+2025-07-11 10:02:26,097 [INFO] src.main_workflow: All workflow components initialized successfully
+2025-07-11 10:02:26,097 [INFO] src.main_workflow: Testing all workflow components
+2025-07-11 10:02:26,097 [INFO] src.main_workflow: CSV processor test passed: 8954 references loaded
+2025-07-11 10:02:26,237 [INFO] holded.api_client: Holded API connection test successful
+2025-07-11 10:02:26,237 [INFO] src.main_workflow: Holded API test passed: Connection successful
+2025-07-11 10:02:26,553 [WARNING] holded.api_client: Non-JSON response received from https://api.holded.com/api/invoicing/v1/info
+2025-07-11 10:02:26,573 [INFO] notifications.email_sender: Sending template test email to cabagu35@gmail.com
+2025-07-11 10:02:28,075 [INFO] notifications.email_sender: Template test email sent successfully to cabagu35@gmail.com
+2025-07-11 10:02:28,075 [INFO] src.main_workflow: Email sender test passed: Test email sent successfully
+2025-07-11 10:02:28,075 [INFO] src.main_workflow: All component tests passed successfully
+2025-07-11 10:04:29,308 [INFO] src.main_workflow: Initializing Conway Bikes workflow orchestrator
+2025-07-11 10:04:29,308 [INFO] utils.csv_processor: Loading bike references from: Información_EAN_Conway_2025.xlsx - Stammdaten Conway.csv
+2025-07-11 10:04:29,354 [INFO] utils.csv_processor: Loaded 8954 bike references from CSV
+2025-07-11 10:04:29,355 [INFO] holded.api_client: Holded API client initialized
+2025-07-11 10:04:29,355 [INFO] notifications.email_sender: Email sender initialized
+2025-07-11 10:04:29,355 [INFO] utils.processed_orders: Processed orders tracker initialized with 0 existing records
+2025-07-11 10:04:29,355 [INFO] src.main_workflow: All workflow components initialized successfully
+2025-07-11 10:04:29,355 [INFO] src.main_workflow: Testing all workflow components
+2025-07-11 10:04:29,355 [INFO] src.main_workflow: CSV processor test passed: 8954 references loaded
+2025-07-11 10:04:29,485 [INFO] holded.api_client: Holded API connection test successful
+2025-07-11 10:04:29,485 [INFO] src.main_workflow: Holded API test passed: Connection successful
+2025-07-11 10:04:29,590 [WARNING] holded.api_client: Non-JSON response received from https://api.holded.com/api/invoicing/v1/info
+2025-07-11 10:04:29,605 [INFO] notifications.email_sender: Sending template test email to cabagu35@gmail.com
+2025-07-11 10:04:31,209 [INFO] notifications.email_sender: Template test email sent successfully to cabagu35@gmail.com
+2025-07-11 10:04:31,210 [INFO] src.main_workflow: Email sender test passed: Test email sent successfully
+2025-07-11 10:04:31,210 [INFO] src.main_workflow: All component tests passed successfully
+2025-07-11 10:05:24,479 [INFO] src.main_workflow: Initializing Conway Bikes workflow orchestrator
+2025-07-11 10:05:24,479 [INFO] utils.csv_processor: Loading bike references from: Información_EAN_Conway_2025.xlsx - Stammdaten Conway.csv
+2025-07-11 10:05:24,525 [INFO] utils.csv_processor: Loaded 8954 bike references from CSV
+2025-07-11 10:05:24,525 [INFO] holded.api_client: Holded API client initialized
+2025-07-11 10:05:24,525 [INFO] notifications.email_sender: Email sender initialized
+2025-07-11 10:05:24,526 [INFO] utils.processed_orders: Processed orders tracker initialized with 0 existing records
+2025-07-11 10:05:24,526 [INFO] src.main_workflow: All workflow components initialized successfully
+2025-07-11 10:05:24,526 [INFO] src.main_workflow: Testing all workflow components
+2025-07-11 10:05:24,526 [INFO] src.main_workflow: CSV processor test passed: 8954 references loaded
+2025-07-11 10:05:24,643 [INFO] holded.api_client: Holded API connection test successful
+2025-07-11 10:05:24,643 [INFO] src.main_workflow: Holded API test passed: Connection successful
+2025-07-11 10:05:24,720 [WARNING] holded.api_client: Non-JSON response received from https://api.holded.com/api/invoicing/v1/info
+2025-07-11 10:05:24,741 [INFO] notifications.email_sender: Sending template test email to cabagu35@gmail.com
+2025-07-11 10:05:26,259 [INFO] notifications.email_sender: Template test email sent successfully to cabagu35@gmail.com
+2025-07-11 10:05:26,260 [INFO] src.main_workflow: Email sender test passed: Test email sent successfully
+2025-07-11 10:05:26,260 [INFO] src.main_workflow: All component tests passed successfully
+2025-07-11 10:08:39,288 [INFO] src.main_workflow: Initializing Conway Bikes workflow orchestrator
+2025-07-11 10:08:39,288 [INFO] utils.csv_processor: Loading bike references from: Información_EAN_Conway_2025.xlsx - Stammdaten Conway.csv
+2025-07-11 10:08:39,336 [INFO] utils.csv_processor: Loaded 8954 bike references from CSV
+2025-07-11 10:08:39,336 [INFO] holded.api_client: Holded API client initialized
+2025-07-11 10:08:39,336 [INFO] notifications.email_sender: Email sender initialized
+2025-07-11 10:08:39,336 [INFO] utils.processed_orders: Processed orders tracker initialized with 0 existing records
+2025-07-11 10:08:39,336 [INFO] src.main_workflow: All workflow components initialized successfully
+2025-07-11 10:08:39,336 [INFO] src.main_workflow: Testing all workflow components
+2025-07-11 10:08:39,336 [INFO] src.main_workflow: CSV processor test passed: 8954 references loaded
+2025-07-11 10:08:39,486 [INFO] holded.api_client: Holded API connection test successful
+2025-07-11 10:08:39,486 [INFO] src.main_workflow: Holded API test passed: Connection successful
+2025-07-11 10:08:39,573 [WARNING] holded.api_client: Non-JSON response received from https://api.holded.com/api/invoicing/v1/info
+2025-07-11 10:08:39,593 [INFO] notifications.email_sender: Sending template test email to cabagu35@gmail.com
+2025-07-11 10:08:41,179 [INFO] notifications.email_sender: Template test email sent successfully to cabagu35@gmail.com
+2025-07-11 10:08:41,179 [INFO] src.main_workflow: Email sender test passed: Test email sent successfully
+2025-07-11 10:08:41,179 [INFO] src.main_workflow: All component tests passed successfully
+2025-07-11 10:09:24,013 [INFO] src.main_workflow: Initializing Conway Bikes workflow orchestrator
+2025-07-11 10:09:24,013 [INFO] utils.csv_processor: Loading bike references from: Información_EAN_Conway_2025.xlsx - Stammdaten Conway.csv
+2025-07-11 10:09:24,059 [INFO] utils.csv_processor: Loaded 8954 bike references from CSV
+2025-07-11 10:09:24,059 [INFO] holded.api_client: Holded API client initialized
+2025-07-11 10:09:24,059 [INFO] notifications.email_sender: Email sender initialized
+2025-07-11 10:09:24,059 [INFO] utils.processed_orders: Processed orders tracker initialized with 0 existing records
+2025-07-11 10:09:24,059 [INFO] src.main_workflow: All workflow components initialized successfully
+2025-07-11 10:09:24,059 [INFO] src.main_workflow: Testing all workflow components
+2025-07-11 10:09:24,059 [INFO] src.main_workflow: CSV processor test passed: 8954 references loaded
+2025-07-11 10:09:24,203 [INFO] holded.api_client: Holded API connection test successful
+2025-07-11 10:09:24,203 [INFO] src.main_workflow: Holded API test passed: Connection successful
+2025-07-11 10:09:24,275 [WARNING] holded.api_client: Non-JSON response received from https://api.holded.com/api/invoicing/v1/info
+2025-07-11 10:09:24,298 [INFO] notifications.email_sender: Sending template test email to cabagu35@gmail.com
+2025-07-11 10:09:25,743 [INFO] notifications.email_sender: Template test email sent successfully to cabagu35@gmail.com
+2025-07-11 10:09:25,744 [INFO] src.main_workflow: Email sender test passed: Test email sent successfully
+2025-07-11 10:09:25,744 [INFO] src.main_workflow: All component tests passed successfully
+2025-07-11 10:10:31,021 [INFO] src.main_workflow: Initializing Conway Bikes workflow orchestrator
+2025-07-11 10:10:31,021 [INFO] utils.csv_processor: Loading bike references from: Información_EAN_Conway_2025.xlsx - Stammdaten Conway.csv
+2025-07-11 10:10:31,067 [INFO] utils.csv_processor: Loaded 8954 bike references from CSV
+2025-07-11 10:10:31,068 [INFO] holded.api_client: Holded API client initialized
+2025-07-11 10:10:31,068 [INFO] notifications.email_sender: Email sender initialized
+2025-07-11 10:10:31,068 [INFO] utils.processed_orders: Processed orders tracker initialized with 0 existing records
+2025-07-11 10:10:31,068 [INFO] src.main_workflow: All workflow components initialized successfully
+2025-07-11 10:10:31,068 [INFO] src.main_workflow: Testing all workflow components
+2025-07-11 10:10:31,068 [INFO] src.main_workflow: CSV processor test passed: 8954 references loaded
+2025-07-11 10:10:31,198 [INFO] holded.api_client: Holded API connection test successful
+2025-07-11 10:10:31,198 [INFO] src.main_workflow: Holded API test passed: Connection successful
+2025-07-11 10:10:31,308 [WARNING] holded.api_client: Non-JSON response received from https://api.holded.com/api/invoicing/v1/info
+2025-07-11 10:10:31,337 [INFO] notifications.email_sender: Sending template test email to cabagu35@gmail.com
+2025-07-11 10:10:32,779 [INFO] notifications.email_sender: Template test email sent successfully to cabagu35@gmail.com
+2025-07-11 10:10:32,780 [INFO] src.main_workflow: Email sender test passed: Test email sent successfully
+2025-07-11 10:10:32,780 [INFO] src.main_workflow: All component tests passed successfully
+2025-07-11 10:11:30,599 [INFO] src.main_workflow: Initializing Conway Bikes workflow orchestrator
+2025-07-11 10:11:30,599 [INFO] utils.csv_processor: Loading bike references from: Información_EAN_Conway_2025.xlsx - Stammdaten Conway.csv
+2025-07-11 10:11:30,646 [INFO] utils.csv_processor: Loaded 8954 bike references from CSV
+2025-07-11 10:11:30,646 [INFO] holded.api_client: Holded API client initialized
+2025-07-11 10:11:30,646 [INFO] notifications.email_sender: Email sender initialized
+2025-07-11 10:11:30,646 [INFO] utils.processed_orders: Processed orders tracker initialized with 0 existing records
+2025-07-11 10:11:30,646 [INFO] src.main_workflow: All workflow components initialized successfully
+2025-07-11 10:11:30,646 [INFO] src.main_workflow: Testing all workflow components
+2025-07-11 10:11:30,646 [INFO] src.main_workflow: CSV processor test passed: 8954 references loaded
+2025-07-11 10:11:30,771 [INFO] holded.api_client: Holded API connection test successful
+2025-07-11 10:11:30,771 [INFO] src.main_workflow: Holded API test passed: Connection successful
+2025-07-11 10:11:30,860 [WARNING] holded.api_client: Non-JSON response received from https://api.holded.com/api/invoicing/v1/info
+2025-07-11 10:11:30,884 [INFO] notifications.email_sender: Sending template test email to cabagu35@gmail.com
+2025-07-11 10:11:32,367 [INFO] notifications.email_sender: Template test email sent successfully to cabagu35@gmail.com
+2025-07-11 10:11:32,367 [INFO] src.main_workflow: Email sender test passed: Test email sent successfully
+2025-07-11 10:11:32,367 [INFO] src.main_workflow: All component tests passed successfully
+2025-07-11 10:12:17,585 [INFO] src.main_workflow: Initializing Conway Bikes workflow orchestrator
+2025-07-11 10:12:17,585 [INFO] utils.csv_processor: Loading bike references from: Información_EAN_Conway_2025.xlsx - Stammdaten Conway.csv
+2025-07-11 10:12:17,633 [INFO] utils.csv_processor: Loaded 8954 bike references from CSV
+2025-07-11 10:12:17,633 [INFO] holded.api_client: Holded API client initialized
+2025-07-11 10:12:17,633 [INFO] notifications.email_sender: Email sender initialized
+2025-07-11 10:12:17,633 [INFO] utils.processed_orders: Processed orders tracker initialized with 0 existing records
+2025-07-11 10:12:17,633 [INFO] src.main_workflow: All workflow components initialized successfully
+2025-07-11 10:12:17,633 [INFO] src.main_workflow: Testing all workflow components
+2025-07-11 10:12:17,633 [INFO] src.main_workflow: CSV processor test passed: 8954 references loaded
+2025-07-11 10:12:17,754 [INFO] holded.api_client: Holded API connection test successful
+2025-07-11 10:12:17,754 [INFO] src.main_workflow: Holded API test passed: Connection successful
+2025-07-11 10:12:17,835 [WARNING] holded.api_client: Non-JSON response received from https://api.holded.com/api/invoicing/v1/info
+2025-07-11 10:12:17,858 [INFO] notifications.email_sender: Sending template test email to cabagu35@gmail.com
+2025-07-11 10:12:19,358 [INFO] notifications.email_sender: Template test email sent successfully to cabagu35@gmail.com
+2025-07-11 10:12:19,358 [INFO] src.main_workflow: Email sender test passed: Test email sent successfully
+2025-07-11 10:12:19,358 [INFO] src.main_workflow: All component tests passed successfully
+2025-07-11 10:13:07,287 [INFO] src.main_workflow: Initializing Conway Bikes workflow orchestrator
+2025-07-11 10:13:07,287 [INFO] utils.csv_processor: Loading bike references from: Información_EAN_Conway_2025.xlsx - Stammdaten Conway.csv
+2025-07-11 10:13:07,332 [INFO] utils.csv_processor: Loaded 8954 bike references from CSV
+2025-07-11 10:13:07,332 [INFO] holded.api_client: Holded API client initialized
+2025-07-11 10:13:07,332 [INFO] notifications.email_sender: Email sender initialized
+2025-07-11 10:13:07,332 [INFO] utils.processed_orders: Processed orders tracker initialized with 0 existing records
+2025-07-11 10:13:07,332 [INFO] src.main_workflow: All workflow components initialized successfully
+2025-07-11 10:13:07,332 [INFO] src.main_workflow: Testing all workflow components
+2025-07-11 10:13:07,333 [INFO] src.main_workflow: CSV processor test passed: 8954 references loaded
+2025-07-11 10:13:07,470 [INFO] holded.api_client: Holded API connection test successful
+2025-07-11 10:13:07,471 [INFO] src.main_workflow: Holded API test passed: Connection successful
+2025-07-11 10:13:07,594 [WARNING] holded.api_client: Non-JSON response received from https://api.holded.com/api/invoicing/v1/info
+2025-07-11 10:13:07,624 [INFO] notifications.email_sender: Sending template test email to cabagu35@gmail.com
+2025-07-11 10:13:09,036 [INFO] notifications.email_sender: Template test email sent successfully to cabagu35@gmail.com
+2025-07-11 10:13:09,037 [INFO] src.main_workflow: Email sender test passed: Test email sent successfully
+2025-07-11 10:13:09,037 [INFO] src.main_workflow: All component tests passed successfully
+2025-07-11 10:14:02,271 [INFO] src.main_workflow: Initializing Conway Bikes workflow orchestrator
+2025-07-11 10:14:02,271 [INFO] utils.csv_processor: Loading bike references from: Información_EAN_Conway_2025.xlsx - Stammdaten Conway.csv
+2025-07-11 10:14:02,317 [INFO] utils.csv_processor: Loaded 8954 bike references from CSV
+2025-07-11 10:14:02,317 [INFO] holded.api_client: Holded API client initialized
+2025-07-11 10:14:02,317 [INFO] notifications.email_sender: Email sender initialized
+2025-07-11 10:14:02,317 [INFO] utils.processed_orders: Processed orders tracker initialized with 0 existing records
+2025-07-11 10:14:02,317 [INFO] src.main_workflow: All workflow components initialized successfully
+2025-07-11 10:14:02,317 [INFO] src.main_workflow: Testing all workflow components
+2025-07-11 10:14:02,317 [INFO] src.main_workflow: CSV processor test passed: 8954 references loaded
+2025-07-11 10:14:02,474 [INFO] holded.api_client: Holded API connection test successful
+2025-07-11 10:14:02,474 [INFO] src.main_workflow: Holded API test passed: Connection successful
+2025-07-11 10:14:02,631 [WARNING] holded.api_client: Non-JSON response received from https://api.holded.com/api/invoicing/v1/info
+2025-07-11 10:14:02,649 [INFO] notifications.email_sender: Sending template test email to cabagu35@gmail.com
+2025-07-11 10:14:04,093 [INFO] notifications.email_sender: Template test email sent successfully to cabagu35@gmail.com
+2025-07-11 10:14:04,093 [INFO] src.main_workflow: Email sender test passed: Test email sent successfully
+2025-07-11 10:14:04,093 [INFO] src.main_workflow: All component tests passed successfully
+2025-07-11 10:14:45,224 [INFO] src.main_workflow: Initializing Conway Bikes workflow orchestrator
+2025-07-11 10:14:45,224 [INFO] utils.csv_processor: Loading bike references from: Información_EAN_Conway_2025.xlsx - Stammdaten Conway.csv
+2025-07-11 10:14:45,270 [INFO] utils.csv_processor: Loaded 8954 bike references from CSV
+2025-07-11 10:14:45,270 [INFO] holded.api_client: Holded API client initialized
+2025-07-11 10:14:45,270 [INFO] notifications.email_sender: Email sender initialized
+2025-07-11 10:14:45,270 [INFO] utils.processed_orders: Processed orders tracker initialized with 0 existing records
+2025-07-11 10:14:45,270 [INFO] src.main_workflow: All workflow components initialized successfully
+2025-07-11 10:14:45,279 [INFO] src.main_workflow: Starting Conway bike order check at 2025-07-11 10:14:45 CEST
+2025-07-11 10:14:45,279 [INFO] src.main_workflow: Step 1: Loading bike references from CSV
+2025-07-11 10:14:45,280 [INFO] src.main_workflow: Loaded 8954 bike references
+2025-07-11 10:14:45,280 [INFO] src.main_workflow: Step 2: Retrieving sales orders from Holded API (last 24 hours)
+2025-07-11 10:14:45,280 [INFO] holded.api_client: Fetching sales orders from 2025-07-10 09:00:00+02:00 to 2025-07-11 10:14:45.279749+02:00
+2025-07-11 10:14:45,394 [INFO] holded.api_client: Retrieved 1 salesorder documents from Holded API
+2025-07-11 10:14:45,394 [INFO] src.main_workflow: Retrieved 1 sales orders from Holded API
+2025-07-11 10:14:45,394 [INFO] src.main_workflow: Step 2.5: Filtering out already processed orders
+2025-07-11 10:14:45,394 [INFO] src.main_workflow: Filtered out 0 already processed orders, 1 new orders to check
+2025-07-11 10:14:45,394 [INFO] src.main_workflow: Step 3: Filtering orders for bike references
+2025-07-11 10:14:45,404 [INFO] utils.csv_processor: Filtered 1 orders containing bike references from 1 total orders
+2025-07-11 10:14:45,405 [INFO] src.main_workflow: Found 1 orders containing bike references
+2025-07-11 10:14:45,405 [INFO] src.main_workflow: Step 4: Sending email notification
+2025-07-11 10:14:45,405 [INFO] notifications.email_sender: Sending email notification to cabagu35@gmail.com
+2025-07-11 10:14:46,892 [INFO] notifications.email_sender: Email notification sent successfully to cabagu35@gmail.com
+2025-07-11 10:14:46,892 [INFO] src.main_workflow: Email notification sent successfully
+2025-07-11 10:14:46,892 [INFO] utils.processed_orders: Marked 1 orders as processed
+2025-07-11 10:14:46,893 [INFO] src.main_workflow: Marked 1 orders as processed to prevent duplicates
+2025-07-11 10:14:46,893 [INFO] src.main_workflow: Check completed successfully
+2025-07-11 10:16:12,706 [INFO] src.main_workflow: Initializing Conway Bikes workflow orchestrator
+2025-07-11 10:16:12,706 [INFO] utils.csv_processor: Loading bike references from: Información_EAN_Conway_2025.xlsx - Stammdaten Conway.csv
+2025-07-11 10:16:12,753 [INFO] utils.csv_processor: Loaded 8954 bike references from CSV
+2025-07-11 10:16:12,753 [INFO] holded.api_client: Holded API client initialized
+2025-07-11 10:16:12,753 [INFO] notifications.email_sender: Email sender initialized
+2025-07-11 10:16:12,753 [INFO] utils.processed_orders: Processed orders tracker initialized with 1 existing records
+2025-07-11 10:16:12,753 [INFO] src.main_workflow: All workflow components initialized successfully
+2025-07-11 10:16:12,762 [INFO] src.main_workflow: Starting Conway bike order check at 2025-07-11 10:16:12 CEST
+2025-07-11 10:16:12,762 [INFO] src.main_workflow: Step 1: Loading bike references from CSV
+2025-07-11 10:16:12,763 [INFO] src.main_workflow: Loaded 8954 bike references
+2025-07-11 10:16:12,763 [INFO] src.main_workflow: Step 2: Retrieving sales orders from Holded API (last 24 hours)
+2025-07-11 10:16:12,763 [INFO] holded.api_client: Fetching sales orders from 2025-07-10 09:00:00+02:00 to 2025-07-11 10:16:12.762623+02:00
+2025-07-11 10:16:12,883 [INFO] holded.api_client: Retrieved 1 salesorder documents from Holded API
+2025-07-11 10:16:12,883 [INFO] src.main_workflow: Retrieved 1 sales orders from Holded API
+2025-07-11 10:16:12,883 [INFO] src.main_workflow: Step 2.5: Filtering out already processed orders
+2025-07-11 10:16:12,883 [INFO] utils.processed_orders: Filtered out 1 already processed orders, 0 new orders remain
+2025-07-11 10:16:12,883 [INFO] src.main_workflow: Filtered out 1 already processed orders, 0 new orders to check
+2025-07-11 10:16:12,883 [INFO] src.main_workflow: All orders have already been processed. Skipping further processing.
+2025-07-11 10:16:29,397 [INFO] src.main_workflow: Initializing Conway Bikes workflow orchestrator
+2025-07-11 10:16:29,397 [INFO] utils.csv_processor: Loading bike references from: Información_EAN_Conway_2025.xlsx - Stammdaten Conway.csv
+2025-07-11 10:16:29,442 [INFO] utils.csv_processor: Loaded 8954 bike references from CSV
+2025-07-11 10:16:29,443 [INFO] holded.api_client: Holded API client initialized
+2025-07-11 10:16:29,443 [INFO] notifications.email_sender: Email sender initialized
+2025-07-11 10:16:29,443 [INFO] utils.processed_orders: Processed orders tracker initialized with 0 existing records
+2025-07-11 10:16:29,443 [INFO] src.main_workflow: All workflow components initialized successfully
+2025-07-11 10:16:29,452 [INFO] src.main_workflow: Starting Conway bike order check at 2025-07-11 10:16:29 CEST
+2025-07-11 10:16:29,452 [INFO] src.main_workflow: Step 1: Loading bike references from CSV
+2025-07-11 10:16:29,452 [INFO] src.main_workflow: Loaded 8954 bike references
+2025-07-11 10:16:29,452 [INFO] src.main_workflow: Step 2: Retrieving sales orders from Holded API (last 24 hours)
+2025-07-11 10:16:29,452 [INFO] holded.api_client: Fetching sales orders from 2025-07-10 09:00:00+02:00 to 2025-07-11 10:16:29.452507+02:00
+2025-07-11 10:16:29,567 [INFO] holded.api_client: Retrieved 1 salesorder documents from Holded API
+2025-07-11 10:16:29,567 [INFO] src.main_workflow: Retrieved 1 sales orders from Holded API
+2025-07-11 10:16:29,567 [INFO] src.main_workflow: Step 2.5: Filtering out already processed orders
+2025-07-11 10:16:29,567 [INFO] src.main_workflow: Filtered out 0 already processed orders, 1 new orders to check
+2025-07-11 10:16:29,567 [INFO] src.main_workflow: Step 3: Filtering orders for bike references
+2025-07-11 10:16:29,584 [INFO] utils.csv_processor: Filtered 1 orders containing bike references from 1 total orders
+2025-07-11 10:16:29,584 [INFO] src.main_workflow: Found 1 orders containing bike references
+2025-07-11 10:16:29,585 [INFO] src.main_workflow: Step 4: Sending email notification
+2025-07-11 10:16:29,585 [INFO] notifications.email_sender: Sending email notification to cabagu35@gmail.com
+2025-07-11 10:16:31,079 [INFO] notifications.email_sender: Email notification sent successfully to cabagu35@gmail.com
+2025-07-11 10:16:31,080 [INFO] src.main_workflow: Email notification sent successfully
+2025-07-11 10:16:31,080 [INFO] utils.processed_orders: Marked 1 orders as processed
+2025-07-11 10:16:31,081 [INFO] src.main_workflow: Marked 1 orders as processed to prevent duplicates
+2025-07-11 10:16:31,081 [INFO] src.main_workflow: Check completed successfully
+2025-07-11 10:18:25,409 [INFO] src.main_workflow: Initializing Conway Bikes workflow orchestrator
+2025-07-11 10:18:25,409 [INFO] utils.csv_processor: Loading bike references from: Información_EAN_Conway_2025.xlsx - Stammdaten Conway.csv
+2025-07-11 10:18:25,455 [INFO] utils.csv_processor: Loaded 8954 bike references from CSV
+2025-07-11 10:18:25,455 [INFO] holded.api_client: Holded API client initialized
+2025-07-11 10:18:25,455 [INFO] notifications.email_sender: Email sender initialized
+2025-07-11 10:18:25,455 [INFO] utils.processed_orders: Processed orders tracker initialized with 1 existing records
+2025-07-11 10:18:25,455 [INFO] src.main_workflow: All workflow components initialized successfully
+2025-07-11 10:18:25,455 [INFO] src.main_workflow: Testing all workflow components
+2025-07-11 10:18:25,455 [INFO] src.main_workflow: CSV processor test passed: 8954 references loaded
+2025-07-11 10:18:25,596 [INFO] holded.api_client: Holded API connection test successful
+2025-07-11 10:18:25,596 [INFO] src.main_workflow: Holded API test passed: Connection successful
+2025-07-11 10:18:25,724 [WARNING] holded.api_client: Non-JSON response received from https://api.holded.com/api/invoicing/v1/info
+2025-07-11 10:18:25,754 [INFO] notifications.email_sender: Sending template test email to cabagu35@gmail.com
+2025-07-11 10:18:27,261 [INFO] notifications.email_sender: Template test email sent successfully to cabagu35@gmail.com
+2025-07-11 10:18:27,261 [INFO] src.main_workflow: Email sender test passed: Test email sent successfully
+2025-07-11 10:18:27,261 [INFO] src.main_workflow: All component tests passed successfully
+2025-07-11 10:18:48,803 [INFO] src.main_workflow: Initializing Conway Bikes workflow orchestrator
+2025-07-11 10:18:48,803 [INFO] utils.csv_processor: Loading bike references from: Información_EAN_Conway_2025.xlsx - Stammdaten Conway.csv
+2025-07-11 10:18:48,849 [INFO] utils.csv_processor: Loaded 8954 bike references from CSV
+2025-07-11 10:18:48,849 [INFO] holded.api_client: Holded API client initialized
+2025-07-11 10:18:48,849 [INFO] notifications.email_sender: Email sender initialized
+2025-07-11 10:18:48,849 [INFO] utils.processed_orders: Processed orders tracker initialized with 1 existing records
+2025-07-11 10:18:48,849 [INFO] src.main_workflow: All workflow components initialized successfully
+2025-07-11 10:18:48,859 [INFO] src.main_workflow: Starting Conway bike order check at 2025-07-11 10:18:48 CEST
+2025-07-11 10:18:48,859 [INFO] src.main_workflow: Step 1: Loading bike references from CSV
+2025-07-11 10:18:48,860 [INFO] src.main_workflow: Loaded 8954 bike references
+2025-07-11 10:18:48,860 [INFO] src.main_workflow: Step 2: Retrieving sales orders from Holded API (last 24 hours)
+2025-07-11 10:18:48,860 [INFO] holded.api_client: Fetching sales orders from 2025-07-10 09:00:00+02:00 to 2025-07-11 10:18:48.859673+02:00
+2025-07-11 10:18:49,062 [INFO] holded.api_client: Retrieved 1 salesorder documents from Holded API
+2025-07-11 10:18:49,062 [INFO] src.main_workflow: Retrieved 1 sales orders from Holded API
+2025-07-11 10:18:49,062 [INFO] src.main_workflow: Step 2.5: Filtering out already processed orders
+2025-07-11 10:18:49,063 [INFO] utils.processed_orders: Filtered out 1 already processed orders, 0 new orders remain
+2025-07-11 10:18:49,063 [INFO] src.main_workflow: Filtered out 1 already processed orders, 0 new orders to check
+2025-07-11 10:18:49,063 [INFO] src.main_workflow: All orders have already been processed. Skipping further processing.
+2025-07-11 10:18:58,189 [INFO] src.main_workflow: Initializing Conway Bikes workflow orchestrator
+2025-07-11 10:18:58,189 [INFO] utils.csv_processor: Loading bike references from: Información_EAN_Conway_2025.xlsx - Stammdaten Conway.csv
+2025-07-11 10:18:58,235 [INFO] utils.csv_processor: Loaded 8954 bike references from CSV
+2025-07-11 10:18:58,235 [INFO] holded.api_client: Holded API client initialized
+2025-07-11 10:18:58,235 [INFO] notifications.email_sender: Email sender initialized
+2025-07-11 10:18:58,235 [INFO] utils.processed_orders: Processed orders tracker initialized with 0 existing records
+2025-07-11 10:18:58,235 [INFO] src.main_workflow: All workflow components initialized successfully
+2025-07-11 10:18:58,242 [INFO] src.main_workflow: Starting Conway bike order check at 2025-07-11 10:18:58 CEST
+2025-07-11 10:18:58,242 [INFO] src.main_workflow: Step 1: Loading bike references from CSV
+2025-07-11 10:18:58,242 [INFO] src.main_workflow: Loaded 8954 bike references
+2025-07-11 10:18:58,242 [INFO] src.main_workflow: Step 2: Retrieving sales orders from Holded API (last 24 hours)
+2025-07-11 10:18:58,242 [INFO] holded.api_client: Fetching sales orders from 2025-07-10 09:00:00+02:00 to 2025-07-11 10:18:58.242448+02:00
+2025-07-11 10:18:58,366 [INFO] holded.api_client: Retrieved 1 salesorder documents from Holded API
+2025-07-11 10:18:58,366 [INFO] src.main_workflow: Retrieved 1 sales orders from Holded API
+2025-07-11 10:18:58,366 [INFO] src.main_workflow: Step 2.5: Filtering out already processed orders
+2025-07-11 10:18:58,366 [INFO] src.main_workflow: Filtered out 0 already processed orders, 1 new orders to check
+2025-07-11 10:18:58,366 [INFO] src.main_workflow: Step 3: Filtering orders for bike references
+2025-07-11 10:18:58,378 [INFO] utils.csv_processor: Filtered 1 orders containing bike references from 1 total orders
+2025-07-11 10:18:58,378 [INFO] src.main_workflow: Found 1 orders containing bike references
+2025-07-11 10:18:58,378 [INFO] src.main_workflow: Step 4: Sending email notification
+2025-07-11 10:18:58,379 [INFO] notifications.email_sender: Sending email notification to cabagu35@gmail.com
+2025-07-11 10:18:59,818 [INFO] notifications.email_sender: Email notification sent successfully to cabagu35@gmail.com
+2025-07-11 10:18:59,818 [INFO] src.main_workflow: Email notification sent successfully
+2025-07-11 10:18:59,818 [INFO] utils.processed_orders: Marked 1 orders as processed
+2025-07-11 10:18:59,819 [INFO] src.main_workflow: Marked 1 orders as processed to prevent duplicates
+2025-07-11 10:18:59,819 [INFO] src.main_workflow: Check completed successfully
+2025-07-11 10:20:33,618 [INFO] src.main_workflow: Initializing Conway Bikes workflow orchestrator
+2025-07-11 10:20:33,618 [INFO] utils.csv_processor: Loading bike references from: Información_EAN_Conway_2025.xlsx - Stammdaten Conway.csv
+2025-07-11 10:20:33,664 [INFO] utils.csv_processor: Loaded 8954 bike references from CSV
+2025-07-11 10:20:33,664 [INFO] holded.api_client: Holded API client initialized
+2025-07-11 10:20:33,664 [INFO] notifications.email_sender: Email sender initialized
+2025-07-11 10:20:33,664 [INFO] utils.processed_orders: Processed orders tracker initialized with 1 existing records
+2025-07-11 10:20:33,664 [INFO] src.main_workflow: All workflow components initialized successfully
+2025-07-11 10:20:33,664 [INFO] src.main_workflow: Testing all workflow components
+2025-07-11 10:20:33,664 [INFO] src.main_workflow: CSV processor test passed: 8954 references loaded
+2025-07-11 10:20:33,785 [INFO] holded.api_client: Holded API connection test successful
+2025-07-11 10:20:33,785 [INFO] src.main_workflow: Holded API test passed: Connection successful
+2025-07-11 10:20:33,866 [WARNING] holded.api_client: Non-JSON response received from https://api.holded.com/api/invoicing/v1/info
+2025-07-11 10:20:33,889 [INFO] notifications.email_sender: Sending template test email to cabagu35@gmail.com
+2025-07-11 10:20:35,275 [INFO] notifications.email_sender: Template test email sent successfully to cabagu35@gmail.com
+2025-07-11 10:20:35,275 [INFO] src.main_workflow: Email sender test passed: Test email sent successfully
+2025-07-11 10:20:35,275 [INFO] src.main_workflow: All component tests passed successfully
+2025-07-11 10:29:51,545 [INFO] src.main_workflow: Initializing Conway Bikes workflow orchestrator
+2025-07-11 10:29:51,545 [INFO] utils.csv_processor: Loading bike references from: Información_EAN_Conway_2025.xlsx - Stammdaten Conway.csv
+2025-07-11 10:29:51,599 [INFO] utils.csv_processor: Loaded 8954 bike references from CSV
+2025-07-11 10:29:51,599 [INFO] holded.api_client: Holded API client initialized
+2025-07-11 10:29:51,601 [INFO] utils.processed_orders: Processed orders tracker initialized with 1 existing records
+2025-07-11 10:29:51,601 [INFO] notifications.email_sender: Email sender initialized
+2025-07-11 10:29:51,601 [INFO] src.main_workflow: All workflow components initialized successfully
+2025-07-11 10:29:51,601 [INFO] src.main_workflow: Testing all workflow components
+2025-07-11 10:29:51,602 [INFO] src.main_workflow: CSV processor test passed: 8954 references loaded
+2025-07-11 10:29:51,793 [INFO] holded.api_client: Holded API connection test successful
+2025-07-11 10:29:51,793 [INFO] src.main_workflow: Holded API test passed: Connection successful
+2025-07-11 10:29:51,893 [WARNING] holded.api_client: Non-JSON response received from https://api.holded.com/api/invoicing/v1/info
+2025-07-11 10:29:51,919 [INFO] notifications.email_sender: Sending template test email to cabagu35@gmail.com
+2025-07-11 10:29:53,556 [INFO] notifications.email_sender: Template test email sent successfully to cabagu35@gmail.com
+2025-07-11 10:29:53,557 [INFO] src.main_workflow: Email sender test passed: Test email sent successfully
+2025-07-11 10:29:53,557 [INFO] src.main_workflow: All component tests passed successfully
+2025-07-11 10:30:06,583 [INFO] src.main_workflow: Initializing Conway Bikes workflow orchestrator
+2025-07-11 10:30:06,583 [INFO] utils.csv_processor: Loading bike references from: Información_EAN_Conway_2025.xlsx - Stammdaten Conway.csv
+2025-07-11 10:30:06,632 [INFO] utils.csv_processor: Loaded 8954 bike references from CSV
+2025-07-11 10:30:06,633 [INFO] holded.api_client: Holded API client initialized
+2025-07-11 10:30:06,633 [INFO] utils.processed_orders: Processed orders tracker initialized with 1 existing records
+2025-07-11 10:30:06,633 [INFO] notifications.email_sender: Email sender initialized
+2025-07-11 10:30:06,633 [INFO] src.main_workflow: All workflow components initialized successfully
+2025-07-11 10:30:06,640 [INFO] src.main_workflow: Starting Conway bike order check at 2025-07-11 10:30:06 CEST
+2025-07-11 10:30:06,641 [INFO] src.main_workflow: Step 1: Loading bike references from CSV
+2025-07-11 10:30:06,641 [INFO] src.main_workflow: Loaded 8954 bike references
+2025-07-11 10:30:06,641 [INFO] src.main_workflow: Step 2: Retrieving sales orders from Holded API (last 24 hours)
+2025-07-11 10:30:06,641 [INFO] holded.api_client: Fetching sales orders from 2025-07-10 09:00:00+02:00 to 2025-07-11 10:30:06.640853+02:00
+2025-07-11 10:30:06,739 [INFO] holded.api_client: Retrieved 0 salesorder documents from Holded API
+2025-07-11 10:30:06,739 [INFO] src.main_workflow: Retrieved 0 sales orders from Holded API
+2025-07-11 10:30:06,739 [INFO] src.main_workflow: No orders found. Skipping further processing.

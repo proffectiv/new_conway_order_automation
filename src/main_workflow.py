@@ -35,8 +35,11 @@ class WorkflowOrchestrator:
             # Initialize all components
             self.csv_processor = CSVProcessor()
             self.holded_client = HoldedAPIClient()
-            self.email_sender = EmailSender()
             self.processed_orders_tracker = ProcessedOrdersTracker()
+            
+            # Initialize email sender with bike references for item filtering
+            bike_references = self.csv_processor.get_bike_references()
+            self.email_sender = EmailSender(bike_references=bike_references)
             
             logger.info("All workflow components initialized successfully")
             
