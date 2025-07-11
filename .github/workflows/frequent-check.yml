@@ -4,7 +4,7 @@ on:
   # Allow manual trigger for testing
   workflow_dispatch:
 
-  # Allow webhook triggering
+  # Allow webhook triggering from cron-jobs service
   repository_dispatch:
     types: [cron-trigger]
 
@@ -89,11 +89,11 @@ jobs:
           retention-days: 7
 
       - name: Upload logs as artifact (weekly)
-        if: github.event_name == 'repository_dispatch'
+        if: github.event_name == 'repository_dispatch' && github.event.action == 'cron-trigger'
         uses: actions/upload-artifact@v4
         with:
           name: weekly-logs-${{ github.run_id }}
           path: logs/
           retention-days: 30
-        # Upload logs when triggered via webhook
+        # Upload logs when triggered via cron-jobs webhook
         # This is a simplified approach; adjust as needed
