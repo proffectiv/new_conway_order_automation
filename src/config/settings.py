@@ -107,7 +107,7 @@ class Settings:
     def get_log_config(self) -> dict:
         """
         Get logging configuration dictionary.
-        Returns structured logging configuration.
+        Returns structured logging configuration with sensitive data filtering.
         """
         return {
             'version': 1,
@@ -117,11 +117,17 @@ class Settings:
                     'format': '%(asctime)s [%(levelname)s] %(name)s: %(message)s'
                 },
             },
+            'filters': {
+                'sensitive_data_filter': {
+                    '()': 'config.logging_filters.SensitiveDataFilter'
+                }
+            },
             'handlers': {
                 'default': {
                     'level': self.LOG_LEVEL,
                     'formatter': 'standard',
                     'class': 'logging.StreamHandler',
+                    'filters': ['sensitive_data_filter']
                 },
                 'file': {
                     'level': self.LOG_LEVEL,
@@ -129,6 +135,7 @@ class Settings:
                     'class': 'logging.FileHandler',
                     'filename': self.LOG_FILE,
                     'mode': 'a',
+                    'filters': ['sensitive_data_filter']
                 },
             },
             'loggers': {

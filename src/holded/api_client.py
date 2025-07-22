@@ -105,15 +105,11 @@ class HoldedAPIClient:
             if start_date:
                 # Convert to Unix timestamp - Holded API uses starttmp for start time filtering
                 params['starttmp'] = int(start_date.timestamp())
-                print(f"start_date: {start_date}")
-                print(f"start_date: {params['starttmp']}")
                 logger.debug(f"Start time filter: {start_date} → starttmp={params['starttmp']}")
             
             if end_date:
                 # Convert to Unix timestamp - Holded API uses endtmp for end time filtering
                 params['endtmp'] = int(end_date.timestamp())
-                print(f"end_date: {end_date}")
-                print(f"end_date: {params['endtmp']}")
                 logger.debug(f"End time filter: {end_date} → endtmp={params['endtmp']}")
             
             logger.debug(f"API request parameters: {params}")

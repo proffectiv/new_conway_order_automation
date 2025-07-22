@@ -197,7 +197,7 @@ def show_status(args):
         config = status['configuration']
         print(f"CSV File: {config['csv_file']}")
         print(f"API Base URL: {config['api_base_url']}")
-        print(f"Target Email: {config['target_email']}")
+        print(f"Target Email: [REDACTED]")
         print(f"Test Mode: {'Yes' if config['test_mode'] else 'No'}")
         print(f"Test Email Only: {'Yes' if config['test_email_only'] else 'No'}")
         
@@ -216,7 +216,7 @@ def show_status(args):
         
         print("\n🔧 Configuration Summary:")
         print("-" * 40)
-        print(f"📧 Target Email: {settings.TARGET_EMAIL}")
+        print(f"📧 Target Email: [REDACTED]")
         print(f"🌍 Timezone: {settings.TIMEZONE}")
         print(f"📊 CSV File: {settings.CSV_FILE_PATH}")
         print(f"📝 Log Level: {settings.LOG_LEVEL}")
