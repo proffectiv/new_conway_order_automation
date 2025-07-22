@@ -19,6 +19,10 @@ pytest-cov>=4.1.0       # Coverage testing
 black>=23.7.0            # Code formatting
 flake8>=6.0.0            # Code linting
 
+# Dropbox integration
+dropbox>=12.0.0          # Dropbox API client for secure file access
+openpyxl>=3.1.0          # Excel file reading and processing
+
 # Optional: Enhanced CSV handling
 pandas>=2.0.0            # Advanced CSV processing (if needed for complex CSV operations)
 chardet>=5.2.0           # Character encoding detection for CSV files

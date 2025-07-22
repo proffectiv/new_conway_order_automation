@@ -26,6 +26,12 @@ class Settings:
         self.HOLDED_API_KEY = self._get_required_env("HOLDED_API_KEY")
         self.HOLDED_BASE_URL = os.getenv("HOLDED_BASE_URL", "https://api.holded.com/api")
         
+        # Dropbox Configuration
+        self.DROPBOX_APP_KEY = self._get_required_env("DROPBOX_APP_KEY")
+        self.DROPBOX_APP_SECRET = self._get_required_env("DROPBOX_APP_SECRET")
+        self.DROPBOX_REFRESH_TOKEN = self._get_required_env("DROPBOX_REFRESH_TOKEN")
+        self.DROPBOX_FILE_PATH = os.getenv("DROPBOX_FILE_PATH", "/CONWAY/Clientes/Conway_2025/Información_EAN_Conway_2025.xlsx")
+        
         # Email Configuration - Updated to use Strato SMTP
         self.SMTP_SERVER = os.getenv("SMTP_SERVER", "smtp.strato.com")
         self.SMTP_PORT = int(os.getenv("SMTP_PORT", "465"))
@@ -75,9 +81,7 @@ class Settings:
         Validate configuration settings.
         Ensures all required values are present and valid.
         """
-        # Validate CSV file exists
-        if not Path(self.CSV_FILE_PATH).exists():
-            raise FileNotFoundError(f"CSV file not found: {self.CSV_FILE_PATH}")
+        # Note: CSV file validation removed since we now use Dropbox for secure file access
         
         # Validate schedule time
         if not (0 <= self.SCHEDULE_HOUR <= 23):
