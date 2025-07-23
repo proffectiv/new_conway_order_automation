@@ -38,6 +38,12 @@ jobs:
           HOLDED_API_KEY=${{ secrets.HOLDED_API_KEY }}
           HOLDED_BASE_URL=${{ secrets.HOLDED_BASE_URL }}
 
+          # Dropbox Configuration
+          DROPBOX_APP_KEY=${{ secrets.DROPBOX_APP_KEY }}
+          DROPBOX_APP_SECRET=${{ secrets.DROPBOX_APP_SECRET }}
+          DROPBOX_REFRESH_TOKEN=${{ secrets.DROPBOX_REFRESH_TOKEN }}
+          DROPBOX_FILE_PATH=${{ secrets.DROPBOX_FILE_PATH }}
+
           # Email Configuration
           SMTP_SERVER=${{ secrets.SMTP_SERVER }}
           SMTP_PORT=${{ secrets.SMTP_PORT }}

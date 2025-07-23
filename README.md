@@ -91,8 +91,8 @@ LOG_LEVEL=INFO
 LOG_FILE=logs/holded_automation.log
 
 # Schedule Configuration
-SCHEDULE_HOUR=9
-SCHEDULE_MINUTE=0
+SCHEDULE_HOUR=12
+SCHEDULE_MINUTE=30
 
 # Development/Testing Configuration
 TEST_MODE=false
@@ -121,7 +121,7 @@ python main.py schedule
 
 ## 🤖 GitHub Actions Automation (Recommended)
 
-For the most responsive order monitoring, use GitHub Actions to run checks every 5 minutes:
+For the most responsive order monitoring, use GitHub Actions to run checks every 15 minutes:
 
 ### Setup GitHub Actions
 
@@ -131,7 +131,7 @@ For the most responsive order monitoring, use GitHub Actions to run checks every
 
 ### Key Benefits
 
-- **🚀 Immediate Notifications**: Orders detected within 5 minutes of creation
+- **🚀 Immediate Notifications**: Orders detected within 15 minutes of creation
 - **⏰ Smart Scheduling**: Only runs during business hours (7:00-23:00)
 - **🔄 No Duplicates**: Checks last 24 hours but prevents duplicate notifications using processed orders tracking
 - **🛡️ Robust**: Continues running even if individual checks fail
@@ -206,8 +206,8 @@ python main.py check   # Runs full check process
 | `EMAIL_PASSWORD`       | SMTP password/app password      | `your_app_password`          |
 | `TARGET_EMAIL`         | Recipient email address         | `alerts@yourcompany.com`     |
 | `TIMEZONE`             | Madrid timezone                 | `Europe/Madrid`              |
-| `SCHEDULE_HOUR`        | Daily run hour (24h format)     | `9`                          |
-| `SCHEDULE_MINUTE`      | Daily run minute                | `0`                          |
+| `SCHEDULE_HOUR`        | Daily run hour (24h format)     | `12`                          |
+| `SCHEDULE_MINUTE`      | Daily run minute                | `30`                          |
 | `OPERATION_START_HOUR` | Start hour for automation       | `7`                          |
 | `OPERATION_END_HOUR`   | End hour for automation         | `23`                         |
 | `TEST_MODE`            | Enable test mode                | `false`                      |
