@@ -24,24 +24,24 @@ class Settings:
         
         # Holded API Configuration
         self.HOLDED_API_KEY = self._get_required_env("HOLDED_API_KEY")
-        self.HOLDED_BASE_URL = os.getenv("HOLDED_BASE_URL", "https://api.holded.com/api")
+        self.HOLDED_BASE_URL = os.getenv("HOLDED_BASE_URL", "https://api.holded.com/api/invoicing/v1")
         
         # Dropbox Configuration
         self.DROPBOX_APP_KEY = self._get_required_env("DROPBOX_APP_KEY")
         self.DROPBOX_APP_SECRET = self._get_required_env("DROPBOX_APP_SECRET")
         self.DROPBOX_REFRESH_TOKEN = self._get_required_env("DROPBOX_REFRESH_TOKEN")
-        self.DROPBOX_FILE_PATH = os.getenv("DROPBOX_FILE_PATH", "/CONWAY/Clientes/Conway_2025/Información_EAN_Conway_2025.xlsx")
+        self.DROPBOX_FILE_PATH = os.getenv("DROPBOX_FILE_PATH")
         
         # Email Configuration - Updated to use Strato SMTP
-        self.SMTP_SERVER = os.getenv("SMTP_SERVER", "smtp.strato.com")
-        self.SMTP_PORT = int(os.getenv("SMTP_PORT", "465"))
+        self.SMTP_SERVER = os.getenv("SMTP_SERVER")
+        self.SMTP_PORT = int(os.getenv("SMTP_PORT"))
         self.EMAIL_USERNAME = self._get_required_env("EMAIL_USERNAME")
         self.EMAIL_PASSWORD = self._get_required_env("EMAIL_PASSWORD")
         self.EMAIL_FROM = os.getenv("EMAIL_FROM", self.EMAIL_USERNAME)
         
         # Notification Configuration
         self.TARGET_EMAIL = self._get_required_env("TARGET_EMAIL")
-        self.EMAIL_SUBJECT_PREFIX = os.getenv("EMAIL_SUBJECT_PREFIX", "[Proffectiv - New Orders]")
+        self.EMAIL_SUBJECT_PREFIX = os.getenv("EMAIL_SUBJECT_PREFIX")
         
         # Timezone Configuration
         self.TIMEZONE = os.getenv("TIMEZONE", "Europe/Madrid")
