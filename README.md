@@ -6,35 +6,38 @@ A Python automation system that monitors Holded API for sales orders containing 
 
 - **Daily Automated Monitoring**: Checks Holded API every day at 9 AM Madrid time
 - **Automated Monitoring**: Runs every 5 minutes via GitHub Actions with duplicate prevention
-- **Conway Bike Detection**: Filters orders containing references from your CSV file
+- **Conway Bike Detection**: Filters orders containing references from secure Dropbox storage
 - **Email Notifications**: Sends professional HTML/plain text emails with order details
 - **Time-Based Operation**: Only runs during configured hours (7:00-23:00)
 - **Smart Duplicate Prevention**: Avoids sending duplicate notifications
 - **Robust Error Handling**: Comprehensive logging and error management
 - **Timezone Aware**: Handles Madrid timezone correctly
 - **Test Mode Support**: Safe testing without sending actual emails
+- **Secure File Handling**: CSV data retrieved securely from Dropbox with automatic cleanup
+- **Privacy Protection**: Sensitive data filtered from logs and output
 - **Modular Design**: Clean, maintainable code following best practices
 
 ## 🏗️ Project Structure
 
 ```
-proffectiv/
+new_conway_order_automation/
 ├── src/
 │   ├── config/
-│   │   └── settings.py          # Configuration management
+│   │   ├── settings.py          # Configuration management
+│   │   └── logging_filters.py   # Sensitive data filtering
 │   ├── utils/
-│   │   └── csv_processor.py     # CSV file processing
+│   │   ├── csv_processor.py     # CSV file processing
+│   │   └── dropbox_handler.py   # Secure Dropbox file retrieval
 │   ├── holded/
 │   │   └── api_client.py        # Holded API client
-│   ├── email/
+│   ├── notifications/
 │   │   └── email_sender.py      # Email notifications
 │   └── main_workflow.py         # Main orchestrator
 ├── logs/                        # Log files directory
 ├── main.py                      # CLI entry point
 ├── requirements.txt             # Python dependencies
 ├── .env.example                 # Environment variables template
-├── .env                         # Your actual environment variables (create this)
-└── Bike_References_Conway_2025.csv  # Conway bike references
+└── .env                         # Your actual environment variables (create this)
 ```
 
 ## 🚀 Quick Start
@@ -74,13 +77,16 @@ EMAIL_FROM=your_email@example.com
 
 # Notification Configuration
 TARGET_EMAIL=recipient@example.com
-EMAIL_SUBJECT_PREFIX=[Conway Bikes Alert]
+EMAIL_SUBJECT_PREFIX=[Bike Order Alert]
 
 # Timezone Configuration
 TIMEZONE=Europe/Madrid
 
-# Application Configuration
-CSV_FILE_PATH=Información_EAN_Conway_2025.xlsx - Stammdaten Conway.csv
+# Dropbox Configuration (for secure file retrieval)
+DROPBOX_APP_KEY=your_dropbox_app_key_here
+DROPBOX_APP_SECRET=your_dropbox_app_secret_here
+DROPBOX_REFRESH_TOKEN=your_dropbox_refresh_token_here
+DROPBOX_FILE_PATH=/path/to/your/data/file.csv
 LOG_LEVEL=INFO
 LOG_FILE=logs/holded_automation.log
 
@@ -192,6 +198,10 @@ python main.py check   # Runs full check process
 | ---------------------- | ------------------------------- | ---------------------------- |
 | `HOLDED_API_KEY`       | Your Holded API key             | `your_api_key_here`          |
 | `HOLDED_BASE_URL`      | Holded API base URL             | `https://api.holded.com/api` |
+| `DROPBOX_APP_KEY`      | Dropbox application key         | `your_dropbox_app_key`       |
+| `DROPBOX_APP_SECRET`   | Dropbox application secret      | `your_dropbox_app_secret`    |
+| `DROPBOX_REFRESH_TOKEN`| Dropbox refresh token           | `your_dropbox_refresh_token` |
+| `DROPBOX_FILE_PATH`    | Path to CSV file in Dropbox     | `/folder/data.csv`           |
 | `EMAIL_USERNAME`       | SMTP username                   | `your_email@gmail.com`       |
 | `EMAIL_PASSWORD`       | SMTP password/app password      | `your_app_password`          |
 | `TARGET_EMAIL`         | Recipient email address         | `alerts@yourcompany.com`     |
@@ -203,22 +213,32 @@ python main.py check   # Runs full check process
 | `TEST_MODE`            | Enable test mode                | `false`                      |
 | `TEST_EMAIL_ONLY`      | Test emails without sending     | `false`                      |
 
+### Dropbox Setup
+
+The system securely retrieves the CSV data file from Dropbox:
+
+1. **Create Dropbox App**: Go to [Dropbox App Console](https://www.dropbox.com/developers/apps)
+2. **Get Credentials**: Note your App Key and App Secret
+3. **Generate Refresh Token**: Use OAuth2 flow to get a refresh token
+4. **Upload CSV File**: Place your data file in Dropbox
+5. **Configure Path**: Set `DROPBOX_FILE_PATH` to your file location
+
 ### CSV File Format
 
-Your `Información_EAN_Conway_2025.xlsx - Stammdaten Conway.csv` file should have:
+Your CSV data file should have:
 
 - An `Artikelnummer` column containing bike SKU/reference codes
 - Headers in the first row
 - UTF-8 encoding
 - Comma or semicolon delimited
-- SKUs with leading zeros (e.g., "02879351") are supported
+- SKUs with leading zeros (e.g., "[REFERENCE_EXAMPLE]") are supported
 
 Example:
 
 ```csv
 Artikelnummer,Artikeltext,Marke,Modelljahr,Modell
-02879351,Conway Bike Model A,Conway,2025,Cairon 529 SE
-02879369,Conway Bike Model B,Conway,2025,Cairon 529 SE
+[REFERENCE_1],[PRODUCT_NAME_1],[BRAND],[YEAR],[MODEL]
+[REFERENCE_2],[PRODUCT_NAME_2],[BRAND],[YEAR],[MODEL]
 ```
 
 ### Email Configuration
@@ -246,15 +266,15 @@ Create `/etc/systemd/system/conway-bikes-monitor.service`:
 
 ```ini
 [Unit]
-Description=Conway Bikes Order Monitor
+Description=Bike Order Monitor
 After=network.target
 
 [Service]
 Type=simple
 User=your_user
-WorkingDirectory=/path/to/proffectiv
-Environment=PATH=/path/to/proffectiv/.venv/bin
-ExecStart=/path/to/proffectiv/.venv/bin/python main.py schedule
+WorkingDirectory=/path/to/new_conway_order_automation
+Environment=PATH=/path/to/new_conway_order_automation/.venv/bin
+ExecStart=/path/to/new_conway_order_automation/.venv/bin/python main.py schedule
 Restart=always
 RestartSec=10
 
@@ -276,7 +296,7 @@ Add to crontab for daily execution:
 
 ```bash
 # Run daily at 9:00 AM
-0 9 * * * cd /path/to/proffectiv && /path/to/proffectiv/.venv/bin/python main.py check
+0 9 * * * cd /path/to/new_conway_order_automation && /path/to/new_conway_order_automation/.venv/bin/python main.py check
 ```
 
 ### Docker Deployment
@@ -334,10 +354,13 @@ python main.py test
 ## 🛡️ Security Best Practices
 
 1. **Environment Variables**: Never commit `.env` to version control
-2. **API Keys**: Use restricted API keys with minimal permissions
-3. **Email Passwords**: Use app passwords, not main account passwords
-4. **File Permissions**: Restrict access to configuration files
-5. **Network Security**: Run in secure network environment
+2. **Dropbox Security**: Use app-specific credentials with limited scope
+3. **API Keys**: Use restricted API keys with minimal permissions
+4. **Email Passwords**: Use app passwords, not main account passwords
+5. **File Permissions**: Restrict access to configuration files
+6. **Data Privacy**: Sensitive information is automatically filtered from logs
+7. **Temporary Files**: Downloaded files are automatically cleaned up
+8. **Network Security**: Run in secure network environment
 
 ## 🐛 Troubleshooting
 
@@ -347,9 +370,12 @@ python main.py test
 
 - **Solution**: Ensure all required variables are set in `.env`
 
-**Issue**: "CSV file not found"
+**Issue**: "Failed to download file from Dropbox"
 
-- **Solution**: Verify CSV file path and existence
+- **Solutions**:
+  - Verify Dropbox credentials in `.env`
+  - Check file path exists in Dropbox
+  - Ensure network connectivity
 
 **Issue**: "Holded API connection failed"
 
@@ -368,9 +394,11 @@ python main.py test
 **Issue**: "No bike references loaded"
 
 - **Solutions**:
-  - Verify CSV file format
-  - Check `Referencia` column exists
-  - Ensure file encoding is UTF-8
+  - Verify Dropbox file access and permissions
+  - Check CSV file format in Dropbox
+  - Ensure `Artikelnummer` column exists
+  - Verify file encoding is UTF-8
+  - Test Dropbox connection with `python main.py test`
 
 ### Debug Mode
 
@@ -398,23 +426,35 @@ python main.py test
 python main.py check
 ```
 
+## 🔒 Privacy and Security Features
+
+The system includes comprehensive privacy protection:
+
+- **Sensitive Data Filtering**: File paths, reference counts, and file names are automatically redacted from logs
+- **Secure File Handling**: CSV files are downloaded to temporary locations and automatically cleaned up
+- **Credential Protection**: All API keys, tokens, and credentials are filtered from log output
+- **Email Redaction**: Email addresses are masked in logs as `[EMAIL_REDACTED]`
+- **Dropbox Integration**: Files are retrieved securely without persistent local storage
+
 ## 📈 Performance Notes
 
 - **CSV Processing**: Optimized for files up to 10,000 references
+- **Dropbox Downloads**: Efficient file retrieval with automatic cleanup
 - **API Calls**: Respects rate limits with proper error handling
 - **Memory Usage**: Minimal memory footprint (~50MB typical)
-- **Execution Time**: Complete check typically takes 10-30 seconds
+- **Execution Time**: Complete check typically takes 15-45 seconds (including Dropbox download)
 
 ## 🔄 Workflow Details
 
 The automation follows this process:
 
-1. **Load Bike References** from CSV file
-2. **Query Holded API** for sales orders since yesterday 9 AM
-3. **Filter Orders** containing any bike references
-4. **Generate Email** with standardized format
-5. **Send Notification** to configured recipient
-6. **Log Results** for monitoring and debugging
+1. **Secure Data Retrieval** from Dropbox with automatic cleanup
+2. **Load Bike References** from downloaded CSV file
+3. **Query Holded API** for sales orders since yesterday 9 AM
+4. **Filter Orders** containing any bike references
+5. **Generate Email** with standardized format
+6. **Send Notification** to configured recipient
+7. **Log Results** with sensitive data filtering for security
 
 ## 👥 Support
 
@@ -427,8 +467,8 @@ For issues and questions:
 
 ## 📄 License
 
-This project is proprietary software for Conway Bikes order monitoring.
+This project is proprietary software for bike order monitoring automation.
 
 ---
 
-**🚴 Happy Monitoring!** The system will keep you informed of all Conway bike orders automatically.
+**🚴 Happy Monitoring!** The system will keep you informed of all bike orders automatically.

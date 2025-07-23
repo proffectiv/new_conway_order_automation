@@ -146,13 +146,13 @@ class EmailSender:
     
     def _format_date(self, date_input: Union[str, int, float, None]) -> str:
         """
-        Format various date inputs to DD/MM/YYYY HH:MM format.
+        Format various date inputs to DD/MM/YYYY format.
         
         Args:
             date_input: Date in various formats (ISO string, Unix timestamp, etc.)
             
         Returns:
-            Formatted date string in DD/MM/YYYY HH:MM format, or 'Unknown' if parsing fails
+            Formatted date string in DD/MM/YYYY format, or 'Unknown' if parsing fails
         """
         if not date_input:
             return 'Unknown'
@@ -163,7 +163,7 @@ class EmailSender:
             # Handle Unix timestamp (int or float)
             if isinstance(date_input, (int, float)):
                 dt = datetime.fromtimestamp(date_input, tz=madrid_tz)
-                return dt.strftime("%d/%m/%Y %H:%M")
+                return dt.strftime("%d/%m/%Y")
             
             # Handle string inputs
             if isinstance(date_input, str):
@@ -216,7 +216,7 @@ class EmailSender:
                     else:
                         dt = dt.astimezone(madrid_tz)
                     
-                    return dt.strftime("%d/%m/%Y %H:%M")
+                    return dt.strftime("%d/%m/%Y")
             
             return 'Unknown'
             
@@ -377,7 +377,7 @@ class EmailSender:
                     
                     html_content += f"""
                     <div class="item">
-                        <strong>{item_name}</strong>{refs_display}
+                        <strong>{item_name}</strong>
                         {f'<br>SKU: {item_code}' if item_code else ''}
                         <br>Quantity: {item_qty} | Price: {item_price} €
                     </div>

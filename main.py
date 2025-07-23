@@ -79,7 +79,7 @@ def print_result_summary(result: dict):
         print(f"🚴 Orders with Bikes: {result['filtered_orders_count']}")
         print(f"📧 Email Sent: {'Yes' if result['email_sent'] else 'No'}")
     
-    print(f"🏷️  Bike References Loaded: {result['bike_references_loaded']}")
+    print(f"🏷️  Bike References Loaded: [COUNT_REDACTED]")
     
     if result['errors']:
         print(f"\n❌ Errors ({len(result['errors'])}):")
@@ -104,13 +104,13 @@ def print_result_summary(result: dict):
             customer_name = order.get('contactName', contact_name) if isinstance(order, dict) else 'Unknown Customer'
             order_total = order.get('total', 'N/A') if isinstance(order, dict) else 'N/A'
             
-            print(f"   {i}. Order {order_id}")
-            print(f"      Customer: {customer_name}")
-            print(f"      Total: {order_total}")
+            print(f"   {i}. Order [ORDER_ID_REDACTED]")
+            print(f"      Customer: [CUSTOMER_REDACTED]")
+            print(f"      Total: [AMOUNT_REDACTED]")
             
             matching_refs = order.get('matching_references', []) if isinstance(order, dict) else []
             if matching_refs:
-                print(f"      References: {', '.join(matching_refs)}")
+                print(f"      References: [REFERENCES_REDACTED]")
 
 def run_check(args):
     """Run the check workflow (last 24 hours with duplicate prevention)."""
@@ -161,8 +161,8 @@ def test_components(args):
             if result.get('stats'):
                 stats = result['stats']
                 if component == 'csv_processor':
-                    print(f"   References loaded: {stats['total_references']}")
-                    print(f"   File path: {stats['file_path']}")
+                    print(f"   References loaded: [COUNT_REDACTED]")
+                    print(f"   File path: [FILE_PATH_REDACTED]")
         
         overall_status = "✅ ALL TESTS PASSED" if test_results['overall_success'] else "❌ SOME TESTS FAILED"
         print(f"\nOverall Result: {overall_status}")
@@ -195,7 +195,7 @@ def show_status(args):
         print("\n⚙️  Configuration:")
         print("-" * 40)
         config = status['configuration']
-        print(f"CSV File: {config['csv_file']}")
+        print(f"Dropbox File Path: [FILE_PATH_REDACTED]")
         print(f"API Base URL: {config['api_base_url']}")
         print(f"Target Email: [REDACTED]")
         print(f"Test Mode: {'Yes' if config['test_mode'] else 'No'}")
@@ -206,8 +206,8 @@ def show_status(args):
             print("-" * 40)
             csv_stats = status['csv_stats']
             print(f"File Exists: {'Yes' if csv_stats['file_exists'] else 'No'}")
-            print(f"Total References: {csv_stats['total_references']}")
-            print(f"Total Rows: {csv_stats['total_rows']}")
+            print(f"Total References: [COUNT_REDACTED]")
+            print(f"Total Rows: [COUNT_REDACTED]")
         
         if status['errors']:
             print(f"\n❌ Errors ({len(status['errors'])}):")
@@ -218,7 +218,7 @@ def show_status(args):
         print("-" * 40)
         print(f"📧 Target Email: [REDACTED]")
         print(f"🌍 Timezone: {settings.TIMEZONE}")
-        print(f"📊 CSV File: {settings.CSV_FILE_PATH}")
+        print(f"📊 Dropbox File Path: [FILE_PATH_REDACTED]")
         print(f"📝 Log Level: {settings.LOG_LEVEL}")
         print(f"⏰ Daily Schedule: {settings.SCHEDULE_HOUR:02d}:{settings.SCHEDULE_MINUTE:02d} Madrid time")
         print(f"🕐 Operation Hours: {settings.OPERATION_START_HOUR:02d}:00 - {settings.OPERATION_END_HOUR:02d}:00")

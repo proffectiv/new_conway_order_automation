@@ -47,7 +47,7 @@ class Settings:
         self.TIMEZONE = os.getenv("TIMEZONE", "Europe/Madrid")
         
         # Application Configuration
-        self.CSV_FILE_PATH = os.getenv("CSV_FILE_PATH", "Información_EAN_Conway_2025.xlsx - Stammdaten Conway.csv")
+        # Note: CSV file is now retrieved from Dropbox using DROPBOX_FILE_PATH
         self.LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO")
         self.LOG_FILE = os.getenv("LOG_FILE", "logs/holded_automation.log")
         

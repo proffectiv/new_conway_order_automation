@@ -45,6 +45,9 @@ class WorkflowOrchestrator:
             
         except Exception as e:
             logger.error(f"Failed to initialize workflow components: {e}")
+            # Clean up any temporary files if initialization fails
+            if hasattr(self, 'csv_processor'):
+                self.csv_processor.cleanup()
             raise
     
     def _is_within_operation_hours(self, reference_time: datetime = None) -> bool:
@@ -360,7 +363,7 @@ class WorkflowOrchestrator:
                 'next_run_description': f"Daily at {settings.SCHEDULE_HOUR:02d}:{settings.SCHEDULE_MINUTE:02d} Madrid time"
             },
             'configuration': {
-                'csv_file': settings.CSV_FILE_PATH,
+                'dropbox_file_path': settings.DROPBOX_FILE_PATH,
                 'api_base_url': settings.HOLDED_BASE_URL,
                 'target_email': settings.TARGET_EMAIL,
                 'test_mode': settings.TEST_MODE,
@@ -376,4 +379,13 @@ class WorkflowOrchestrator:
         except Exception as e:
             status['errors'].append(f"Failed to get CSV stats: {e}")
         
-        return status 
+        return status
+    
+    def cleanup(self):
+        """Clean up temporary files and resources."""
+        if hasattr(self, 'csv_processor'):
+            self.csv_processor.cleanup()
+    
+    def __del__(self):
+        """Cleanup when object is destroyed."""
+        self.cleanup() 
