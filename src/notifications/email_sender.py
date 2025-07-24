@@ -322,6 +322,18 @@ class EmailSender:
                 div {{
                     color: #000000;
                 }}
+                h3 {{
+                    color: red;
+                    font-weight: bold;
+                    font-size: 1.2em;
+                }}
+                .warning {{
+                    background-color: #f8f9fa;
+                    margin: 5px 0;
+                    margin-bottom: 20px;
+                    padding: 10px;
+                    border-left: 4px solid #e74c3c;
+                }}
             </style>
         </head>
         <body>
@@ -337,6 +349,11 @@ class EmailSender:
                     <li><strong>Conway Items:</strong> {total_conway_items}</li>
                     <li><strong>Unique Bike References Found:</strong> {len(unique_references)}</li>
                 </ul>
+            </div>
+            <div class="warning">
+                <h2>⚠️ Warning</h2>
+                <h3>The price of the items might not be the final one.</h3>
+                <h3>Please check the client's discount and the actual sales price of each one of the items.</h3>
             </div>
         """
         

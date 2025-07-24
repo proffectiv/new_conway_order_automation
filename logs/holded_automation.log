@@ -1,0 +1,116 @@
+2025-07-24 16:09:09,279 [INFO] src.main_workflow: Initializing Conway Bikes workflow orchestrator
+2025-07-24 16:09:09,281 [INFO] utils.csv_processor: Downloading Conway CSV file from Dropbox
+2025-07-24 16:09:09,572 [INFO] utils.dropbox_handler: Successfully refreshed Dropbox access token
+2025-07-24 16:09:09,573 [INFO] dropbox: Request to users/get_current_account
+2025-07-24 16:09:10,332 [INFO] dropbox: Request to users/get_current_account
+2025-07-24 16:09:11,128 [INFO] utils.dropbox_handler: Connected to Dropbox account: [EMAIL_REDACTED]
+2025-07-24 16:09:11,128 [INFO] dropbox: Request to files/get_metadata
+2025-07-24 16:09:11,435 [INFO] utils.dropbox_handler: Conway CSV file found: [FILENAME_REDACTED] (size: [SIZE_REDACTED])
+2025-07-24 16:09:11,435 [INFO] dropbox: Request to users/get_current_account
+2025-07-24 16:09:12,119 [INFO] utils.dropbox_handler: Downloading Conway CSV file from: [FILE_PATH_REDACTED]
+2025-07-24 16:09:12,119 [INFO] dropbox: Request to files/download
+2025-07-24 16:09:14,763 [INFO] utils.dropbox_handler: Downloaded Conway CSV file to: [FILE_PATH_REDACTED]
+2025-07-24 16:09:14,764 [INFO] utils.csv_processor: Loading bike references from: [FILE_PATH_REDACTED]
+2025-07-24 16:09:14,884 [INFO] utils.csv_processor: Loaded [COUNT_REDACTED] bike references
+2025-07-24 16:09:14,884 [INFO] holded.api_client: Holded API client initialized
+2025-07-24 16:09:14,885 [INFO] utils.processed_orders: Processed orders tracker initialized with 4 existing records
+2025-07-24 16:09:14,885 [INFO] notifications.email_sender: Email sender initialized
+2025-07-24 16:09:14,886 [INFO] src.main_workflow: All workflow components initialized successfully
+2025-07-24 16:09:14,886 [INFO] src.main_workflow: Testing all workflow components
+2025-07-24 16:09:14,886 [INFO] src.main_workflow: CSV processor test passed: 8954 references loaded
+2025-07-24 16:09:15,016 [INFO] holded.api_client: Holded API connection test successful
+2025-07-24 16:09:15,017 [INFO] src.main_workflow: Holded API test passed: Connection successful
+2025-07-24 16:09:15,099 [WARNING] holded.api_client: Non-JSON response received from https://api.holded.com/api/invoicing/v1/info
+2025-07-24 16:09:15,124 [INFO] notifications.email_sender: Sending template test email to [EMAIL_REDACTED]
+2025-07-24 16:09:15,700 [INFO] notifications.email_sender: Template test email sent successfully to [EMAIL_REDACTED]
+2025-07-24 16:09:15,700 [INFO] src.main_workflow: Email sender test passed: Test email sent successfully
+2025-07-24 16:09:15,701 [INFO] src.main_workflow: All component tests passed successfully
+2025-07-24 16:09:16,441 [INFO] utils.dropbox_handler: Successfully refreshed Dropbox access token
+2025-07-24 16:09:16,442 [INFO] utils.dropbox_handler: Cleaned up temporary file: [FILE_PATH_REDACTED]
+2025-07-24 16:10:27,011 [INFO] src.main_workflow: Initializing Conway Bikes workflow orchestrator
+2025-07-24 16:10:27,012 [INFO] utils.csv_processor: Downloading Conway CSV file from Dropbox
+2025-07-24 16:10:27,294 [INFO] utils.dropbox_handler: Successfully refreshed Dropbox access token
+2025-07-24 16:10:27,295 [INFO] dropbox: Request to users/get_current_account
+2025-07-24 16:10:28,036 [INFO] dropbox: Request to users/get_current_account
+2025-07-24 16:10:28,743 [INFO] utils.dropbox_handler: Connected to Dropbox account: [EMAIL_REDACTED]
+2025-07-24 16:10:28,743 [INFO] dropbox: Request to files/get_metadata
+2025-07-24 16:10:29,017 [INFO] utils.dropbox_handler: Conway CSV file found: [FILENAME_REDACTED] (size: [SIZE_REDACTED])
+2025-07-24 16:10:29,017 [INFO] dropbox: Request to users/get_current_account
+2025-07-24 16:10:29,728 [INFO] utils.dropbox_handler: Downloading Conway CSV file from: [FILE_PATH_REDACTED]
+2025-07-24 16:10:29,728 [INFO] dropbox: Request to files/download
+2025-07-24 16:10:30,869 [INFO] utils.dropbox_handler: Downloaded Conway CSV file to: [FILE_PATH_REDACTED]
+2025-07-24 16:10:30,869 [INFO] utils.csv_processor: Loading bike references from: [FILE_PATH_REDACTED]
+2025-07-24 16:10:30,940 [INFO] utils.csv_processor: Loaded [COUNT_REDACTED] bike references
+2025-07-24 16:10:30,940 [INFO] holded.api_client: Holded API client initialized
+2025-07-24 16:10:30,941 [INFO] utils.processed_orders: Processed orders tracker initialized with 4 existing records
+2025-07-24 16:10:30,942 [INFO] notifications.email_sender: Email sender initialized
+2025-07-24 16:10:30,942 [INFO] src.main_workflow: All workflow components initialized successfully
+2025-07-24 16:10:30,942 [INFO] src.main_workflow: Testing all workflow components
+2025-07-24 16:10:30,942 [INFO] src.main_workflow: CSV processor test passed: 8954 references loaded
+2025-07-24 16:10:31,064 [INFO] holded.api_client: Holded API connection test successful
+2025-07-24 16:10:31,065 [INFO] src.main_workflow: Holded API test passed: Connection successful
+2025-07-24 16:10:31,151 [WARNING] holded.api_client: Non-JSON response received from https://api.holded.com/api/invoicing/v1/info
+2025-07-24 16:10:31,182 [INFO] notifications.email_sender: Sending template test email to [EMAIL_REDACTED]
+2025-07-24 16:10:31,726 [INFO] notifications.email_sender: Template test email sent successfully to [EMAIL_REDACTED]
+2025-07-24 16:10:31,726 [INFO] src.main_workflow: Email sender test passed: Test email sent successfully
+2025-07-24 16:10:31,726 [INFO] src.main_workflow: All component tests passed successfully
+2025-07-24 16:10:32,002 [INFO] utils.dropbox_handler: Successfully refreshed Dropbox access token
+2025-07-24 16:10:32,003 [INFO] utils.dropbox_handler: Cleaned up temporary file: [FILE_PATH_REDACTED]
+2025-07-24 16:11:03,993 [INFO] src.main_workflow: Initializing Conway Bikes workflow orchestrator
+2025-07-24 16:11:03,994 [INFO] utils.csv_processor: Downloading Conway CSV file from Dropbox
+2025-07-24 16:11:04,297 [INFO] utils.dropbox_handler: Successfully refreshed Dropbox access token
+2025-07-24 16:11:04,297 [INFO] dropbox: Request to users/get_current_account
+2025-07-24 16:11:05,530 [INFO] dropbox: Request to users/get_current_account
+2025-07-24 16:11:06,734 [INFO] utils.dropbox_handler: Connected to Dropbox account: [EMAIL_REDACTED]
+2025-07-24 16:11:06,735 [INFO] dropbox: Request to files/get_metadata
+2025-07-24 16:11:07,504 [INFO] utils.dropbox_handler: Conway CSV file found: [FILENAME_REDACTED] (size: [SIZE_REDACTED])
+2025-07-24 16:11:07,505 [INFO] dropbox: Request to users/get_current_account
+2025-07-24 16:11:08,670 [INFO] utils.dropbox_handler: Downloading Conway CSV file from: [FILE_PATH_REDACTED]
+2025-07-24 16:11:08,671 [INFO] dropbox: Request to files/download
+2025-07-24 16:11:09,892 [INFO] utils.dropbox_handler: Downloaded Conway CSV file to: [FILE_PATH_REDACTED]
+2025-07-24 16:11:09,893 [INFO] utils.csv_processor: Loading bike references from: [FILE_PATH_REDACTED]
+2025-07-24 16:11:09,976 [INFO] utils.csv_processor: Loaded [COUNT_REDACTED] bike references
+2025-07-24 16:11:09,976 [INFO] holded.api_client: Holded API client initialized
+2025-07-24 16:11:09,976 [INFO] utils.processed_orders: Processed orders tracker initialized with 4 existing records
+2025-07-24 16:11:09,977 [INFO] notifications.email_sender: Email sender initialized
+2025-07-24 16:11:09,977 [INFO] src.main_workflow: All workflow components initialized successfully
+2025-07-24 16:11:09,977 [INFO] src.main_workflow: Testing all workflow components
+2025-07-24 16:11:09,977 [INFO] src.main_workflow: CSV processor test passed: 8954 references loaded
+2025-07-24 16:11:10,094 [INFO] holded.api_client: Holded API connection test successful
+2025-07-24 16:11:10,094 [INFO] src.main_workflow: Holded API test passed: Connection successful
+2025-07-24 16:11:10,172 [WARNING] holded.api_client: Non-JSON response received from https://api.holded.com/api/invoicing/v1/info
+2025-07-24 16:11:10,186 [INFO] notifications.email_sender: Sending template test email to [EMAIL_REDACTED]
+2025-07-24 16:11:10,821 [INFO] notifications.email_sender: Template test email sent successfully to [EMAIL_REDACTED]
+2025-07-24 16:11:10,821 [INFO] src.main_workflow: Email sender test passed: Test email sent successfully
+2025-07-24 16:11:10,821 [INFO] src.main_workflow: All component tests passed successfully
+2025-07-24 16:11:11,095 [INFO] utils.dropbox_handler: Successfully refreshed Dropbox access token
+2025-07-24 16:11:11,096 [INFO] utils.dropbox_handler: Cleaned up temporary file: [FILE_PATH_REDACTED]
+2025-07-24 16:11:51,874 [INFO] src.main_workflow: Initializing Conway Bikes workflow orchestrator
+2025-07-24 16:11:51,875 [INFO] utils.csv_processor: Downloading Conway CSV file from Dropbox
+2025-07-24 16:11:52,175 [INFO] utils.dropbox_handler: Successfully refreshed Dropbox access token
+2025-07-24 16:11:52,177 [INFO] dropbox: Request to users/get_current_account
+2025-07-24 16:11:53,394 [INFO] dropbox: Request to users/get_current_account
+2025-07-24 16:11:54,573 [INFO] utils.dropbox_handler: Connected to Dropbox account: [EMAIL_REDACTED]
+2025-07-24 16:11:54,574 [INFO] dropbox: Request to files/get_metadata
+2025-07-24 16:11:55,311 [INFO] utils.dropbox_handler: Conway CSV file found: [FILENAME_REDACTED] (size: [SIZE_REDACTED])
+2025-07-24 16:11:55,311 [INFO] dropbox: Request to users/get_current_account
+2025-07-24 16:11:56,495 [INFO] utils.dropbox_handler: Downloading Conway CSV file from: [FILE_PATH_REDACTED]
+2025-07-24 16:11:56,496 [INFO] dropbox: Request to files/download
+2025-07-24 16:11:58,153 [INFO] utils.dropbox_handler: Downloaded Conway CSV file to: [FILE_PATH_REDACTED]
+2025-07-24 16:11:58,154 [INFO] utils.csv_processor: Loading bike references from: [FILE_PATH_REDACTED]
+2025-07-24 16:11:58,225 [INFO] utils.csv_processor: Loaded [COUNT_REDACTED] bike references
+2025-07-24 16:11:58,225 [INFO] holded.api_client: Holded API client initialized
+2025-07-24 16:11:58,226 [INFO] utils.processed_orders: Processed orders tracker initialized with 4 existing records
+2025-07-24 16:11:58,226 [INFO] notifications.email_sender: Email sender initialized
+2025-07-24 16:11:58,226 [INFO] src.main_workflow: All workflow components initialized successfully
+2025-07-24 16:11:58,226 [INFO] src.main_workflow: Testing all workflow components
+2025-07-24 16:11:58,226 [INFO] src.main_workflow: CSV processor test passed: 8954 references loaded
+2025-07-24 16:11:58,345 [INFO] holded.api_client: Holded API connection test successful
+2025-07-24 16:11:58,345 [INFO] src.main_workflow: Holded API test passed: Connection successful
+2025-07-24 16:11:58,425 [WARNING] holded.api_client: Non-JSON response received from https://api.holded.com/api/invoicing/v1/info
+2025-07-24 16:11:58,440 [INFO] notifications.email_sender: Sending template test email to [EMAIL_REDACTED]
+2025-07-24 16:11:58,972 [INFO] notifications.email_sender: Template test email sent successfully to [EMAIL_REDACTED]
+2025-07-24 16:11:58,973 [INFO] src.main_workflow: Email sender test passed: Test email sent successfully
+2025-07-24 16:11:58,973 [INFO] src.main_workflow: All component tests passed successfully
+2025-07-24 16:11:59,259 [INFO] utils.dropbox_handler: Successfully refreshed Dropbox access token
+2025-07-24 16:11:59,260 [INFO] utils.dropbox_handler: Cleaned up temporary file: [FILE_PATH_REDACTED]
