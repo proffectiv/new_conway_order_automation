@@ -238,10 +238,10 @@ class HoldedAPIClient:
         """
         try:
             # Make API request to get customer info
-            endpoint = f"contacts/{customer_id}"
-            response = self._make_request('GET', endpoint)
+            url = f"https://api.holded.com/api/invoicing/v1/contacts/{customer_id}"
+            response = requests.get(url, headers={'key': self.api_key})
             response = response.json()
-            return response['code']
+            return response['code'] if response['code'] else 'N/A'
         except Exception as e:
             logger.error(f"Failed to retrieve customer nif: {e}")
             raise
