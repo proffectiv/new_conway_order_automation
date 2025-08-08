@@ -239,7 +239,7 @@ class HoldedAPIClient:
         try:
             # Make API request to get customer info
             url = f"https://api.holded.com/api/invoicing/v1/contacts/{customer_id}"
-            response = requests.get(url, headers={'key': self.api_key})
+            response = requests.get(url, headers={'key': f'{self.api_key}'})
             response = response.json()
             return response['code'] if response['code'] else 'N/A'
         except Exception as e:
