@@ -365,6 +365,10 @@ class EmailSender:
             contact_name = contact.get('name', 'Unknown Customer') if isinstance(contact, dict) else 'Unknown Customer'
             customer_name = order.get('contactName', contact_name)
             order_total = round(float(order.get('total', 'N/A')),2)
+
+            # Get customer NIF from Holded API
+            customer_nif = self.holded_api_client.get_customer_nif(order.get('contactId', 'N/A'))
+            
             
             html_content += f"""
             <div class="order">
@@ -372,6 +376,7 @@ class EmailSender:
                     Order #{i}
                 </div>
                 <div class="order-content">
+                    <p><strong>Customer ID:</strong> {customer_nif}</p>
                     <p><strong>Customer:</strong> {customer_name}</p>
                     <p><strong>Date:</strong> {order_date}</p>
                     <p><strong>Total:</strong> {order_total} €</p>

@@ -224,4 +224,23 @@ class HoldedAPIClient:
                 'error': str(e),
                 'base_url': self.base_url,
                 'authenticated': self.test_connection()
-            } 
+            }
+    
+    def get_customer_nif(self, customer_id: str) -> Dict[str, Any]:
+        """
+        Get customer information from Holded API.
+        
+        Args:
+            customer_id: ID of the customer to retrieve
+            
+        Returns:
+            Customer NIF
+        """
+        try:
+            # Make API request to get customer info
+            endpoint = f"contacts/{customer_id}"
+            response = self._make_request('GET', endpoint)
+            return response.get('code', 'N/A')
+        except Exception as e:
+            logger.error(f"Failed to retrieve customer nif: {e}")
+            raise
