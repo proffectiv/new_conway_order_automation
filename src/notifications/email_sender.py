@@ -378,7 +378,7 @@ class EmailSender:
                     Order #{i}
                 </div>
                 <div class="order-content">
-                    <p><strong>Customer ID:</strong> {customer_nif}</p>
+                    <p><strong>Customer VAT:</strong> {customer_nif}</p>
                     <p><strong>Customer:</strong> {customer_name}</p>
                     <p><strong>Date:</strong> {order_date}</p>
                     <p><strong>Total:</strong> {order_total} €</p>
@@ -392,6 +392,7 @@ class EmailSender:
                 for item in conway_items:
                     item_name = item.get('name', 'Unknown Item')
                     item_code = item.get('code', item.get('sku', ''))
+                    item_size = item.get('size', 'N/A')
                     item_qty = item.get('units', item.get('quantity', 1))
                     item_price = round(float(item.get('price', 'N/A')),2)
                     
@@ -403,6 +404,7 @@ class EmailSender:
                     <div class="item">
                         <strong>{item_name}</strong>
                         {f'<br>SKU: {item_code}' if item_code else ''}
+                        {f'<br>Size: {item_size}' if item_size else ''}
                         <br>Quantity: {item_qty} | Price: {item_price} €
                     </div>
                     """

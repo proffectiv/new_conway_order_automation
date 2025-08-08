@@ -240,7 +240,8 @@ class HoldedAPIClient:
             # Make API request to get customer info
             endpoint = f"contacts/{customer_id}"
             response = self._make_request('GET', endpoint)
-            return response.get('code', 'N/A')
+            response = response.json()
+            return response['code']
         except Exception as e:
             logger.error(f"Failed to retrieve customer nif: {e}")
             raise
