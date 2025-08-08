@@ -15,6 +15,7 @@ from typing import List, Dict, Any, Union, Set
 from datetime import datetime
 import pytz
 from config.settings import settings
+from holded.api_client import HoldedAPIClient
 
 logger = logging.getLogger(__name__)
 
@@ -38,6 +39,7 @@ class EmailSender:
         self.password = settings.EMAIL_PASSWORD
         self.from_email = settings.EMAIL_FROM
         self.target_email = settings.TARGET_EMAIL
+        self.holded_api_client = HoldedAPIClient()
         
         # Store bike references for item filtering
         self.bike_references = bike_references or set()
