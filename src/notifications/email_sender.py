@@ -393,7 +393,17 @@ class EmailSender:
                 for item in conway_items:
                     item_name = item.get('name', 'Unknown Item')
                     item_code = item.get('code', item.get('sku', ''))
-                    item_size = self.holded_api_client.get_product_size(item.get('productId', ''), item.get('variantId', ''))
+                    item_info = self.holded_api_client.get_product_info(item.get('productId', ''), item.get('variantId', ''))
+                    item_size = 'N/A'
+                    for info in item_info:
+                        if info['name'] == 'Talla':
+                            item_size = info['field']
+                            break
+                    item_color = 'N/A'
+                    for info in item_info:
+                        if info['name'] == 'Color':
+                            item_color = info['field']
+                            break
                     item_qty = item.get('units', item.get('quantity', 1))
                     item_price = round(float(item.get('price', 'N/A')),2)
                     
@@ -406,6 +416,7 @@ class EmailSender:
                         <strong>{item_name}</strong>
                         {f'<br>SKU: {item_code}' if item_code else ''}
                         {f'<br>Size: {item_size}' if item_size else ''}
+                        {f'<br>Color: {item_color}' if item_color else ''}
                         <br>Quantity: {item_qty} | Price: {item_price} €
                     </div>
                     """
