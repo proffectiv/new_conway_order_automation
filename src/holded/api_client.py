@@ -8,7 +8,7 @@ import logging
 from typing import List, Dict, Any, Optional
 from datetime import datetime, timedelta
 import pytz
-from config.settings import settings
+from src.config import settings
 import json
 
 logger = logging.getLogger(__name__)
@@ -238,10 +238,10 @@ class HoldedAPIClient:
         """
         try:
             # Make API request to get customer info
-            url = f"https://api.holded.com/api/invoicing/v1/contacts/{customer_id}"
-            response = requests.get(url, headers={'key': f'{self.api_key}'})
-            response = response.json()
-            return response['code'] if response['code'] else 'N/A'
+            url = f"{self.base_url}/contacts/{customer_id}"
+            response = requests.get(url, headers={'key': self.api_key})
+            response_json = response.json()
+            return response_json['code'] if response_json['code'] else 'N/A'
         except Exception as e:
             logger.error(f"Failed to retrieve customer nif: {e}")
             raise
