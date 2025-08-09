@@ -369,7 +369,7 @@ class EmailSender:
             order_total = round(float(order.get('total', 'N/A')),2)
 
             # Get customer NIF from Holded API
-            customer_nif = self.holded_api_client.get_customer_nif(order.get('contactId', 'N/A'))
+            customer_nif = self.holded_api_client.get_customer_nif(contact)
             
             
             html_content += f"""
