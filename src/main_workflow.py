@@ -11,7 +11,7 @@ from datetime import datetime
 import pytz
 
 # Import our modules
-from config.settings import settings
+from src.config import settings
 from utils.csv_processor import CSVProcessor
 from utils.processed_orders import ProcessedOrdersTracker
 from holded.api_client import HoldedAPIClient
