@@ -16,7 +16,9 @@ from datetime import datetime
 import pytz
 from config.settings import settings
 from holded.api_client import HoldedAPIClient
-import googletrans
+from googletrans import Translator
+import asyncio
+import inspect
 
 logger = logging.getLogger(__name__)
 
@@ -41,6 +43,8 @@ class EmailSender:
         self.from_email = settings.EMAIL_FROM
         self.target_email = settings.TARGET_EMAIL
         self.holded_api_client = HoldedAPIClient()
+        # Reusable translator instance (googletrans). The API can be sync or async
+        self.translator = Translator()
         
         # Store bike references for item filtering
         self.bike_references = bike_references or set()
@@ -412,7 +416,7 @@ class EmailSender:
                     if 'Color' in item_info:
                         item_color = item_info['Color']
 
-                    item_color_en = googletrans.Translator().translate(item_color, src='es', dest='en').text
+                    item_color_en = self._translate_text(item_color, src='es', dest='en')
 
                     item_qty = item.get('units', item.get('quantity', 1))
                     item_price = round(float(item.get('price', 'N/A')),2)
@@ -461,6 +465,37 @@ class EmailSender:
         """
         
         return html_content
+
+    def _translate_text(self, text: str, src: str = 'es', dest: str = 'en') -> str:
+        """
+        Translate text using googletrans. Handles both sync and async APIs.
+
+        Args:
+            text: Input text to translate
+            src: Source language code
+            dest: Destination language code
+
+        Returns:
+            Translated text, or original text on failure
+        """
+        if not text:
+            return text or ''
+
+        try:
+            result = self.translator.translate(text, src=src, dest=dest)
+            # Some versions return a coroutine
+            if inspect.isawaitable(result):
+                try:
+                    result = asyncio.run(result)
+                except RuntimeError as e:
+                    # If already in an event loop, avoid crashing; return original text
+                    logger.warning(f"Translation skipped due to running event loop: {e}")
+                    return text
+
+            return getattr(result, 'text', text)
+        except Exception as e:
+            logger.warning(f"Translation failed: {e}")
+            return text
     
     def _create_plain_text_summary(self, orders: List[Dict[str, Any]]) -> str:
         """
