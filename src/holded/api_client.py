@@ -264,7 +264,7 @@ class HoldedAPIClient:
 
             for variant in response_json['variants']:
                 if variant['id'] == variant_id:
-                    for category in variant['categorieFields']:
+                    for category in variant['categoryFields']:
                         if category['name'] == 'Talla':
                             return category['field']
 
