@@ -8,7 +8,7 @@ import logging
 from typing import List, Dict, Any, Optional
 from datetime import datetime, timedelta
 import pytz
-from src.config import settings
+from src.config.settings import settings
 import json
 
 logger = logging.getLogger(__name__)

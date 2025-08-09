@@ -11,14 +11,14 @@ from datetime import datetime
 import pytz
 
 # Import our modules
-from config.settings import Settings
+from config.settings import settings
 from utils.csv_processor import CSVProcessor
 from utils.processed_orders import ProcessedOrdersTracker
 from holded.api_client import HoldedAPIClient
 from notifications.email_sender import EmailSender
 
 # Setup logging
-logging.config.dictConfig(Settings.get_log_config())
+logging.config.dictConfig(settings.get_log_config())
 logger = logging.getLogger(__name__)
 
 class WorkflowOrchestrator:
@@ -61,7 +61,7 @@ class WorkflowOrchestrator:
             True if within operation hours, False otherwise
         """
         # Setup Madrid timezone
-        madrid_tz = pytz.timezone(Settings.TIMEZONE)
+        madrid_tz = pytz.timezone(settings.TIMEZONE)
         
         if reference_time is None:
             reference_time = datetime.now(madrid_tz)
@@ -73,7 +73,7 @@ class WorkflowOrchestrator:
         current_hour = reference_time.hour
         
         # Check if current hour is within operation window
-        return Settings.OPERATION_START_HOUR <= current_hour < Settings.OPERATION_END_HOUR
+        return settings.OPERATION_START_HOUR <= current_hour < settings.OPERATION_END_HOUR
     
     def run_daily_check(self, reference_time: datetime = None) -> Dict[str, Any]:
         """
@@ -86,7 +86,7 @@ class WorkflowOrchestrator:
             Dictionary with workflow execution results
         """
         # Setup Madrid timezone
-        madrid_tz = pytz.timezone(Settings.TIMEZONE)
+        madrid_tz = pytz.timezone(settings.TIMEZONE)
         
         if reference_time is None:
             reference_time = datetime.now(madrid_tz)
@@ -114,7 +114,7 @@ class WorkflowOrchestrator:
         try:
             # Step 0: Check if within operation hours (for automated runs)
             if not result['within_operation_hours']:
-                skip_msg = f"Outside operation hours ({Settings.OPERATION_START_HOUR}:00-{Settings.OPERATION_END_HOUR}:00). Skipping check."
+                skip_msg = f"Outside operation hours ({settings.OPERATION_START_HOUR}:00-{settings.OPERATION_END_HOUR}:00). Skipping check."
                 logger.info(skip_msg)
                 result['skipped'] = True
                 result['skip_reason'] = "outside_operation_hours"
@@ -308,7 +308,7 @@ class WorkflowOrchestrator:
         
         # Test email sender
         try:
-            if Settings.TEST_EMAIL_ONLY:
+            if settings.TEST_EMAIL_ONLY:
                 # In test mode, just test connection
                 email_success = self.email_sender.test_email_connection()
                 test_results['email_sender']['success'] = email_success
@@ -351,23 +351,23 @@ class WorkflowOrchestrator:
         Returns:
             Dictionary with system status information
         """
-        madrid_tz = pytz.timezone(Settings.TIMEZONE)
+        madrid_tz = pytz.timezone(settings.TIMEZONE)
         current_time = datetime.now(madrid_tz)
         
         status = {
             'timestamp': current_time.isoformat(),
-            'timezone': Settings.TIMEZONE,
+                'timezone': settings.TIMEZONE,
             'schedule': {
-                'hour': Settings.SCHEDULE_HOUR,
-                'minute': Settings.SCHEDULE_MINUTE,
-                'next_run_description': f"Daily at {Settings.SCHEDULE_HOUR:02d}:{Settings.SCHEDULE_MINUTE:02d} Madrid time"
+                'hour': settings.SCHEDULE_HOUR,
+                'minute': settings.SCHEDULE_MINUTE,
+                'next_run_description': f"Daily at {settings.SCHEDULE_HOUR:02d}:{settings.SCHEDULE_MINUTE:02d} Madrid time"
             },
             'configuration': {
-                'dropbox_file_path': Settings.DROPBOX_FILE_PATH,
-                'api_base_url': Settings.HOLDED_BASE_URL,
-                'target_email': Settings.TARGET_EMAIL,
-                'test_mode': Settings.TEST_MODE,
-                'test_email_only': Settings.TEST_EMAIL_ONLY
+                'dropbox_file_path': settings.DROPBOX_FILE_PATH,
+                'api_base_url': settings.HOLDED_BASE_URL,
+                'target_email': settings.TARGET_EMAIL,
+                'test_mode': settings.TEST_MODE,
+                'test_email_only': settings.TEST_EMAIL_ONLY
             },
             'csv_stats': None,
             'errors': []
