@@ -393,16 +393,33 @@ class EmailSender:
                 for item in conway_items:
                     item_name = item.get('name', 'Unknown Item')
                     item_code = item.get('code', item.get('sku', ''))
-                    item_info = self.holded_api_client.get_product_info(item.get('productId', ''), item.get('variantId', ''))
+                    # Retrieve product info and normalize it to a list of dicts
+                    # We have seen the API might return a single dict or even a string like 'N/A'.
+                    # To avoid runtime errors (e.g., iterating over a string), we coerce into a list safely.
+                    item_info = self.holded_api_client.get_product_info(
+                        item.get('productId', ''),
+                        item.get('variantId', '')
+                    )
+
+                    if isinstance(item_info, list):
+                        item_fields = item_info
+                    elif isinstance(item_info, dict):
+                        item_fields = [item_info]
+                    else:
+                        item_fields = []
+
+                    # Extract size and color from category fields, if present
                     item_size = 'N/A'
-                    for info in item_info:
-                        if info['name'] == 'Talla':
-                            item_size = info['field']
+                    for info in item_fields:
+                        # Defensive access: some entries might not be dicts or may miss expected keys
+                        if isinstance(info, dict) and info.get('name') == 'Talla':
+                            item_size = info.get('field') or info.get('value') or 'N/A'
                             break
+
                     item_color = 'N/A'
-                    for info in item_info:
-                        if info['name'] == 'Color':
-                            item_color = info['field']
+                    for info in item_fields:
+                        if isinstance(info, dict) and info.get('name') == 'Color':
+                            item_color = info.get('field') or info.get('value') or 'N/A'
                             break
                     item_qty = item.get('units', item.get('quantity', 1))
                     item_price = round(float(item.get('price', 'N/A')),2)
