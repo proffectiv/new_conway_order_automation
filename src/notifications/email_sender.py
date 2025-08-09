@@ -401,28 +401,16 @@ class EmailSender:
                         item.get('variantId', '')
                     )
 
-                    if isinstance(item_info, list):
-                        item_fields = item_info
-                    elif isinstance(item_info, dict):
-                        item_fields = [item_info]
-                    else:
-                        item_fields = []
-                    logger.info(f"Item fields: {item_fields}")
+                    logger.info(f"Item info: {item_info}")
                     # Extract size and color from category fields, if present
                     item_size = 'N/A'
-                    for info in item_fields:
-                        # Defensive access: some entries might not be dicts or may miss expected keys
-                        if isinstance(info, dict) and info.get('name') == 'Talla':
-                            item_size = info.get('field') or 'N/A'
-                            logger.info(f"Item size: {item_size}")
-                            break
+                    if 'Talla' in item_info:
+                        item_size = item_info['Talla']
 
                     item_color = 'N/A'
-                    for info in item_fields:
-                        if isinstance(info, dict) and info.get('name') == 'Color':
-                            item_color = info.get('field') or 'N/A'
-                            logger.info(f"Item color: {item_color}")
-                            break
+                    if 'Color' in item_info:
+                        item_color = item_info['Color']
+
                     item_qty = item.get('units', item.get('quantity', 1))
                     item_price = round(float(item.get('price', 'N/A')),2)
                     

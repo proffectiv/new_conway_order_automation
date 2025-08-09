@@ -262,13 +262,13 @@ class HoldedAPIClient:
             response = requests.get(url, headers={'key': self.api_key})
             response_json = response.json()
 
+            category_info = {}
             for variant in response_json['variants']:
                 if variant['id'] == variant_id:
                     for category in variant['categoryFields']:
-                            return category
+                        category_info[category['name']] = category['field']
 
-            return 'N/A'
+            return category_info
         except Exception as e:
             logger.error(f"Failed to retrieve product info: {e}")
             raise
-        
