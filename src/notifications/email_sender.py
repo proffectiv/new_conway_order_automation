@@ -125,6 +125,7 @@ class EmailSender:
         for item in items:
             # Check various fields where bike references might appear
             search_fields = [
+                item.get('productId', ''),
                 item.get('name', ''),
                 item.get('desc', ''),
                 item.get('description', ''),
@@ -392,7 +393,7 @@ class EmailSender:
                 for item in conway_items:
                     item_name = item.get('name', 'Unknown Item')
                     item_code = item.get('code', item.get('sku', ''))
-                    item_size = item.get('size', 'N/A')
+                    item_size = self.holded_api_client.get_product_size(item.get('productId', ''), item.get('variantId', ''))
                     item_qty = item.get('units', item.get('quantity', 1))
                     item_price = round(float(item.get('price', 'N/A')),2)
                     

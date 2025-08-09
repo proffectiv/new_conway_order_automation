@@ -245,3 +245,30 @@ class HoldedAPIClient:
         except Exception as e:
             logger.error(f"Failed to retrieve customer nif: {e}")
             raise
+    
+    def get_product_size(self, product_id: str, variant_id: str) -> Dict[str, Any]:
+        """
+        Get product size from Holded API.
+        
+        Args:
+            product_id: ID of the product to retrieve
+            variant_id: ID of the variant to retrieve
+        Returns:
+            Product size
+        """
+        try:
+            # Make API request to get product info
+            url = f"{self.base_url}/products/{product_id}"
+            response = requests.get(url, headers={'key': self.api_key})
+            response_json = response.json()
+
+            for variant in response_json['variants']:
+                if variant['id'] == variant_id:
+                    for category in variant['categorieFields']:
+                        if category['name'] == 'Talla':
+                            return category['field']
+
+            return 'N/A'
+        except Exception as e:
+            logger.error(f"Failed to retrieve product size: {e}")
+            raise
