@@ -16,6 +16,7 @@ from datetime import datetime
 import pytz
 from config.settings import settings
 from holded.api_client import HoldedAPIClient
+import googletrans
 
 logger = logging.getLogger(__name__)
 
@@ -411,6 +412,8 @@ class EmailSender:
                     if 'Color' in item_info:
                         item_color = item_info['Color']
 
+                    item_color_en = googletrans.Translator().translate(item_color, src='es', dest='en').text
+
                     item_qty = item.get('units', item.get('quantity', 1))
                     item_price = round(float(item.get('price', 'N/A')),2)
                     
@@ -423,7 +426,7 @@ class EmailSender:
                         <strong>{item_name}</strong>
                         {f'<br>SKU: {item_code}' if item_code else ''}
                         {f'<br>Size: {item_size}' if item_size else ''}
-                        {f'<br>Color: {item_color}' if item_color else ''}
+                        {f'<br>Color: {item_color_en}' if item_color_en else ''}
                         <br>Quantity: {item_qty} | Price: {item_price} €
                     </div>
                     """

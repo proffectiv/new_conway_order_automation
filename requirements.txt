@@ -1,35 +1,52 @@
-# Conway Bikes Order Monitoring Automation
-# Python dependencies for Holded API automation system
-
-# Core dependencies
-requests>=2.31.0          # HTTP client for Holded API calls
-python-dotenv>=1.0.0      # Environment variable management
-pytz>=2023.3             # Timezone handling for Madrid time
-
-# Scheduling (for cron-like functionality)
-schedule>=1.2.0          # Simple job scheduling library
-APScheduler>=3.10.0      # Advanced scheduling capabilities (alternative)
-
-# Email dependencies (built-in modules)
-# smtplib, email.mime - included in Python standard library
-
-# Development and testing dependencies
-pytest>=7.4.0            # Testing framework
-pytest-cov>=4.1.0       # Coverage testing
-black>=23.7.0            # Code formatting
-flake8>=6.0.0            # Code linting
-
-# Dropbox integration
-dropbox>=12.0.0          # Dropbox API client for secure file access
-openpyxl>=3.1.0          # Excel file reading and processing
-
-# Optional: Enhanced CSV handling
-pandas>=2.0.0            # Advanced CSV processing (if needed for complex CSV operations)
-chardet>=5.2.0           # Character encoding detection for CSV files
-
-# Optional: Enhanced logging and monitoring
-colorlog>=6.7.0          # Colored logging output
-structlog>=23.1.0        # Structured logging (for better log analysis)
-
-# Security dependencies
-cryptography>=41.0.0     # Secure password handling and encryption 
+anyio==4.10.0
+APScheduler==3.11.0
+black==25.1.0
+certifi==2025.7.9
+cffi==1.17.1
+chardet==5.2.0
+charset-normalizer==3.4.2
+click==8.2.1
+colorlog==6.9.0
+coverage==7.9.2
+cryptography==45.0.5
+dropbox==12.0.2
+et_xmlfile==2.0.0
+flake8==7.3.0
+googletrans==4.0.2
+h11==0.16.0
+h2==4.2.0
+hpack==4.1.0
+httpcore==1.0.9
+httpx==0.28.1
+hyperframe==6.1.0
+idna==3.10
+iniconfig==2.1.0
+mccabe==0.7.0
+mypy_extensions==1.1.0
+numpy==2.3.1
+openpyxl==3.1.5
+packaging==25.0
+pandas==2.3.1
+pathspec==0.12.1
+platformdirs==4.3.8
+pluggy==1.6.0
+ply==3.11
+pycodestyle==2.14.0
+pycparser==2.22
+pyflakes==3.4.0
+Pygments==2.19.2
+pytest==8.4.1
+pytest-cov==6.2.1
+python-dateutil==2.9.0.post0
+python-dotenv==1.1.1
+pytz==2025.2
+requests==2.32.4
+schedule==1.2.2
+six==1.17.0
+sniffio==1.3.1
+stone==3.3.1
+structlog==25.4.0
+typing_extensions==4.14.1
+tzdata==2025.2
+tzlocal==5.3.1
+urllib3==2.5.0
